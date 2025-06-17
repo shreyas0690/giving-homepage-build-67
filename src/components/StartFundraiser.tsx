@@ -1,8 +1,6 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { PlusCircle, Share2, DollarSign, ArrowRight, Clock, Users, Smartphone } from "lucide-react";
-
 const steps = [{
   number: 1,
   icon: PlusCircle,
@@ -30,10 +28,8 @@ const steps = [{
   color: "from-rose-500 to-pink-500",
   bgGradient: "from-rose-50 to-pink-50"
 }];
-
 const StartFundraiser = () => {
-  return (
-    <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-rose-50 relative overflow-hidden">
+  return <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-rose-50 relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute top-0 left-0 w-full h-full opacity-30">
         <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-rose-200 to-pink-200 rounded-full blur-3xl"></div>
@@ -59,9 +55,8 @@ const StartFundraiser = () => {
         {/* Enhanced Steps with Advanced Design */}
         <div className="grid md:grid-cols-3 gap-8 mb-16">
           {steps.map((step, index) => {
-            const Icon = step.icon;
-            return (
-              <div key={step.number} className="relative group">
+          const Icon = step.icon;
+          return <div key={step.number} className="relative group">
                 <Card className={`h-full hover:shadow-2xl transition-all duration-500 overflow-hidden bg-gradient-to-br ${step.bgGradient} border-0 group-hover:scale-105`}>
                   <CardContent className="p-8 text-center relative">
                     {/* Step number badge */}
@@ -83,24 +78,19 @@ const StartFundraiser = () => {
                       <p className="text-gray-600 leading-relaxed font-medium text-base">
                         {step.description}
                       </p>
-                      {step.subtext && (
-                        <p className="text-gray-500 text-sm leading-relaxed italic border-t border-rose-200 pt-3 mt-4">
+                      {step.subtext && <p className="text-gray-500 text-sm leading-relaxed italic border-t border-rose-200 pt-3 mt-4">
                           {step.subtext}
-                        </p>
-                      )}
+                        </p>}
                     </div>
                   </CardContent>
                 </Card>
 
                 {/* Enhanced connecting arrows */}
-                {index < steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-20">
-                    <ArrowRight className="h-8 w-8 text-rose-400" />
-                  </div>
-                )}
-              </div>
-            );
-          })}
+                {index < steps.length - 1 && <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-20">
+                    
+                  </div>}
+              </div>;
+        })}
         </div>
 
         {/* Enhanced Statistics Section */}
@@ -148,8 +138,6 @@ const StartFundraiser = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default StartFundraiser;
