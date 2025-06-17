@@ -50,10 +50,7 @@ const StartFundraiser = () => {
               Three Simple Steps
             </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light">
-            Getting started is easy and free. Launch your campaign today and 
-            start making a difference in just minutes.
-          </p>
+          
         </div>
 
         {/* Enhanced Steps with Advanced Design */}
