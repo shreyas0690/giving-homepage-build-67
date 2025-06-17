@@ -13,8 +13,7 @@ const fundraisers = [
     raised: 2825498,
     goal: 3000000,
     supporters: 3563,
-    daysLeft: 14,
-    category: "AR"
+    daysLeft: 14
   },
   {
     id: 2,
@@ -24,8 +23,7 @@ const fundraisers = [
     raised: 2087837,
     goal: 2500000,
     supporters: 1148,
-    daysLeft: 4,
-    category: "RR"
+    daysLeft: 4
   },
   {
     id: 3,
@@ -35,8 +33,37 @@ const fundraisers = [
     raised: 1941544,
     goal: 2000000,
     supporters: 1228,
-    daysLeft: 76,
-    category: "TR"
+    daysLeft: 76
+  },
+  {
+    id: 4,
+    title: "Help Rahul Fight Cancer - Medical Treatment Support",
+    organizer: "Priya Sharma",
+    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=400&h=250",
+    raised: 1650000,
+    goal: 2200000,
+    supporters: 892,
+    daysLeft: 25
+  },
+  {
+    id: 5,
+    title: "Support Meera's Education - Engineering Dreams",
+    organizer: "Amit Kumar",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&h=250",
+    raised: 850000,
+    goal: 1500000,
+    supporters: 567,
+    daysLeft: 45
+  },
+  {
+    id: 6,
+    title: "Emergency Surgery Fund for Little Arjun",
+    organizer: "Sita Devi",
+    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=400&h=250",
+    raised: 750000,
+    goal: 1200000,
+    supporters: 423,
+    daysLeft: 18
   }
 ];
 
@@ -66,18 +93,18 @@ const TrendingFundraisers = () => {
 
         {/* Navigation Arrows and Cards Container */}
         <div className="relative">
-          {/* Left Arrow */}
-          <button className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-4 shadow-xl border border-gray-100 hover:shadow-2xl hover:scale-110 transition-all duration-300 group">
-            <ChevronLeft className="h-6 w-6 text-gray-700 group-hover:text-rose-500 transition-colors" />
+          {/* Left Arrow - with more space */}
+          <button className="absolute left-6 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-5 shadow-xl border border-gray-100 hover:shadow-2xl hover:scale-110 transition-all duration-300 group">
+            <ChevronLeft className="h-7 w-7 text-gray-700 group-hover:text-rose-500 transition-colors" />
           </button>
 
-          {/* Right Arrow */}
-          <button className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-4 shadow-xl border border-gray-100 hover:shadow-2xl hover:scale-110 transition-all duration-300 group">
-            <ChevronRight className="h-6 w-6 text-gray-700 group-hover:text-rose-500 transition-colors" />
+          {/* Right Arrow - with more space */}
+          <button className="absolute right-6 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-5 shadow-xl border border-gray-100 hover:shadow-2xl hover:scale-110 transition-all duration-300 group">
+            <ChevronRight className="h-7 w-7 text-gray-700 group-hover:text-rose-500 transition-colors" />
           </button>
 
-          {/* Fundraiser Cards */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 px-16">
+          {/* Fundraiser Cards - with more padding */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 px-24">
             {fundraisers.map((fundraiser) => {
               const progressPercentage = (fundraiser.raised / fundraiser.goal) * 100;
               
