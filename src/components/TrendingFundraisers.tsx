@@ -56,10 +56,10 @@ const TrendingFundraisers = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4 font-serif">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight leading-tight">
             Trending Fundraisers
           </h2>
-          <p className="text-lg text-gray-600 font-medium">
+          <p className="text-xl text-gray-600 font-normal max-w-2xl mx-auto leading-relaxed">
             View the fundraisers that are most active right now
           </p>
         </div>
@@ -90,7 +90,7 @@ const TrendingFundraisers = () => {
                       className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     <div className="absolute top-4 left-4">
-                      <span className="bg-rose-500 text-white px-3 py-1 rounded text-sm font-bold">
+                      <span className="bg-rose-500 text-white px-3 py-1 rounded text-sm font-semibold tracking-wide">
                         {fundraiser.category}
                       </span>
                     </div>
@@ -99,15 +99,15 @@ const TrendingFundraisers = () => {
                   <CardContent className="p-6">
                     <div className="space-y-4">
                       <div>
-                        <h3 className="font-bold text-lg text-gray-900 line-clamp-2 mb-2 font-serif leading-tight">
+                        <h3 className="font-bold text-lg text-gray-900 line-clamp-2 mb-2 leading-tight tracking-tight">
                           {fundraiser.title}
                         </h3>
-                        <p className="text-sm text-gray-600 font-medium">by {fundraiser.organizer}</p>
+                        <p className="text-sm text-gray-600 font-medium tracking-wide">by {fundraiser.organizer}</p>
                       </div>
 
                       <div className="space-y-3">
                         <div className="flex justify-between items-center">
-                          <span className="text-2xl font-bold text-gray-900 font-serif">
+                          <span className="text-2xl font-bold text-gray-900 tracking-tight">
                             {formatCurrency(fundraiser.raised)}
                           </span>
                           <span className="text-sm text-gray-500 font-medium">
@@ -125,12 +125,12 @@ const TrendingFundraisers = () => {
                       <div className="flex items-center justify-between text-sm">
                         <div className="flex items-center space-x-1 text-gray-600">
                           <Clock className="h-4 w-4" />
-                          <span className="font-bold">{fundraiser.daysLeft}</span>
+                          <span className="font-bold tracking-wide">{fundraiser.daysLeft}</span>
                           <span className="font-medium">Days Left</span>
                         </div>
                         <div className="flex items-center space-x-1 text-gray-600">
                           <Heart className="h-4 w-4 text-red-500" />
-                          <span className="font-bold">{fundraiser.supporters}</span>
+                          <span className="font-bold tracking-wide">{fundraiser.supporters}</span>
                           <span className="font-medium">Supporters</span>
                         </div>
                       </div>
@@ -138,12 +138,12 @@ const TrendingFundraisers = () => {
                       <div className="flex gap-3 pt-2">
                         <Button 
                           variant="outline" 
-                          className="flex-1 border-gray-300 text-gray-700 hover:bg-gray-50 font-medium"
+                          className="flex-1 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold tracking-wide"
                         >
                           <Facebook className="h-4 w-4 mr-2" />
                           Share
                         </Button>
-                        <Button className="flex-1 bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-semibold">
+                        <Button className="flex-1 bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-semibold tracking-wide">
                           Contribute
                         </Button>
                       </div>
@@ -157,7 +157,7 @@ const TrendingFundraisers = () => {
 
         {/* View More Button */}
         <div className="text-center">
-          <Button className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white px-8 py-3 font-semibold">
+          <Button className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white px-8 py-3 font-semibold tracking-wide">
             View More
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
