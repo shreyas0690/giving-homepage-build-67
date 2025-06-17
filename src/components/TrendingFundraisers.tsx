@@ -2,7 +2,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { Heart, Clock, Users, Share, ArrowRight } from "lucide-react";
+import { Heart, Clock, Users, Facebook, ArrowRight } from "lucide-react";
 
 const fundraisers = [
   {
@@ -56,10 +56,10 @@ const TrendingFundraisers = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4 font-serif">
             Trending Fundraisers
           </h2>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-gray-600 font-medium">
             View the fundraisers that are most active right now
           </p>
         </div>
@@ -99,18 +99,18 @@ const TrendingFundraisers = () => {
                   <CardContent className="p-6">
                     <div className="space-y-4">
                       <div>
-                        <h3 className="font-bold text-lg text-gray-900 line-clamp-2 mb-2">
+                        <h3 className="font-bold text-lg text-gray-900 line-clamp-2 mb-2 font-serif leading-tight">
                           {fundraiser.title}
                         </h3>
-                        <p className="text-sm text-gray-600">by {fundraiser.organizer}</p>
+                        <p className="text-sm text-gray-600 font-medium">by {fundraiser.organizer}</p>
                       </div>
 
                       <div className="space-y-3">
                         <div className="flex justify-between items-center">
-                          <span className="text-2xl font-bold text-gray-900">
+                          <span className="text-2xl font-bold text-gray-900 font-serif">
                             {formatCurrency(fundraiser.raised)}
                           </span>
-                          <span className="text-sm text-gray-500">
+                          <span className="text-sm text-gray-500 font-medium">
                             raised out of {formatCurrency(fundraiser.goal)}
                           </span>
                         </div>
@@ -126,24 +126,24 @@ const TrendingFundraisers = () => {
                         <div className="flex items-center space-x-1 text-gray-600">
                           <Clock className="h-4 w-4" />
                           <span className="font-bold">{fundraiser.daysLeft}</span>
-                          <span>Days Left</span>
+                          <span className="font-medium">Days Left</span>
                         </div>
                         <div className="flex items-center space-x-1 text-gray-600">
                           <Heart className="h-4 w-4 text-red-500" />
                           <span className="font-bold">{fundraiser.supporters}</span>
-                          <span>Supporters</span>
+                          <span className="font-medium">Supporters</span>
                         </div>
                       </div>
 
                       <div className="flex gap-3 pt-2">
                         <Button 
                           variant="outline" 
-                          className="flex-1 border-gray-300 text-gray-700 hover:bg-gray-50"
+                          className="flex-1 border-gray-300 text-gray-700 hover:bg-gray-50 font-medium"
                         >
-                          <Share className="h-4 w-4 mr-2" />
+                          <Facebook className="h-4 w-4 mr-2" />
                           Share
                         </Button>
-                        <Button className="flex-1 bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white">
+                        <Button className="flex-1 bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-semibold">
                           Contribute
                         </Button>
                       </div>
@@ -157,7 +157,7 @@ const TrendingFundraisers = () => {
 
         {/* View More Button */}
         <div className="text-center">
-          <Button className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white px-8 py-3">
+          <Button className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white px-8 py-3 font-semibold">
             View More
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
