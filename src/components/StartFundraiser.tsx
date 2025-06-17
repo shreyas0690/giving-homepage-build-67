@@ -1,6 +1,8 @@
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { PlusCircle, Share2, DollarSign, ArrowRight, Clock, Users, Smartphone } from "lucide-react";
+
 const steps = [{
   number: 1,
   icon: PlusCircle,
@@ -16,8 +18,8 @@ const steps = [{
   description: "All you need to do is share the fundraiser with your friends and family. In no time, support will start pouring in.",
   subtext: "Share your fundraiser directly from dashboard on social media.",
   highlight: "Easy sharing",
-  color: "from-purple-500 to-indigo-500",
-  bgGradient: "from-purple-50 to-indigo-50"
+  color: "from-rose-500 to-pink-500",
+  bgGradient: "from-rose-50 to-pink-50"
 }, {
   number: 3,
   icon: DollarSign,
@@ -25,11 +27,13 @@ const steps = [{
   description: "The funds raised can be withdrawn without any hassle directly to your bank account.",
   subtext: "It takes only 5 minutes to withdraw funds on ketto.",
   highlight: "5 minutes withdrawal",
-  color: "from-emerald-500 to-teal-500",
-  bgGradient: "from-emerald-50 to-teal-50"
+  color: "from-rose-500 to-pink-500",
+  bgGradient: "from-rose-50 to-pink-50"
 }];
+
 const StartFundraiser = () => {
-  return <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-rose-50 relative overflow-hidden">
+  return (
+    <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-rose-50 relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute top-0 left-0 w-full h-full opacity-30">
         <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-rose-200 to-pink-200 rounded-full blur-3xl"></div>
@@ -50,18 +54,18 @@ const StartFundraiser = () => {
               Three Simple Steps
             </span>
           </h2>
-          
         </div>
 
         {/* Enhanced Steps with Advanced Design */}
         <div className="grid md:grid-cols-3 gap-8 mb-16">
           {steps.map((step, index) => {
-          const Icon = step.icon;
-          return <div key={step.number} className="relative group">
+            const Icon = step.icon;
+            return (
+              <div key={step.number} className="relative group">
                 <Card className={`h-full hover:shadow-2xl transition-all duration-500 overflow-hidden bg-gradient-to-br ${step.bgGradient} border-0 group-hover:scale-105`}>
                   <CardContent className="p-8 text-center relative">
                     {/* Step number badge */}
-                    <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-r from-gray-800 to-gray-900 text-white rounded-full flex items-center justify-center text-lg font-bold shadow-xl">
+                    <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-r from-rose-600 to-pink-600 text-white rounded-full flex items-center justify-center text-lg font-bold shadow-xl">
                       {step.number}
                     </div>
                     
@@ -70,33 +74,33 @@ const StartFundraiser = () => {
                       <div className={`w-24 h-24 mx-auto rounded-2xl bg-gradient-to-r ${step.color} flex items-center justify-center mb-6 shadow-2xl group-hover:shadow-3xl transition-all duration-300`}>
                         <Icon className="h-12 w-12 text-white" />
                       </div>
-                      
-                      {/* Highlight badge */}
-                      <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
-                        
-                      </div>
                     </div>
                     
                     <div className="space-y-4">
-                      <h3 className="text-2xl font-bold text-gray-900 mb-4 tracking-tight">
+                      <h3 className="text-2xl font-bold text-gray-800 mb-4 tracking-tight leading-tight">
                         {step.title}
                       </h3>
-                      <p className="text-gray-700 leading-relaxed font-medium text-base">
+                      <p className="text-gray-600 leading-relaxed font-medium text-base">
                         {step.description}
                       </p>
-                      {step.subtext && <p className="text-gray-600 text-sm leading-relaxed italic border-t border-gray-200 pt-3 mt-4">
+                      {step.subtext && (
+                        <p className="text-gray-500 text-sm leading-relaxed italic border-t border-rose-200 pt-3 mt-4">
                           {step.subtext}
-                        </p>}
+                        </p>
+                      )}
                     </div>
                   </CardContent>
                 </Card>
 
                 {/* Enhanced connecting arrows */}
-                {index < steps.length - 1 && <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-20">
-                    
-                  </div>}
-              </div>;
-        })}
+                {index < steps.length - 1 && (
+                  <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-20">
+                    <ArrowRight className="h-8 w-8 text-rose-400" />
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
 
         {/* Enhanced Statistics Section */}
@@ -107,11 +111,11 @@ const StartFundraiser = () => {
               <div className="text-gray-600 font-medium">Setup Time</div>
             </div>
             <div className="space-y-2">
-              <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">24/7</div>
+              <div className="text-3xl font-bold bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">24/7</div>
               <div className="text-gray-600 font-medium">Support Available</div>
             </div>
             <div className="space-y-2">
-              <div className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">5 min</div>
+              <div className="text-3xl font-bold bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">5 min</div>
               <div className="text-gray-600 font-medium">Withdrawal Time</div>
             </div>
           </div>
@@ -144,6 +148,8 @@ const StartFundraiser = () => {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default StartFundraiser;
