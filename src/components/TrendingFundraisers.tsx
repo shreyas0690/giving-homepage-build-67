@@ -67,17 +67,17 @@ const TrendingFundraisers = () => {
         {/* Navigation Arrows and Cards Container */}
         <div className="relative">
           {/* Left Arrow */}
-          <button className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-4 shadow-xl border border-gray-100 hover:shadow-2xl hover:scale-110 transition-all duration-300 group pr-6">
+          <button className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-4 shadow-xl border border-gray-100 hover:shadow-2xl hover:scale-110 transition-all duration-300 group">
             <ChevronLeft className="h-6 w-6 text-gray-700 group-hover:text-rose-500 transition-colors" />
           </button>
 
           {/* Right Arrow */}
-          <button className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-4 shadow-xl border border-gray-100 hover:shadow-2xl hover:scale-110 transition-all duration-300 group pr-6">
+          <button className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-4 shadow-xl border border-gray-100 hover:shadow-2xl hover:scale-110 transition-all duration-300 group">
             <ChevronRight className="h-6 w-6 text-gray-700 group-hover:text-rose-500 transition-colors" />
           </button>
 
           {/* Fundraiser Cards */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 px-20">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 px-16">
             {fundraisers.map((fundraiser) => {
               const progressPercentage = (fundraiser.raised / fundraiser.goal) * 100;
               
