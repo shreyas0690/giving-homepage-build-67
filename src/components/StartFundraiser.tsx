@@ -1,43 +1,35 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { PlusCircle, Share2, DollarSign, ArrowRight, Clock, Users, Smartphone } from "lucide-react";
-
-const steps = [
-  {
-    number: 1,
-    icon: PlusCircle,
-    title: "Start your fundraiser",
-    description: "It'll take only 2 minutes. Just tell us a few details about you and the ones you are raising funds for.",
-    highlight: "Only 2 minutes",
-    color: "from-rose-500 to-pink-500",
-    bgGradient: "from-rose-50 to-pink-50"
-  },
-  {
-    number: 2,
-    icon: Share2,
-    title: "Share your fundraiser",
-    description: "All you need to do is share the fundraiser with your friends and family. In no time, support will start pouring in.",
-    subtext: "Share your fundraiser directly from dashboard on social media.",
-    highlight: "Easy sharing",
-    color: "from-purple-500 to-indigo-500",
-    bgGradient: "from-purple-50 to-indigo-50"
-  },
-  {
-    number: 3,
-    icon: DollarSign,
-    title: "Withdraw Funds",
-    description: "The funds raised can be withdrawn without any hassle directly to your bank account.",
-    subtext: "It takes only 5 minutes to withdraw funds on ketto.",
-    highlight: "5 minutes withdrawal",
-    color: "from-emerald-500 to-teal-500",
-    bgGradient: "from-emerald-50 to-teal-50"
-  }
-];
-
+const steps = [{
+  number: 1,
+  icon: PlusCircle,
+  title: "Start your fundraiser",
+  description: "It'll take only 2 minutes. Just tell us a few details about you and the ones you are raising funds for.",
+  highlight: "Only 2 minutes",
+  color: "from-rose-500 to-pink-500",
+  bgGradient: "from-rose-50 to-pink-50"
+}, {
+  number: 2,
+  icon: Share2,
+  title: "Share your fundraiser",
+  description: "All you need to do is share the fundraiser with your friends and family. In no time, support will start pouring in.",
+  subtext: "Share your fundraiser directly from dashboard on social media.",
+  highlight: "Easy sharing",
+  color: "from-purple-500 to-indigo-500",
+  bgGradient: "from-purple-50 to-indigo-50"
+}, {
+  number: 3,
+  icon: DollarSign,
+  title: "Withdraw Funds",
+  description: "The funds raised can be withdrawn without any hassle directly to your bank account.",
+  subtext: "It takes only 5 minutes to withdraw funds on ketto.",
+  highlight: "5 minutes withdrawal",
+  color: "from-emerald-500 to-teal-500",
+  bgGradient: "from-emerald-50 to-teal-50"
+}];
 const StartFundraiser = () => {
-  return (
-    <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-rose-50 relative overflow-hidden">
+  return <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-rose-50 relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute top-0 left-0 w-full h-full opacity-30">
         <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-rose-200 to-pink-200 rounded-full blur-3xl"></div>
@@ -67,9 +59,8 @@ const StartFundraiser = () => {
         {/* Enhanced Steps with Advanced Design */}
         <div className="grid md:grid-cols-3 gap-8 mb-16">
           {steps.map((step, index) => {
-            const Icon = step.icon;
-            return (
-              <div key={step.number} className="relative group">
+          const Icon = step.icon;
+          return <div key={step.number} className="relative group">
                 <Card className={`h-full hover:shadow-2xl transition-all duration-500 overflow-hidden bg-gradient-to-br ${step.bgGradient} border-0 group-hover:scale-105`}>
                   <CardContent className="p-8 text-center relative">
                     {/* Step number badge */}
@@ -85,9 +76,7 @@ const StartFundraiser = () => {
                       
                       {/* Highlight badge */}
                       <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
-                        <span className={`inline-flex items-center bg-white text-gray-800 text-xs font-bold px-3 py-1 rounded-full shadow-lg border border-gray-200`}>
-                          {step.highlight}
-                        </span>
+                        
                       </div>
                     </div>
                     
@@ -98,26 +87,21 @@ const StartFundraiser = () => {
                       <p className="text-gray-700 leading-relaxed font-medium text-base">
                         {step.description}
                       </p>
-                      {step.subtext && (
-                        <p className="text-gray-600 text-sm leading-relaxed italic border-t border-gray-200 pt-3 mt-4">
+                      {step.subtext && <p className="text-gray-600 text-sm leading-relaxed italic border-t border-gray-200 pt-3 mt-4">
                           {step.subtext}
-                        </p>
-                      )}
+                        </p>}
                     </div>
                   </CardContent>
                 </Card>
 
                 {/* Enhanced connecting arrows */}
-                {index < steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-20">
+                {index < steps.length - 1 && <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-20">
                     <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg border border-gray-200">
                       <ArrowRight className="h-5 w-5 text-gray-400 group-hover:text-rose-500 transition-colors duration-300" />
                     </div>
-                  </div>
-                )}
-              </div>
-            );
-          })}
+                  </div>}
+              </div>;
+        })}
         </div>
 
         {/* Enhanced Statistics Section */}
@@ -147,10 +131,7 @@ const StartFundraiser = () => {
               <p className="text-rose-100 mb-8 text-lg max-w-2xl mx-auto">
                 Join thousands of successful fundraisers who have raised millions for causes that matter.
               </p>
-              <Button 
-                size="lg" 
-                className="bg-white text-rose-600 hover:bg-gray-50 px-12 py-4 text-lg font-bold shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
-              >
+              <Button size="lg" className="bg-white text-rose-600 hover:bg-gray-50 px-12 py-4 text-lg font-bold shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
                 Start Your Fundraiser Now
                 <ArrowRight className="ml-3 h-6 w-6" />
               </Button>
@@ -168,8 +149,6 @@ const StartFundraiser = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default StartFundraiser;
