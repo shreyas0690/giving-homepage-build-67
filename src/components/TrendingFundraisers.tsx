@@ -2,7 +2,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { Heart, Clock, Users, Facebook, ArrowRight } from "lucide-react";
+import { Heart, Clock, Users, Facebook, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 const fundraisers = [
   {
@@ -67,13 +67,13 @@ const TrendingFundraisers = () => {
         {/* Navigation Arrows and Cards Container */}
         <div className="relative">
           {/* Left Arrow */}
-          <button className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-shadow">
-            <ArrowRight className="h-6 w-6 text-gray-600 rotate-180" />
+          <button className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-4 shadow-xl border border-gray-100 hover:shadow-2xl hover:scale-110 transition-all duration-300 group">
+            <ChevronLeft className="h-6 w-6 text-gray-700 group-hover:text-rose-500 transition-colors" />
           </button>
 
           {/* Right Arrow */}
-          <button className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-shadow">
-            <ArrowRight className="h-6 w-6 text-gray-600" />
+          <button className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-4 shadow-xl border border-gray-100 hover:shadow-2xl hover:scale-110 transition-all duration-300 group">
+            <ChevronRight className="h-6 w-6 text-gray-700 group-hover:text-rose-500 transition-colors" />
           </button>
 
           {/* Fundraiser Cards */}
@@ -89,11 +89,6 @@ const TrendingFundraisers = () => {
                       alt={fundraiser.title}
                       className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-rose-500 text-white px-3 py-1 rounded text-sm font-semibold tracking-wide">
-                        {fundraiser.category}
-                      </span>
-                    </div>
                   </div>
                   
                   <CardContent className="p-6">
