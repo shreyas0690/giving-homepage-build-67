@@ -11,7 +11,7 @@ const HeroSection = () => {
           <div className="relative">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
               <img 
-                src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=800&h=600" 
+                src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&h=600" 
                 alt="Child in hospital setting"
                 className="w-full h-[500px] object-cover"
               />
@@ -45,15 +45,15 @@ const HeroSection = () => {
             <div className="grid grid-cols-3 gap-8 py-8">
               <div className="text-center">
                 <div className="text-4xl font-bold bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent mb-2">0%</div>
-                <div className="text-sm text-gray-600 uppercase tracking-wide">Platform Fee*</div>
+                <div className="text-sm text-gray-600 uppercase tracking-wide font-bold">Platform Fee*</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent mb-2">72 Lakh+</div>
-                <div className="text-sm text-gray-600 uppercase tracking-wide">Contributors</div>
+                <div className="text-sm text-gray-600 uppercase tracking-wide font-bold">Contributors</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent mb-2">3.2 Lakh+</div>
-                <div className="text-sm text-gray-600 uppercase tracking-wide">Fundraisers</div>
+                <div className="text-sm text-gray-600 uppercase tracking-wide font-bold">Fundraisers</div>
               </div>
             </div>
 
