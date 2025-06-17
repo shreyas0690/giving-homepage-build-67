@@ -96,9 +96,7 @@ const StartFundraiser = () => {
 
                 {/* Enhanced connecting arrows */}
                 {index < steps.length - 1 && <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-20">
-                    <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg border border-gray-200">
-                      <ArrowRight className="h-5 w-5 text-gray-400 group-hover:text-rose-500 transition-colors duration-300" />
-                    </div>
+                    
                   </div>}
               </div>;
         })}
