@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50 py-20 lg:py-32">
+    <section className="bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50 py-12 lg:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content - Hero Image */}
@@ -34,7 +34,7 @@ const HeroSection = () => {
           {/* Right Content */}
           <div className="space-y-8">
             <div className="space-y-6">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
                 Need Funds to Pay For a 
                 <span className="bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent"> Medical Emergency </span>
                 or Social Cause?
@@ -48,11 +48,11 @@ const HeroSection = () => {
                 <div className="text-sm text-gray-600 uppercase tracking-wide">Platform Fee*</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-cyan-500 mb-2">72 Lakh+</div>
+                <div className="text-4xl font-bold bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent mb-2">72 Lakh+</div>
                 <div className="text-sm text-gray-600 uppercase tracking-wide">Contributors</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-cyan-500 mb-2">3.2 Lakh+</div>
+                <div className="text-4xl font-bold bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent mb-2">3.2 Lakh+</div>
                 <div className="text-sm text-gray-600 uppercase tracking-wide">Fundraisers</div>
               </div>
             </div>
