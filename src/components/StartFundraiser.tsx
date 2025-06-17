@@ -64,9 +64,7 @@ const StartFundraiser = () => {
                 <Card className={`h-full hover:shadow-2xl transition-all duration-500 overflow-hidden bg-gradient-to-br ${step.bgGradient} border-0 group-hover:scale-105`}>
                   <CardContent className="p-8 text-center relative">
                     {/* Step number badge */}
-                    <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-r from-gray-800 to-gray-900 text-white rounded-full flex items-center justify-center text-lg font-bold shadow-xl">
-                      {step.number}
-                    </div>
+                    
                     
                     {/* Icon with enhanced styling */}
                     <div className="relative mb-8">
