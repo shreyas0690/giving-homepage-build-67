@@ -24,7 +24,7 @@ const HeroSection = () => {
               <p className="text-sm text-gray-600 mb-4">
                 With your support, countless children will receive health care and a happy life. Start your monthly contribution today.
               </p>
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+              <Button className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white">
                 Contribute Now
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
