@@ -1,8 +1,6 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { PlusCircle, Share2, DollarSign, ArrowRight, Clock, Users, Smartphone, CheckCircle } from "lucide-react";
-
 const steps = [{
   number: 1,
   icon: PlusCircle,
@@ -33,10 +31,8 @@ const steps = [{
   bgColor: "bg-rose-50",
   borderColor: "border-rose-200"
 }];
-
 const StartFundraiser = () => {
-  return (
-    <section className="py-20 bg-gray-50">
+  return <section className="py-20 bg-gray-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
@@ -50,15 +46,12 @@ const StartFundraiser = () => {
           {/* Left Side - Enhanced Steps */}
           <div className="space-y-8">
             {steps.map((step, index) => {
-              const Icon = step.icon;
-              return (
-                <div key={step.number} className="group">
+            const Icon = step.icon;
+            return <div key={step.number} className="group">
                   {/* Step Card */}
                   <div className={`relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 ${step.borderColor} hover:scale-105`}>
                     {/* Connector Line */}
-                    {index < steps.length - 1 && (
-                      <div className="absolute left-12 top-full w-0.5 h-8 bg-gradient-to-b from-gray-300 to-gray-200 z-10"></div>
-                    )}
+                    {index < steps.length - 1 && <div className="absolute left-12 top-full w-0.5 h-8 bg-gradient-to-b from-gray-300 to-gray-200 z-10"></div>}
                     
                     <div className="flex gap-4">
                       {/* Step Number with Enhanced Design */}
@@ -87,11 +80,9 @@ const StartFundraiser = () => {
                           {step.description}
                         </p>
                         
-                        {step.subtext && (
-                          <p className="text-sm text-gray-500 leading-relaxed mb-3">
+                        {step.subtext && <p className="text-sm text-gray-500 leading-relaxed mb-3">
                             {step.subtext}
-                          </p>
-                        )}
+                          </p>}
                         
                         {/* Highlight Badge */}
                         <div className={`inline-flex items-center gap-2 px-4 py-2 ${step.bgColor} ${step.color} rounded-full text-sm font-semibold border ${step.borderColor}`}>
@@ -101,21 +92,11 @@ const StartFundraiser = () => {
                       </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                </div>;
+          })}
             
             {/* Additional Enhancement - Process Flow Indicator */}
-            <div className="mt-8 p-6 bg-gradient-to-r from-rose-50 to-pink-50 rounded-2xl border border-rose-200">
-              <div className="text-center">
-                <h4 className="text-lg font-bold text-gray-900 mb-2">
-                  🚀 Complete Process in Under 10 Minutes
-                </h4>
-                <p className="text-gray-600 text-sm">
-                  From setup to sharing - get your fundraiser live faster than making a cup of coffee!
-                </p>
-              </div>
-            </div>
+            
           </div>
 
           {/* Right Side - Enhanced Content */}
@@ -192,8 +173,6 @@ const StartFundraiser = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default StartFundraiser;
