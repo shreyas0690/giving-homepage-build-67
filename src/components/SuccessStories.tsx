@@ -1,7 +1,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Quote, Star, ArrowLeft, ArrowRight } from "lucide-react";
+import { Quote, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 
 const stories = [
@@ -73,7 +73,7 @@ const SuccessStories = () => {
             onClick={prevStory}
             className="flex-shrink-0 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 border border-gray-200 hover:border-rose-300 group"
           >
-            <ArrowLeft className="h-5 w-5 text-gray-600 group-hover:text-rose-500 transition-colors" />
+            <ChevronLeft className="h-8 w-8 text-gray-600 group-hover:text-rose-500 transition-colors" />
           </button>
 
           {/* Story Card */}
@@ -92,27 +92,27 @@ const SuccessStories = () => {
               <div className="p-4 lg:p-5 flex flex-col justify-center">
                 <div className="mb-2">
                   <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2">
-                    You are the reason {currentStoryData.name.split(' ')[0]} gets to live his dream
+                    <strong>You are the reason {currentStoryData.name.split(' ')[0]} gets to live his dream</strong>
                   </h3>
                 </div>
 
                 <div className="mb-2">
                   <Quote className="h-4 w-4 text-rose-500 mb-2" />
-                  <p className="text-gray-600 leading-relaxed italic text-sm">
-                    "{currentStoryData.fullStory}" -{currentStoryData.name.split(' ')[0]}...
+                  <p className="text-gray-600 leading-relaxed italic text-sm font-semibold">
+                    <strong>"{currentStoryData.fullStory}"</strong> -<strong>{currentStoryData.name.split(' ')[0]}...</strong>
                   </p>
                 </div>
 
                 <div className="mb-3">
-                  <button className="text-rose-500 hover:text-rose-600 font-medium text-sm">
-                    Read more
+                  <button className="text-rose-500 hover:text-rose-600 font-bold text-sm">
+                    <strong>Read more</strong>
                   </button>
                 </div>
 
                 <div className="mb-2">
-                  <p className="text-gray-500 mb-2 text-sm">Subscribe to read such inspiring stories</p>
-                  <button className="bg-green-500 hover:bg-green-600 text-white px-3 py-1.5 rounded-full font-medium transition-colors duration-200 text-sm">
-                    💬 Subscribe
+                  <p className="text-gray-500 mb-2 text-sm font-semibold"><strong>Subscribe to read such inspiring stories</strong></p>
+                  <button className="bg-green-500 hover:bg-green-600 text-white px-3 py-1.5 rounded-full font-bold transition-colors duration-200 text-sm">
+                    💬 <strong>Subscribe</strong>
                   </button>
                 </div>
               </div>
@@ -124,7 +124,7 @@ const SuccessStories = () => {
             onClick={nextStory}
             className="flex-shrink-0 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 border border-gray-200 hover:border-rose-300 group"
           >
-            <ArrowRight className="h-5 w-5 text-gray-600 group-hover:text-rose-500 transition-colors" />
+            <ChevronRight className="h-8 w-8 text-gray-600 group-hover:text-rose-500 transition-colors" />
           </button>
         </div>
 
@@ -145,9 +145,9 @@ const SuccessStories = () => {
         <div className="text-center mt-5">
           <Button 
             size="lg" 
-            className="bg-rose-500 hover:bg-rose-600 text-white px-8 py-2.5 text-sm rounded-lg"
+            className="bg-rose-500 hover:bg-rose-600 text-white px-8 py-2.5 text-sm rounded-lg font-bold"
           >
-            START A FUNDRAISER FOR FREE
+            <strong>START A FUNDRAISER FOR FREE</strong>
           </Button>
         </div>
       </div>
