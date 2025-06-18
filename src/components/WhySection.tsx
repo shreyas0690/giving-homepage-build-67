@@ -64,61 +64,64 @@ const features = [
 
 const WhySection = () => {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Why Ketto?
+            Why Choose FundHope?
           </h2>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            We provide the tools and support you need to run successful fundraising campaigns
+          </p>
         </div>
 
-        {/* Features Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        {/* Features Grid - exactly matching the image layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
               <div key={index} className="text-center group">
-                {/* Icon Circle */}
-                <div className="w-20 h-20 mx-auto rounded-full border-4 border-teal-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <Icon className="h-10 w-10 text-teal-500" />
+                {/* White card background with shadow */}
+                <div className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
+                  {/* Icon with teal circular background */}
+                  <div className="w-16 h-16 mx-auto mb-6 bg-teal-500 rounded-full flex items-center justify-center">
+                    <Icon className="h-8 w-8 text-white" />
+                  </div>
+                  
+                  {/* Title */}
+                  <h3 className="text-xl font-bold text-gray-900 mb-4 leading-tight">
+                    {feature.title}
+                  </h3>
+                  
+                  {/* Description */}
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    {feature.description}
+                  </p>
                 </div>
-                
-                {/* Yellow Line */}
-                <div className="w-12 h-1 bg-yellow-400 mx-auto mb-4"></div>
-                
-                {/* Title */}
-                <h3 className="text-lg font-bold text-gray-900 mb-3 leading-tight">
-                  {feature.title}
-                </h3>
-                
-                {/* Description */}
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  {feature.description}
-                </p>
               </div>
             );
           })}
         </div>
 
-        {/* Bottom Stats */}
-        <div className="bg-white rounded-2xl p-8 shadow-lg">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+        {/* Bottom Stats - matching the image style */}
+        <div className="bg-gradient-to-r from-rose-500 to-pink-600 rounded-2xl p-12 shadow-xl">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold text-gray-900 mb-2">2M+</div>
-              <div className="text-gray-600">Active Users</div>
+              <div className="text-5xl font-bold text-white mb-2">2M+</div>
+              <div className="text-white/90 text-lg">Active Users</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-gray-900 mb-2">$50M+</div>
-              <div className="text-gray-600">Total Raised</div>
+              <div className="text-5xl font-bold text-white mb-2">$50M+</div>
+              <div className="text-white/90 text-lg">Total Raised</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-gray-900 mb-2">15K+</div>
-              <div className="text-gray-600">Success Stories</div>
+              <div className="text-5xl font-bold text-white mb-2">15K+</div>
+              <div className="text-white/90 text-lg">Success Stories</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-gray-900 mb-2">50+</div>
-              <div className="text-gray-600">Countries</div>
+              <div className="text-5xl font-bold text-white mb-2">50+</div>
+              <div className="text-white/90 text-lg">Countries</div>
             </div>
           </div>
         </div>
