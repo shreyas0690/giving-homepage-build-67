@@ -1,9 +1,8 @@
-
 import { Heart, Facebook, Twitter, Instagram, Linkedin, Youtube, Phone, Mail } from "lucide-react";
-
 const Footer = () => {
-  return (
-    <footer className="text-white" style={{ backgroundColor: "#111827" }}>
+  return <footer className="text-white" style={{
+    backgroundColor: "#111827"
+  }}>
       {/* Main Footer */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid lg:grid-cols-5 md:grid-cols-2 gap-8">
@@ -131,7 +130,7 @@ const Footer = () => {
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/1200px-Visa_Inc._logo.svg.png" alt="Visa" className="h-8 bg-white px-2 py-1 rounded" />
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1200px-Mastercard-logo.svg.png" alt="MasterCard" className="h-8 bg-white px-2 py-1 rounded" />
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/American_Express_logo.svg/1200px-American_Express_logo.svg.png" alt="American Express" className="h-7 bg-white px-2 py-1 rounded" />
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/RuPay.svg/1200px-RuPay.svg.png" alt="RuPay" className="h-8 bg-white px-2 py-1 rounded" />
+            
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/UPI-Logo-vector.svg/1200px-UPI-Logo-vector.svg.png" alt="UPI" className="h-8 bg-white px-2 py-1 rounded" />
             <div className="bg-white px-3 py-2 rounded">
               <span className="text-blue-600 font-bold text-sm">NET BANKING</span>
@@ -163,8 +162,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
