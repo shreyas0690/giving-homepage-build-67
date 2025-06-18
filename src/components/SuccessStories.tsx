@@ -21,7 +21,7 @@ const stories = [
     id: 2,
     name: "Dr. James Wilson",
     title: "Emergency Medical Equipment for Hospital",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?auto=format&fit=crop&w=400&h=400",
+    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=400&h=400",
     raised: "$120,000",
     goal: "$100,000",
     story: "We successfully raised funds for life-saving medical equipment. This platform made it possible to save hundreds of lives in our community hospital.",
@@ -61,7 +61,7 @@ const SuccessStories = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-4">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">
+          <h2 className="text-2xl font-black text-gray-900 mb-2">
             Success Stories
           </h2>
         </div>
@@ -98,7 +98,7 @@ const SuccessStories = () => {
 
                 <div className="mb-2">
                   <Quote className="h-4 w-4 text-rose-500 mb-2" />
-                  <p className="text-gray-600 leading-relaxed italic text-sm font-semibold">
+                  <p className="text-gray-600 leading-relaxed italic text-xs font-semibold">
                     <strong>"{currentStoryData.fullStory}"</strong> -<strong>{currentStoryData.name.split(' ')[0]}...</strong>
                   </p>
                 </div>
