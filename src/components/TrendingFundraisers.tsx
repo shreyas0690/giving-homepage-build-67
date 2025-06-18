@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -38,7 +37,7 @@ const fundraisers = [
     id: 3,
     title: "Offer A Helping Hand To Support Sahil Jadhav's Treatment",
     organizer: "Tanu Rajan",
-    image: "", // No image
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=400&h=250", // Medical treatment
     raised: 1941544,
     goal: 2000000,
     supporters: 1228,
@@ -71,7 +70,7 @@ const fundraisers = [
     id: 6,
     title: "Help Build Clean Water Wells in Rural Villages",
     organizer: "NGO Green Earth",
-    image: "", // No image
+    image: "https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&w=400&h=250", // Water wells/rural development
     raised: 876500,
     goal: 1500000,
     supporters: 567,
