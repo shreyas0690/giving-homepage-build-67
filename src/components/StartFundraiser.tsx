@@ -4,21 +4,18 @@ import { Button } from "@/components/ui/button";
 import { PlusCircle, Share2, DollarSign, ArrowRight, Users, TrendingUp } from "lucide-react";
 
 const steps = [{
-  number: 1,
   icon: PlusCircle,
   title: "Create Your Campaign",
   description: "Set up your fundraiser in minutes with our simple form. Add photos, tell your story, and set your goal.",
   feature: "2-minute setup",
   color: "from-rose-500 to-pink-600"
 }, {
-  number: 2,
   icon: Share2,
   title: "Share & Promote",
   description: "Reach your network through social media, email, and direct sharing. Watch donations pour in from supporters.",
   feature: "Social integration",
   color: "from-pink-500 to-rose-600"
 }, {
-  number: 3,
   icon: DollarSign,
   title: "Receive Funds",
   description: "Get instant access to raised funds with secure, direct bank transfers. No waiting, no hassle.",
@@ -55,16 +52,11 @@ const StartFundraiser = () => {
           {steps.map((step, index) => {
             const Icon = step.icon;
             return (
-              <div key={step.number} className="relative group">
+              <div key={index} className="relative group">
                 <Card className="relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2 bg-white h-full">
                   <div className="absolute inset-0 bg-gradient-to-br from-white to-rose-50/50"></div>
                   
                   <CardContent className="relative p-6 sm:p-8 text-center flex flex-col h-full">
-                    {/* Step Number with Gradient */}
-                    <div className={`w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br ${step.color} rounded-2xl sm:rounded-3xl flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                      <span className="text-xl sm:text-2xl font-bold text-white">{step.number}</span>
-                    </div>
-
                     {/* Icon */}
                     <div className="w-12 h-12 sm:w-16 sm:h-16 bg-rose-100 rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:bg-rose-200 transition-colors duration-300">
                       <Icon className="h-6 w-6 sm:h-8 sm:w-8 text-rose-600" />
@@ -76,7 +68,7 @@ const StartFundraiser = () => {
                         {step.title}
                       </h3>
                       
-                      <p className="text-gray-600 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
+                      <p className="text-gray-600 mb-4 sm:mb-6 leading-relaxed text-base sm:text-lg">
                         {step.description}
                       </p>
                     </div>

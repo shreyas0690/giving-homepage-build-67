@@ -103,8 +103,8 @@ const SuccessStories = () => {
                 <p className="text-gray-500 mb-3 text-sm font-semibold">
                   <strong>Subscribe to read such inspiring stories</strong>
                 </p>
-                <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full font-bold transition-colors duration-200 text-sm w-full sm:w-auto">
-                  💬 <strong>Subscribe</strong>
+                <button className="bg-rose-500 hover:bg-rose-600 text-white px-4 py-2 rounded-full font-bold transition-colors duration-200 text-sm w-full sm:w-auto">
+                  <strong>Subscribe</strong>
                 </button>
               </div>
             </div>
@@ -186,8 +186,8 @@ const SuccessStories = () => {
 
                 <div className="mb-2">
                   <p className="text-gray-500 mb-2 text-sm font-semibold"><strong>Subscribe to read such inspiring stories</strong></p>
-                  <button className="bg-green-500 hover:bg-green-600 text-white px-3 py-1.5 rounded-full font-bold transition-colors duration-200 text-sm">
-                    💬 <strong>Subscribe</strong>
+                  <button className="bg-rose-500 hover:bg-rose-600 text-white px-3 py-1.5 rounded-full font-bold transition-colors duration-200 text-sm">
+                    <strong>Subscribe</strong>
                   </button>
                 </div>
               </div>
