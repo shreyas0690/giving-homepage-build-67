@@ -1,5 +1,4 @@
 
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Quote, Star, ArrowLeft, ArrowRight } from "lucide-react";
@@ -10,7 +9,7 @@ const stories = [
     id: 1,
     name: "Maria Rodriguez",
     title: "Education Fund for Underprivileged Children",
-    image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&w=400&h=400",
+    image: "https://images.unsplash.com/photo-1497486751825-1233686d5d80?auto=format&fit=crop&w=400&h=400",
     raised: "$85,000",
     goal: "$75,000",
     story: "Thanks to FundHope, we were able to provide quality education to over 200 children in rural areas. The support from donors worldwide has been incredible!",
@@ -22,7 +21,7 @@ const stories = [
     id: 2,
     name: "Dr. James Wilson",
     title: "Emergency Medical Equipment for Hospital",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=400&h=400",
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?auto=format&fit=crop&w=400&h=400",
     raised: "$120,000",
     goal: "$100,000",
     story: "We successfully raised funds for life-saving medical equipment. This platform made it possible to save hundreds of lives in our community hospital.",
@@ -34,7 +33,7 @@ const stories = [
     id: 3,
     name: "Sarah Thompson",
     title: "Clean Water Initiative",
-    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=400&h=400",
+    image: "https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&w=400&h=400",
     raised: "$65,000",
     goal: "$60,000",
     story: "Our clean water project now serves 5 villages with safe drinking water. The transparency and ease of use of FundHope made all the difference.",
@@ -157,4 +156,3 @@ const SuccessStories = () => {
 };
 
 export default SuccessStories;
-
