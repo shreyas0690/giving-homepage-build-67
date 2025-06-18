@@ -1,5 +1,4 @@
 
-
 import { Card, CardContent } from "@/components/ui/card";
 import { 
   TrendingUp, 
@@ -99,4 +98,3 @@ const WhySection = () => {
 };
 
 export default WhySection;
-
