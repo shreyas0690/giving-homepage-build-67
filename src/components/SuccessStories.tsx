@@ -61,7 +61,7 @@ const SuccessStories = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-4">
-          <h2 className="text-2xl font-black text-gray-900 mb-2">
+          <h2 className="text-4xl font-bold text-gray-700 mb-4">
             Success Stories
           </h2>
         </div>
@@ -98,8 +98,8 @@ const SuccessStories = () => {
 
                 <div className="mb-2">
                   <Quote className="h-4 w-4 text-rose-500 mb-2" />
-                  <p className="text-gray-600 leading-relaxed italic text-xs font-semibold">
-                    <strong>"{currentStoryData.fullStory}"</strong> -<strong>{currentStoryData.name.split(' ')[0]}...</strong>
+                  <p className="text-gray-600 leading-relaxed italic text-xs">
+                    "{currentStoryData.fullStory}" -{currentStoryData.name.split(' ')[0]}...
                   </p>
                 </div>
 
