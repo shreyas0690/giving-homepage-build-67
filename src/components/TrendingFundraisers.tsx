@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -16,7 +15,7 @@ const fundraisers = [
     id: 1,
     title: "Support My Dad's Brain Injury Recovery – Urgent Help Needed",
     organizer: "Alok Ramayan Chaurasia",
-    image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&w=400&h=250", // Light bulb for brain injury
+    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=400&h=250", // Medical care/helping hands for brain injury recovery
     raised: 2825498,
     goal: 3000000,
     supporters: 3563,
@@ -49,7 +48,7 @@ const fundraisers = [
     id: 4,
     title: "Help Priya Fight Cancer - Emergency Medical Support",
     organizer: "Amit Sharma",
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=400&h=250", // Emergency/ambulance for cancer support
+    image: "https://images.unsplash.com/photo-1551190822-a9333d879b1f?auto=format&fit=crop&w=400&h=250", // Hospital/medical emergency for cancer support
     raised: 1523000,
     goal: 2800000,
     supporters: 892,
