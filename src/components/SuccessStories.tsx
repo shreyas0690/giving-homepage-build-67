@@ -57,11 +57,11 @@ const SuccessStories = () => {
   const currentStoryData = stories[currentStory];
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-8 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-6">
+          <h2 className="text-3xl font-bold text-gray-900 mb-2">
             Success Stories
           </h2>
         </div>
@@ -73,53 +73,53 @@ const SuccessStories = () => {
             onClick={prevStory}
             className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-all duration-200 text-rose-500 hover:text-rose-600"
           >
-            <ArrowLeft className="h-5 w-5" />
+            <ArrowLeft className="h-4 w-4" />
           </button>
           
           <button
             onClick={nextStory}
             className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-all duration-200 text-rose-500 hover:text-rose-600"
           >
-            <ArrowRight className="h-5 w-5" />
+            <ArrowRight className="h-4 w-4" />
           </button>
 
           {/* Story Card */}
-          <div className="bg-white rounded-2xl shadow-xl overflow-hidden mx-8">
+          <div className="bg-white rounded-xl shadow-lg overflow-hidden mx-8">
             <div className="grid lg:grid-cols-2 gap-0">
               {/* Image Section */}
               <div className="relative">
                 <img 
                   src={currentStoryData.image} 
                   alt={currentStoryData.name}
-                  className="w-full h-64 lg:h-80 object-cover"
+                  className="w-full h-48 lg:h-56 object-cover"
                 />
                 <div className="absolute inset-0 bg-black/20"></div>
               </div>
 
               {/* Content Section */}
-              <div className="p-6 lg:p-8 flex flex-col justify-center">
-                <div className="mb-4">
-                  <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2">
+              <div className="p-4 lg:p-6 flex flex-col justify-center">
+                <div className="mb-3">
+                  <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2">
                     You are the reason {currentStoryData.name.split(' ')[0]} gets to live his dream
                   </h3>
                 </div>
 
-                <div className="mb-4">
-                  <Quote className="h-5 w-5 text-rose-500 mb-2" />
-                  <p className="text-gray-600 leading-relaxed italic text-sm lg:text-base">
+                <div className="mb-3">
+                  <Quote className="h-4 w-4 text-rose-500 mb-2" />
+                  <p className="text-gray-600 leading-relaxed italic text-sm">
                     "{currentStoryData.fullStory}" -{currentStoryData.name.split(' ')[0]}...
                   </p>
                 </div>
 
-                <div className="mb-6">
+                <div className="mb-4">
                   <button className="text-rose-500 hover:text-rose-600 font-medium text-sm">
                     Read more
                   </button>
                 </div>
 
-                <div className="mb-4">
-                  <p className="text-gray-500 mb-3 text-sm">Subscribe to read such inspiring stories</p>
-                  <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full font-medium transition-colors duration-200 text-sm">
+                <div className="mb-2">
+                  <p className="text-gray-500 mb-2 text-sm">Subscribe to read such inspiring stories</p>
+                  <button className="bg-green-500 hover:bg-green-600 text-white px-3 py-1.5 rounded-full font-medium transition-colors duration-200 text-sm">
                     💬 Subscribe
                   </button>
                 </div>
@@ -128,13 +128,13 @@ const SuccessStories = () => {
           </div>
 
           {/* Dots Indicator */}
-          <div className="flex justify-center mt-6 space-x-2">
+          <div className="flex justify-center mt-4 space-x-2">
             {stories.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentStory(index)}
-                className={`w-2.5 h-2.5 rounded-full transition-colors duration-200 ${
-                  index === currentStory ? 'bg-rose-500' : 'bg-gray-300'
+                className={`w-2 h-2 rounded-full transition-colors duration-200 ${
+                  index === currentStory ? 'bg-rose-500' : 'bg-rose-300'
                 }`}
               />
             ))}
@@ -142,10 +142,10 @@ const SuccessStories = () => {
         </div>
 
         {/* CTA Button */}
-        <div className="text-center mt-10">
+        <div className="text-center mt-6">
           <Button 
             size="lg" 
-            className="bg-rose-500 hover:bg-rose-600 text-white px-10 py-3 text-base rounded-lg"
+            className="bg-rose-500 hover:bg-rose-600 text-white px-8 py-2.5 text-sm rounded-lg"
           >
             START A FUNDRAISER FOR FREE
           </Button>
