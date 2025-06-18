@@ -160,16 +160,7 @@ const StartFundraiser = () => {
 
         {/* Bottom CTA */}
         <div className="text-center mt-16">
-          <div className="bg-gradient-to-r from-rose-500 to-pink-600 rounded-2xl p-8 text-white">
-            <h3 className="text-2xl font-bold mb-3">Ready to Make a Difference?</h3>
-            <p className="text-rose-100 mb-6 max-w-2xl mx-auto">
-              Join thousands of successful fundraisers who have raised millions for causes that matter.
-            </p>
-            <Button size="lg" className="bg-white text-rose-600 hover:bg-gray-50 px-8 py-3 text-lg font-semibold">
-              Get Started Today
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          </div>
+          
         </div>
       </div>
     </section>;
