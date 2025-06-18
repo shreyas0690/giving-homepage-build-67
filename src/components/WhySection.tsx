@@ -1,19 +1,19 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { 
-  Shield, 
-  Clock, 
+  TrendingUp, 
   Users, 
-  DollarSign, 
-  Heart,
-  Award,
-  Smartphone,
+  Settings, 
+  CreditCard, 
+  Headphones,
+  BarChart3,
+  Banknote,
   Globe
 } from "lucide-react";
 
 const features = [
   {
-    icon: Shield,
+    icon: TrendingUp,
     title: "Industry's best fundraising success rate",
     description: "Proven track record with highest success rates in the industry"
   },
@@ -23,27 +23,27 @@ const features = [
     description: "Join millions of supporters who trust our platform"
   },
   {
-    icon: Clock,
+    icon: Settings,
     title: "Easy-To-Manage Tools To Boost Results",
     description: "Simple yet powerful tools to maximize your campaign success"
   },
   {
-    icon: DollarSign,
+    icon: CreditCard,
     title: "Receive contributions via all popular payment modes",
     description: "Accept donations through multiple secure payment options"
   },
   {
-    icon: Heart,
+    icon: Headphones,
     title: "Get Expert Support 24/7",
     description: "Round-the-clock assistance from our dedicated support team"
   },
   {
-    icon: Award,
+    icon: BarChart3,
     title: "A Dedicated Smart-Dashboard",
     description: "Comprehensive analytics and management in one place"
   },
   {
-    icon: Smartphone,
+    icon: Banknote,
     title: "Withdraw Funds Without Hassle",
     description: "Quick and easy fund withdrawal process"
   },
