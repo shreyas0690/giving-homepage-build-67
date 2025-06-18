@@ -6,8 +6,8 @@ import {
   Settings, 
   CreditCard, 
   Headphones,
-  BarChart3,
-  Banknote,
+  Monitor,
+  Wallet,
   Globe
 } from "lucide-react";
 
@@ -38,12 +38,12 @@ const features = [
     description: "Round-the-clock assistance from our dedicated support team"
   },
   {
-    icon: BarChart3,
+    icon: Monitor,
     title: "A Dedicated Smart-Dashboard",
     description: "Comprehensive analytics and management in one place"
   },
   {
-    icon: Banknote,
+    icon: Wallet,
     title: "Withdraw Funds Without Hassle",
     description: "Quick and easy fund withdrawal process"
   },
