@@ -1,143 +1,153 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Quote, Star, ArrowRight } from "lucide-react";
+import { Quote, Star, ArrowLeft, ArrowRight } from "lucide-react";
+import { useState } from "react";
 
 const stories = [
   {
     id: 1,
     name: "Maria Rodriguez",
     title: "Education Fund for Underprivileged Children",
-    image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&w=150&h=150",
+    image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&w=400&h=400",
     raised: "$85,000",
     goal: "$75,000",
     story: "Thanks to FundHope, we were able to provide quality education to over 200 children in rural areas. The support from donors worldwide has been incredible!",
     rating: 5,
-    category: "Education"
+    category: "Education",
+    fullStory: "Our son's cancer had relapsed after 2.5 years of chemotherapy & we knew we couldn't afford his life-saving treatment. But thanks to your donations & prayers, he underwent successful treatment & is recovering well. May God bless you all for saving his life!"
   },
   {
     id: 2,
     name: "Dr. James Wilson",
     title: "Emergency Medical Equipment for Hospital",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=150&h=150",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=400&h=400",
     raised: "$120,000",
     goal: "$100,000",
     story: "We successfully raised funds for life-saving medical equipment. This platform made it possible to save hundreds of lives in our community hospital.",
     rating: 5,
-    category: "Medical"
+    category: "Medical",
+    fullStory: "We successfully raised funds for life-saving medical equipment. This platform made it possible to save hundreds of lives in our community hospital. The support from the community has been overwhelming."
   },
   {
     id: 3,
     name: "Sarah Thompson",
     title: "Clean Water Initiative",
-    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=150&h=150",
+    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=400&h=400",
     raised: "$65,000",
     goal: "$60,000",
     story: "Our clean water project now serves 5 villages with safe drinking water. The transparency and ease of use of FundHope made all the difference.",
     rating: 5,
-    category: "Community"
+    category: "Community",
+    fullStory: "Our clean water project now serves 5 villages with safe drinking water. The transparency and ease of use of FundHope made all the difference in reaching our goals."
   }
 ];
 
 const SuccessStories = () => {
+  const [currentStory, setCurrentStory] = useState(0);
+
+  const nextStory = () => {
+    setCurrentStory((prev) => (prev + 1) % stories.length);
+  };
+
+  const prevStory = () => {
+    setCurrentStory((prev) => (prev - 1 + stories.length) % stories.length);
+  };
+
+  const currentStoryData = stories[currentStory];
+
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Success Stories That Inspire
+            Success Stories
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Real people, real impact. Discover how our community has transformed lives 
-            and created positive change around the world.
-          </p>
         </div>
 
-        {/* Stories Grid */}
-        <div className="grid lg:grid-cols-3 gap-8 mb-12">
-          {stories.map((story) => (
-            <Card key={story.id} className="group hover:shadow-xl transition-all duration-300 overflow-hidden">
-              <CardContent className="p-0">
-                {/* Header with Image and Category */}
-                <div className="relative bg-gradient-to-r from-rose-500 to-pink-600 p-6 text-white">
-                  <div className="absolute top-4 right-4">
-                    <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium">
-                      {story.category}
-                    </span>
-                  </div>
-                  <div className="flex items-center space-x-4">
-                    <img 
-                      src={story.image} 
-                      alt={story.name}
-                      className="w-16 h-16 rounded-full border-4 border-white/20 object-cover"
-                    />
-                    <div>
-                      <h3 className="font-bold text-lg">{story.name}</h3>
-                      <div className="flex items-center space-x-1 mt-1">
-                        {[...Array(story.rating)].map((_, i) => (
-                          <Star key={i} className="h-4 w-4 fill-current text-yellow-300" />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
+        {/* Carousel Container */}
+        <div className="relative max-w-5xl mx-auto">
+          {/* Navigation Arrows */}
+          <button
+            onClick={prevStory}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 text-rose-500 hover:text-rose-600"
+          >
+            <ArrowLeft className="h-6 w-6" />
+          </button>
+          
+          <button
+            onClick={nextStory}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 text-rose-500 hover:text-rose-600"
+          >
+            <ArrowRight className="h-6 w-6" />
+          </button>
+
+          {/* Story Card */}
+          <div className="bg-white rounded-2xl shadow-xl overflow-hidden mx-8">
+            <div className="grid lg:grid-cols-2 gap-0">
+              {/* Image Section */}
+              <div className="relative">
+                <img 
+                  src={currentStoryData.image} 
+                  alt={currentStoryData.name}
+                  className="w-full h-96 lg:h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/20"></div>
+              </div>
+
+              {/* Content Section */}
+              <div className="p-8 lg:p-12 flex flex-col justify-center">
+                <div className="mb-6">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                    You are the reason {currentStoryData.name.split(' ')[0]} gets to live his dream
+                  </h3>
                 </div>
 
-                {/* Content */}
-                <div className="p-6">
-                  <h4 className="font-semibold text-lg text-gray-900 mb-3 line-clamp-2">
-                    {story.title}
-                  </h4>
-                  
-                  {/* Quote */}
-                  <div className="relative mb-4">
-                    <Quote className="h-6 w-6 text-rose-500 mb-2" />
-                    <p className="text-gray-600 italic leading-relaxed">
-                      "{story.story}"
-                    </p>
-                  </div>
-
-                  {/* Progress */}
-                  <div className="bg-gray-100 rounded-lg p-4">
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-sm text-gray-600">Amount Raised</span>
-                      <span className="font-bold text-rose-600">{story.raised}</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">Goal</span>
-                      <span className="text-sm text-gray-600">{story.goal}</span>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
-                      <div className="bg-gradient-to-r from-rose-500 to-pink-600 h-2 rounded-full w-full"></div>
-                    </div>
-                    <div className="text-center mt-2">
-                      <span className="text-sm font-semibold text-green-600">Goal Exceeded! ✓</span>
-                    </div>
-                  </div>
+                <div className="mb-6">
+                  <Quote className="h-6 w-6 text-rose-500 mb-3" />
+                  <p className="text-gray-600 leading-relaxed italic">
+                    "{currentStoryData.fullStory}" -{currentStoryData.name.split(' ')[0]}...
+                  </p>
                 </div>
-              </CardContent>
-            </Card>
-          ))}
+
+                <div className="mb-8">
+                  <button className="text-rose-500 hover:text-rose-600 font-medium">
+                    Read more
+                  </button>
+                </div>
+
+                <div className="mb-8">
+                  <p className="text-gray-500 mb-3">Subscribe to read such inspiring stories</p>
+                  <button className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-full font-medium transition-colors duration-200">
+                    💬 Subscribe
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Dots Indicator */}
+          <div className="flex justify-center mt-8 space-x-2">
+            {stories.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentStory(index)}
+                className={`w-3 h-3 rounded-full transition-colors duration-200 ${
+                  index === currentStory ? 'bg-rose-500' : 'bg-gray-300'
+                }`}
+              />
+            ))}
+          </div>
         </div>
 
-        {/* CTA */}
-        <div className="text-center">
-          <p className="text-gray-600 mb-6 text-lg">
-            Ready to create your own success story?
-          </p>
+        {/* CTA Button */}
+        <div className="text-center mt-12">
           <Button 
             size="lg" 
-            className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white px-12 py-4 text-lg mr-4"
+            className="bg-rose-500 hover:bg-rose-600 text-white px-12 py-4 text-lg rounded-lg"
           >
-            Start Your Campaign
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
-          <Button 
-            variant="outline" 
-            size="lg" 
-            className="border-2 border-rose-500 text-rose-500 hover:bg-rose-50 px-8 py-4 text-lg"
-          >
-            Read More Stories
+            START A FUNDRAISER FOR FREE
           </Button>
         </div>
       </div>
