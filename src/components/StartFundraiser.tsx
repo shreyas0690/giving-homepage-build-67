@@ -1,7 +1,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { PlusCircle, Share2, DollarSign, ArrowRight, Clock, Users, Smartphone } from "lucide-react";
+import { PlusCircle, Share2, DollarSign, ArrowRight, Clock, Users, Smartphone, CheckCircle } from "lucide-react";
 
 const steps = [{
   number: 1,
@@ -10,7 +10,8 @@ const steps = [{
   description: "It'll take only 2 minutes. Just tell us a few details about you and the ones you are raising funds for.",
   highlight: "Only 2 minutes",
   color: "text-rose-500",
-  bgColor: "bg-rose-50"
+  bgColor: "bg-rose-50",
+  borderColor: "border-rose-200"
 }, {
   number: 2,
   icon: Share2,
@@ -18,8 +19,9 @@ const steps = [{
   description: "All you need to do is share the fundraiser with your friends and family. In no time, support will start pouring in.",
   subtext: "Share your fundraiser directly from dashboard on social media.",
   highlight: "Easy sharing",
-  color: "text-rose-500",
-  bgColor: "bg-rose-50"
+  color: "text-blue-500",
+  bgColor: "bg-blue-50",
+  borderColor: "border-blue-200"
 }, {
   number: 3,
   icon: DollarSign,
@@ -27,8 +29,9 @@ const steps = [{
   description: "The funds raised can be withdrawn without any hassle directly to your bank account.",
   subtext: "It takes only 5 minutes to withdraw funds on FundHope.",
   highlight: "5 minutes withdrawal",
-  color: "text-rose-500",
-  bgColor: "bg-rose-50"
+  color: "text-green-500",
+  bgColor: "bg-green-50",
+  borderColor: "border-green-200"
 }];
 
 const StartFundraiser = () => {
@@ -44,44 +47,75 @@ const StartFundraiser = () => {
 
         {/* Steps Layout - Left side steps, Right side content */}
         <div className="grid lg:grid-cols-2 gap-16 items-start">
-          {/* Left Side - Steps */}
-          <div className="space-y-12">
+          {/* Left Side - Enhanced Steps */}
+          <div className="space-y-8">
             {steps.map((step, index) => {
               const Icon = step.icon;
               return (
-                <div key={step.number} className="flex gap-6">
-                  {/* Step Number and Line */}
-                  <div className="flex flex-col items-center">
-                    <div className="w-12 h-12 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center text-lg font-bold text-gray-600 shadow-sm">
-                      {step.number}
-                    </div>
+                <div key={step.number} className="group">
+                  {/* Step Card */}
+                  <div className={`relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 ${step.borderColor} hover:scale-105`}>
+                    {/* Connector Line */}
                     {index < steps.length - 1 && (
-                      <div className="w-0.5 h-16 bg-gray-200 mt-4"></div>
+                      <div className="absolute left-12 top-full w-0.5 h-8 bg-gradient-to-b from-gray-300 to-gray-200 z-10"></div>
                     )}
-                  </div>
-                  
-                  {/* Step Content */}
-                  <div className="flex-1 pb-8">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className={`w-8 h-8 ${step.bgColor} rounded-lg flex items-center justify-center`}>
-                        <Icon className={`h-5 w-5 ${step.color}`} />
+                    
+                    <div className="flex gap-4">
+                      {/* Step Number with Enhanced Design */}
+                      <div className="flex flex-col items-center">
+                        <div className={`relative w-16 h-16 ${step.bgColor} rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300`}>
+                          <span className={`text-2xl font-bold ${step.color}`}>
+                            {step.number}
+                          </span>
+                          {/* Subtle glow effect */}
+                          <div className={`absolute inset-0 ${step.bgColor} rounded-2xl opacity-50 blur-sm group-hover:opacity-75 transition-opacity duration-300`}></div>
+                        </div>
                       </div>
-                      <h3 className="text-xl font-semibold text-rose-500">
-                        {step.title}
-                      </h3>
+                      
+                      {/* Step Content */}
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className={`w-10 h-10 ${step.bgColor} rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300`}>
+                            <Icon className={`h-5 w-5 ${step.color}`} />
+                          </div>
+                          <h3 className={`text-xl font-bold ${step.color} group-hover:text-opacity-80 transition-colors duration-300`}>
+                            {step.title}
+                          </h3>
+                        </div>
+                        
+                        <p className="text-gray-700 mb-3 leading-relaxed font-medium">
+                          {step.description}
+                        </p>
+                        
+                        {step.subtext && (
+                          <p className="text-sm text-gray-500 leading-relaxed mb-3">
+                            {step.subtext}
+                          </p>
+                        )}
+                        
+                        {/* Highlight Badge */}
+                        <div className={`inline-flex items-center gap-2 px-4 py-2 ${step.bgColor} ${step.color} rounded-full text-sm font-semibold border ${step.borderColor}`}>
+                          <CheckCircle className="h-4 w-4" />
+                          {step.highlight}
+                        </div>
+                      </div>
                     </div>
-                    <p className="text-gray-600 mb-2 leading-relaxed">
-                      {step.description}
-                    </p>
-                    {step.subtext && (
-                      <p className="text-sm text-gray-500 leading-relaxed">
-                        {step.subtext}
-                      </p>
-                    )}
                   </div>
                 </div>
               );
             })}
+            
+            {/* Additional Enhancement - Process Flow Indicator */}
+            <div className="mt-8 p-6 bg-gradient-to-r from-rose-50 to-pink-50 rounded-2xl border border-rose-200">
+              <div className="text-center">
+                <h4 className="text-lg font-bold text-gray-900 mb-2">
+                  🚀 Complete Process in Under 10 Minutes
+                </h4>
+                <p className="text-gray-600 text-sm">
+                  From setup to sharing - get your fundraiser live faster than making a cup of coffee!
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Right Side - Enhanced Content */}
