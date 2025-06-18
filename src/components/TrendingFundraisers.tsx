@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -16,7 +15,7 @@ const fundraisers = [
     id: 1,
     title: "Support My Dad's Brain Injury Recovery – Urgent Help Needed",
     organizer: "Alok Ramayan Chaurasia",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=400&h=250",
+    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=400&h=250", // Medical/hospital scene
     raised: 2825498,
     goal: 3000000,
     supporters: 3563,
@@ -27,7 +26,7 @@ const fundraisers = [
     id: 2,
     title: "Offer Support To Me, Varun Kulkarni, An Actor & Theatre Artist",
     organizer: "Rhea Rai",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=400&h=250",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&h=250", // Theater/performance
     raised: 2087837,
     goal: 2500000,
     supporters: 1148,
@@ -38,7 +37,7 @@ const fundraisers = [
     id: 3,
     title: "Offer A Helping Hand To Support Sahil Jadhav's Treatment",
     organizer: "Tanu Rajan",
-    image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?auto=format&fit=crop&w=400&h=250",
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?auto=format&fit=crop&w=400&h=250", // Medical treatment/care
     raised: 1941544,
     goal: 2000000,
     supporters: 1228,
@@ -49,7 +48,7 @@ const fundraisers = [
     id: 4,
     title: "Help Priya Fight Cancer - Emergency Medical Support",
     organizer: "Amit Sharma",
-    image: "https://images.unsplash.com/photo-1638202993928-7267aad84c31?auto=format&fit=crop&w=400&h=250",
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=400&h=250", // Cancer awareness/medical
     raised: 1523000,
     goal: 2800000,
     supporters: 892,
@@ -60,7 +59,7 @@ const fundraisers = [
     id: 5,
     title: "Support Ravi's Heart Surgery - Save a Life",
     organizer: "Meera Patel",
-    image: "https://images.unsplash.com/photo-1551190822-a9333d879b1f?auto=format&fit=crop&w=400&h=250",
+    image: "https://images.unsplash.com/photo-1551190822-a9333d879b1f?auto=format&fit=crop&w=400&h=250", // Heart/medical surgery
     raised: 3200000,
     goal: 4500000,
     supporters: 2156,
@@ -71,7 +70,7 @@ const fundraisers = [
     id: 6,
     title: "Help Build Clean Water Wells in Rural Villages",
     organizer: "NGO Green Earth",
-    image: "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?auto=format&fit=crop&w=400&h=250",
+    image: "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?auto=format&fit=crop&w=400&h=250", // Water well/rural development
     raised: 876500,
     goal: 1500000,
     supporters: 567,
@@ -82,7 +81,7 @@ const fundraisers = [
     id: 7,
     title: "Emergency Fund for Accident Victim Recovery",
     organizer: "Deepak Kumar",
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=400&h=250",
+    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=400&h=250", // Emergency/ambulance
     raised: 425000,
     goal: 800000,
     supporters: 234,
@@ -93,7 +92,7 @@ const fundraisers = [
     id: 8,
     title: "Support Education for Underprivileged Children",
     organizer: "Sunita Foundation",
-    image: "https://images.unsplash.com/photo-1497486751825-1233686d5d80?auto=format&fit=crop&w=400&h=250",
+    image: "https://images.unsplash.com/photo-1497486751825-1233686d5d80?auto=format&fit=crop&w=400&h=250", // Children education
     raised: 654000,
     goal: 1200000,
     supporters: 789,
