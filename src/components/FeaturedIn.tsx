@@ -6,63 +6,53 @@ import { useState } from "react";
 const companyLogos = [
   {
     name: "Google",
-    logo: "G",
-    color: "from-red-500 to-yellow-500",
-    bgColor: "bg-red-50"
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg",
+    bgColor: "bg-white"
   },
   {
     name: "Microsoft",
-    logo: "M",
-    color: "from-blue-600 to-blue-700",
-    bgColor: "bg-blue-50"
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg",
+    bgColor: "bg-white"
   },
   {
     name: "Apple",
-    logo: "🍎",
-    color: "from-gray-700 to-gray-800",
-    bgColor: "bg-gray-50"
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg",
+    bgColor: "bg-white"
   },
   {
     name: "Amazon",
-    logo: "A",
-    color: "from-orange-400 to-yellow-500",
-    bgColor: "bg-orange-50"
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg",
+    bgColor: "bg-white"
   },
   {
     name: "Meta",
-    logo: "f",
-    color: "from-blue-500 to-blue-600",
-    bgColor: "bg-blue-50"
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg",
+    bgColor: "bg-white"
   },
   {
     name: "Netflix",
-    logo: "N",
-    color: "from-red-600 to-red-700",
-    bgColor: "bg-red-50"
+    logo: "https://logos-world.net/wp-content/uploads/2020/04/Netflix-Logo.png",
+    bgColor: "bg-white"
   },
   {
     name: "Tesla",
-    logo: "T",
-    color: "from-red-500 to-red-600",
-    bgColor: "bg-red-50"
+    logo: "https://logoeps.com/wp-content/uploads/2013/03/tesla-vector-logo.png",
+    bgColor: "bg-white"
   },
   {
     name: "Spotify",
-    logo: "♪",
-    color: "from-green-500 to-green-600",
-    bgColor: "bg-green-50"
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spotify/spotify-original.svg",
+    bgColor: "bg-white"
   },
   {
     name: "Uber",
-    logo: "U",
-    color: "from-black to-gray-800",
-    bgColor: "bg-gray-50"
+    logo: "https://logoeps.com/wp-content/uploads/2014/05/uber-vector-logo.png",
+    bgColor: "bg-white"
   },
   {
     name: "Airbnb",
-    logo: "🏠",
-    color: "from-pink-500 to-red-500",
-    bgColor: "bg-pink-50"
+    logo: "https://logoeps.com/wp-content/uploads/2014/09/airbnb-vector-logo.png",
+    bgColor: "bg-white"
   }
 ];
 
@@ -118,10 +108,22 @@ const FeaturedIn = () => {
                 >
                   <Card className="bg-white hover:shadow-lg transition-all duration-300 border-0 p-6 group cursor-pointer">
                     <div className="flex flex-col items-center space-y-3">
-                      <div className={`w-16 h-16 rounded-lg bg-gradient-to-r ${company.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-md`}>
-                        <span className="text-white font-bold text-2xl">
-                          {company.logo}
-                        </span>
+                      <div className="w-16 h-16 rounded-lg bg-white flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-md border border-gray-100">
+                        <img 
+                          src={company.logo} 
+                          alt={`${company.name} logo`}
+                          className="w-12 h-12 object-contain"
+                          onError={(e) => {
+                            // Fallback to text if image fails to load
+                            e.currentTarget.style.display = 'none';
+                            e.currentTarget.nextElementSibling.style.display = 'flex';
+                          }}
+                        />
+                        <div className="w-12 h-12 bg-gradient-to-r from-gray-500 to-gray-600 rounded-lg hidden items-center justify-center">
+                          <span className="text-white font-bold text-lg">
+                            {company.name.charAt(0)}
+                          </span>
+                        </div>
                       </div>
                       <div className="text-sm font-semibold text-gray-700 group-hover:text-gray-900 transition-colors">
                         {company.name}
