@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Quote, Star, ArrowLeft, ArrowRight } from "lucide-react";
@@ -57,17 +56,17 @@ const SuccessStories = () => {
   const currentStoryData = stories[currentStory];
 
   return (
-    <section className="py-8 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-6 bg-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-6">
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">
+        <div className="text-center mb-4">
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">
             Success Stories
           </h2>
         </div>
 
         {/* Carousel Container */}
-        <div className="relative max-w-4xl mx-auto">
+        <div className="relative max-w-5xl mx-auto">
           {/* Navigation Arrows */}
           <button
             onClick={prevStory}
@@ -91,27 +90,26 @@ const SuccessStories = () => {
                 <img 
                   src={currentStoryData.image} 
                   alt={currentStoryData.name}
-                  className="w-full h-48 lg:h-56 object-cover"
+                  className="w-full h-40 lg:h-48 object-cover"
                 />
-                <div className="absolute inset-0 bg-black/20"></div>
               </div>
 
               {/* Content Section */}
-              <div className="p-4 lg:p-6 flex flex-col justify-center">
-                <div className="mb-3">
+              <div className="p-4 lg:p-5 flex flex-col justify-center">
+                <div className="mb-2">
                   <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2">
                     You are the reason {currentStoryData.name.split(' ')[0]} gets to live his dream
                   </h3>
                 </div>
 
-                <div className="mb-3">
+                <div className="mb-2">
                   <Quote className="h-4 w-4 text-rose-500 mb-2" />
                   <p className="text-gray-600 leading-relaxed italic text-sm">
                     "{currentStoryData.fullStory}" -{currentStoryData.name.split(' ')[0]}...
                   </p>
                 </div>
 
-                <div className="mb-4">
+                <div className="mb-3">
                   <button className="text-rose-500 hover:text-rose-600 font-medium text-sm">
                     Read more
                   </button>
@@ -142,7 +140,7 @@ const SuccessStories = () => {
         </div>
 
         {/* CTA Button */}
-        <div className="text-center mt-6">
+        <div className="text-center mt-5">
           <Button 
             size="lg" 
             className="bg-rose-500 hover:bg-rose-600 text-white px-8 py-2.5 text-sm rounded-lg"
