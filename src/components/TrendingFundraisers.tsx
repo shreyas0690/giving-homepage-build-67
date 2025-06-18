@@ -1,3 +1,4 @@
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -15,7 +16,7 @@ const fundraisers = [
     id: 1,
     title: "Support My Dad's Brain Injury Recovery – Urgent Help Needed",
     organizer: "Alok Ramayan Chaurasia",
-    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=400&h=250", // Medical/hospital scene
+    image: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=400&h=250", // Brain/light bulb for brain injury
     raised: 2825498,
     goal: 3000000,
     supporters: 3563,
@@ -37,7 +38,7 @@ const fundraisers = [
     id: 3,
     title: "Offer A Helping Hand To Support Sahil Jadhav's Treatment",
     organizer: "Tanu Rajan",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?auto=format&fit=crop&w=400&h=250", // Medical treatment/care
+    image: "", // No image
     raised: 1941544,
     goal: 2000000,
     supporters: 1228,
@@ -70,7 +71,7 @@ const fundraisers = [
     id: 6,
     title: "Help Build Clean Water Wells in Rural Villages",
     organizer: "NGO Green Earth",
-    image: "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?auto=format&fit=crop&w=400&h=250", // Water well/rural development
+    image: "", // No image
     raised: 876500,
     goal: 1500000,
     supporters: 567,
@@ -141,13 +142,15 @@ const TrendingFundraisers = () => {
                 return (
                   <CarouselItem key={fundraiser.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
                     <Card className="group hover:shadow-xl transition-all duration-300 overflow-hidden bg-white h-full">
-                      <div className="relative overflow-hidden">
-                        <img 
-                          src={fundraiser.image} 
-                          alt={fundraiser.title}
-                          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      </div>
+                      {fundraiser.image && (
+                        <div className="relative overflow-hidden">
+                          <img 
+                            src={fundraiser.image} 
+                            alt={fundraiser.title}
+                            className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
+                        </div>
+                      )}
                       
                       <CardContent className="p-6">
                         <div className="space-y-4">
