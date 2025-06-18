@@ -6,7 +6,9 @@ import {
   Home, 
   Stethoscope, 
   Leaf, 
-  Users
+  Users,
+  Baby,
+  Flower2
 } from "lucide-react";
 
 const causes = [
@@ -17,13 +19,13 @@ const causes = [
     bgColor: "bg-gradient-to-br from-rose-400 to-rose-500"
   },
   {
-    icon: Users,
+    icon: Flower2,
     title: "MEMORIAL",
     color: "text-white", 
     bgColor: "bg-gradient-to-br from-rose-400 to-rose-500"
   },
   {
-    icon: Heart,
+    icon: Baby,
     title: "CHILDREN",
     color: "text-white",
     bgColor: "bg-gradient-to-br from-rose-400 to-rose-500"
