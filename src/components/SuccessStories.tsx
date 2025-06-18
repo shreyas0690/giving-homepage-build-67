@@ -1,3 +1,4 @@
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Quote, Star, ArrowLeft, ArrowRight } from "lucide-react";
@@ -57,7 +58,7 @@ const SuccessStories = () => {
 
   return (
     <section className="py-6 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-4">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
@@ -66,7 +67,7 @@ const SuccessStories = () => {
         </div>
 
         {/* Carousel Container */}
-        <div className="relative max-w-5xl mx-auto">
+        <div className="relative max-w-6xl mx-auto">
           {/* Navigation Arrows */}
           <button
             onClick={prevStory}
@@ -90,7 +91,7 @@ const SuccessStories = () => {
                 <img 
                   src={currentStoryData.image} 
                   alt={currentStoryData.name}
-                  className="w-full h-40 lg:h-48 object-cover"
+                  className="w-full h-full object-cover"
                 />
               </div>
 
