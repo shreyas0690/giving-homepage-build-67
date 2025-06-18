@@ -15,7 +15,7 @@ const fundraisers = [
     id: 1,
     title: "Support My Dad's Brain Injury Recovery – Urgent Help Needed",
     organizer: "Alok Ramayan Chaurasia",
-    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=400&h=250", // Medical care/helping hands for brain injury recovery
+    image: "https://images.pexels.com/photos/3845126/pexels-photo-3845126.jpeg", // Medical care/helping hands for brain injury recovery
     raised: 2825498,
     goal: 3000000,
     supporters: 3563,
