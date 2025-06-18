@@ -11,7 +11,7 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex items-center justify-center">
+          <div className="flex items-center">
             <img 
               src="/lovable-uploads/6f963d4c-07e4-448f-9377-5fee8010d0fc.png" 
               alt="Varak Logo" 
