@@ -19,9 +19,9 @@ const steps = [{
   description: "All you need to do is share the fundraiser with your friends and family. In no time, support will start pouring in.",
   subtext: "Share your fundraiser directly from dashboard on social media.",
   highlight: "Easy sharing",
-  color: "text-blue-500",
-  bgColor: "bg-blue-50",
-  borderColor: "border-blue-200"
+  color: "text-rose-500",
+  bgColor: "bg-rose-50",
+  borderColor: "border-rose-200"
 }, {
   number: 3,
   icon: DollarSign,
@@ -29,9 +29,9 @@ const steps = [{
   description: "The funds raised can be withdrawn without any hassle directly to your bank account.",
   subtext: "It takes only 5 minutes to withdraw funds on FundHope.",
   highlight: "5 minutes withdrawal",
-  color: "text-green-500",
-  bgColor: "bg-green-50",
-  borderColor: "border-green-200"
+  color: "text-rose-500",
+  bgColor: "bg-rose-50",
+  borderColor: "border-rose-200"
 }];
 
 const StartFundraiser = () => {
