@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Quote, Star, ArrowLeft, ArrowRight } from "lucide-react";
@@ -91,7 +90,7 @@ const SuccessStories = () => {
                 <img 
                   src={currentStoryData.image} 
                   alt={currentStoryData.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-64 lg:h-80 object-cover"
                 />
               </div>
 
