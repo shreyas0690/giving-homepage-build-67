@@ -1,5 +1,4 @@
 
-import { Card } from "@/components/ui/card";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 
@@ -7,58 +6,36 @@ const companyLogos = [
   {
     name: "Google",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg",
-    bgColor: "bg-white"
   },
   {
     name: "Microsoft",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg",
-    bgColor: "bg-white"
   },
   {
     name: "Apple",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg",
-    bgColor: "bg-white"
   },
   {
     name: "Amazon",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg",
-    bgColor: "bg-white"
   },
   {
     name: "Meta",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg",
-    bgColor: "bg-white"
   },
   {
     name: "Netflix",
     logo: "https://logos-world.net/wp-content/uploads/2020/04/Netflix-Logo.png",
-    bgColor: "bg-white"
   },
   {
     name: "Tesla",
     logo: "https://logoeps.com/wp-content/uploads/2013/03/tesla-vector-logo.png",
-    bgColor: "bg-white"
-  },
-  {
-    name: "Spotify",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spotify/spotify-original.svg",
-    bgColor: "bg-white"
-  },
-  {
-    name: "Uber",
-    logo: "https://logoeps.com/wp-content/uploads/2014/05/uber-vector-logo.png",
-    bgColor: "bg-white"
-  },
-  {
-    name: "Airbnb",
-    logo: "https://logoeps.com/wp-content/uploads/2014/09/airbnb-vector-logo.png",
-    bgColor: "bg-white"
   }
 ];
 
 const FeaturedIn = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const itemsPerView = 5;
+  const itemsPerView = 7;
   const maxIndex = Math.max(0, companyLogos.length - itemsPerView);
 
   const nextSlide = () => {
@@ -80,7 +57,7 @@ const FeaturedIn = () => {
           <p className="text-gray-600">Join thousands of companies who trust our platform</p>
         </div>
 
-        {/* Logo Carousel Container */}
+        {/* Logo Container */}
         <div className="relative flex items-center justify-center">
           {/* Left Arrow */}
           <button
@@ -92,47 +69,32 @@ const FeaturedIn = () => {
           </button>
 
           {/* Logos Container */}
-          <div className="overflow-hidden max-w-4xl mx-auto">
-            <div 
-              className="flex transition-transform duration-300 ease-in-out gap-8"
-              style={{
-                transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)`,
-                width: `${(companyLogos.length / itemsPerView) * 100}%`
-              }}
-            >
+          <div className="overflow-hidden max-w-5xl mx-auto">
+            <div className="flex items-center justify-center gap-8 py-4">
               {companyLogos.map((company, index) => (
                 <div
                   key={index}
-                  className="flex-shrink-0 flex items-center justify-center"
-                  style={{ width: `${100 / companyLogos.length}%` }}
+                  className="flex-shrink-0 flex items-center justify-center hover:scale-110 transition-transform duration-300"
                 >
-                  <Card className="bg-white hover:shadow-lg transition-all duration-300 border-0 p-6 group cursor-pointer">
-                    <div className="flex flex-col items-center space-y-3">
-                      <div className="w-16 h-16 rounded-lg bg-white flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-md border border-gray-100">
-                        <img 
-                          src={company.logo} 
-                          alt={`${company.name} logo`}
-                          className="w-12 h-12 object-contain"
-                          onError={(e) => {
-                            // Fallback to text if image fails to load
-                            e.currentTarget.style.display = 'none';
-                            const nextElement = e.currentTarget.nextElementSibling as HTMLElement;
-                            if (nextElement) {
-                              nextElement.style.display = 'flex';
-                            }
-                          }}
-                        />
-                        <div className="w-12 h-12 bg-gradient-to-r from-gray-500 to-gray-600 rounded-lg hidden items-center justify-center">
-                          <span className="text-white font-bold text-lg">
-                            {company.name.charAt(0)}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-sm font-semibold text-gray-700 group-hover:text-gray-900 transition-colors">
-                        {company.name}
-                      </div>
+                  <div className="w-20 h-20 flex items-center justify-center bg-white rounded-lg shadow-md border border-gray-100 p-4">
+                    <img 
+                      src={company.logo} 
+                      alt={`${company.name} logo`}
+                      className="w-full h-full object-contain"
+                      onError={(e) => {
+                        const nextElement = e.currentTarget.nextElementSibling as HTMLElement;
+                        if (nextElement) {
+                          e.currentTarget.style.display = 'none';
+                          nextElement.style.display = 'flex';
+                        }
+                      }}
+                    />
+                    <div className="w-full h-full bg-gradient-to-r from-gray-500 to-gray-600 rounded-lg hidden items-center justify-center">
+                      <span className="text-white font-bold text-xl">
+                        {company.name.charAt(0)}
+                      </span>
                     </div>
-                  </Card>
+                  </div>
                 </div>
               ))}
             </div>
@@ -146,19 +108,6 @@ const FeaturedIn = () => {
           >
             <ChevronRight className="h-5 w-5 text-gray-600 group-hover:text-rose-500 transition-colors" />
           </button>
-        </div>
-
-        {/* Dots Indicator */}
-        <div className="flex justify-center mt-6 space-x-2">
-          {Array.from({ length: maxIndex + 1 }).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`w-2 h-2 rounded-full transition-colors duration-200 ${
-                index === currentIndex ? 'bg-rose-500' : 'bg-gray-300'
-              }`}
-            />
-          ))}
         </div>
 
         {/* Additional Stats Section */}
