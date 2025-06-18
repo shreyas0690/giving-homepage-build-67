@@ -1,6 +1,6 @@
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const companyLogos = [{
   name: "Google",
@@ -66,7 +66,28 @@ const companyLogos = [{
 
 const FeaturedIn = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const itemsPerView = 8;
+  const [itemsPerView, setItemsPerView] = useState(8);
+
+  useEffect(() => {
+    const updateItemsPerView = () => {
+      if (window.innerWidth < 640) {
+        setItemsPerView(2); // Mobile: 2 logos
+      } else if (window.innerWidth < 768) {
+        setItemsPerView(3); // Small tablet: 3 logos
+      } else if (window.innerWidth < 1024) {
+        setItemsPerView(4); // Tablet: 4 logos
+      } else if (window.innerWidth < 1280) {
+        setItemsPerView(6); // Desktop: 6 logos
+      } else {
+        setItemsPerView(8); // Large desktop: 8 logos
+      }
+    };
+
+    updateItemsPerView();
+    window.addEventListener('resize', updateItemsPerView);
+    return () => window.removeEventListener('resize', updateItemsPerView);
+  }, []);
+
   const maxIndex = Math.max(0, companyLogos.length - itemsPerView);
 
   const nextSlide = () => {
@@ -80,14 +101,14 @@ const FeaturedIn = () => {
   const visibleLogos = companyLogos.slice(currentIndex, currentIndex + itemsPerView);
 
   return (
-    <section className="py-12 bg-gray-50">
+    <section className="py-8 sm:py-12 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">
+        <div className="text-center mb-6 sm:mb-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
             Trusted by Leading Companies
           </h2>
-          <p className="text-gray-600">Join thousands of companies who trust our platform</p>
+          <p className="text-sm sm:text-base text-gray-600">Join thousands of companies who trust our platform</p>
         </div>
 
         {/* Logo Container */}
@@ -96,20 +117,20 @@ const FeaturedIn = () => {
           <button 
             onClick={prevSlide} 
             disabled={currentIndex === 0} 
-            className="absolute left-0 z-10 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200 hover:border-rose-300 group"
+            className="absolute left-0 sm:left-2 z-10 bg-white rounded-full p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200 hover:border-rose-300 group"
           >
-            <ChevronLeft className="h-8 w-8 text-gray-600 group-hover:text-rose-500 transition-colors" />
+            <ChevronLeft className="h-4 w-4 sm:h-6 sm:w-6 lg:h-8 lg:w-8 text-gray-600 group-hover:text-rose-500 transition-colors" />
           </button>
 
           {/* Logos Container */}
-          <div className="overflow-hidden max-w-5xl mx-auto">
-            <div className="flex items-center justify-center gap-8 py-4">
+          <div className="overflow-hidden max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl xl:max-w-5xl mx-auto">
+            <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-6 lg:gap-8 py-4">
               {visibleLogos.map((company, index) => (
                 <div 
                   key={currentIndex + index} 
                   className="flex-shrink-0 flex items-center justify-center hover:scale-110 transition-transform duration-300"
                 >
-                  <div className="w-20 h-20 flex items-center justify-center">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-18 md:h-18 lg:w-20 lg:h-20 flex items-center justify-center">
                     <img 
                       src={company.logo} 
                       alt={`${company.name} logo`} 
@@ -124,7 +145,7 @@ const FeaturedIn = () => {
                       }} 
                     />
                     <div className="w-full h-full bg-gradient-to-r from-gray-500 to-gray-600 rounded-lg hidden items-center justify-center">
-                      <span className="text-white font-bold text-xl">
+                      <span className="text-white font-bold text-lg sm:text-xl">
                         {company.name.charAt(0)}
                       </span>
                     </div>
@@ -138,15 +159,27 @@ const FeaturedIn = () => {
           <button 
             onClick={nextSlide} 
             disabled={currentIndex >= maxIndex} 
-            className="absolute right-0 z-10 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200 hover:border-rose-300 group"
+            className="absolute right-0 sm:right-2 z-10 bg-white rounded-full p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200 hover:border-rose-300 group"
           >
-            <ChevronRight className="h-8 w-8 text-gray-600 group-hover:text-rose-500 transition-colors" />
+            <ChevronRight className="h-4 w-4 sm:h-6 sm:w-6 lg:h-8 lg:w-8 text-gray-600 group-hover:text-rose-500 transition-colors" />
           </button>
         </div>
 
-        {/* Additional Stats Section */}
-        <div className="mt-12 text-center">
-          
+        {/* Pagination dots for mobile */}
+        <div className="flex justify-center mt-4 sm:hidden">
+          <div className="flex space-x-2">
+            {Array.from({ length: Math.ceil(companyLogos.length / itemsPerView) }).map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index * itemsPerView)}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  Math.floor(currentIndex / itemsPerView) === index
+                    ? 'bg-rose-500'
+                    : 'bg-gray-300'
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
