@@ -1,3 +1,4 @@
+
 import { Heart, Facebook, Twitter, Instagram, Linkedin, Youtube, Phone, Mail } from "lucide-react";
 const Footer = () => {
   return <footer className="text-white" style={{
@@ -8,9 +9,13 @@ const Footer = () => {
         <div className="grid lg:grid-cols-5 md:grid-cols-2 gap-8">
           {/* Company Info - Left Column */}
           <div className="lg:col-span-1 space-y-6">
-            <div className="flex items-center space-x-2">
-              <Heart className="h-8 w-8 text-white" />
-              <span className="text-2xl font-bold">Ketto</span>
+            <div className="flex items-center -space-x-2">
+              <img 
+                src="/lovable-uploads/6f963d4c-07e4-448f-9377-5fee8010d0fc.png" 
+                alt="Varak Logo" 
+                className="h-16 w-16"
+              />
+              <span className="text-2xl font-bold">Varak</span>
             </div>
             
             {/* Social Media Icons */}
@@ -44,7 +49,7 @@ const Footer = () => {
                 <div className="text-white font-semibold mb-2">For any queries</div>
                 <div className="flex items-center space-x-2 text-sm">
                   <Mail className="h-4 w-4" />
-                  <span>Email: info@ketto.org</span>
+                  <span>Email: info@varak.org</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm mt-1">
                   <Phone className="h-4 w-4" />
@@ -56,7 +61,7 @@ const Footer = () => {
                 <div className="text-white font-semibold mb-2">For any Media & PR queries</div>
                 <div className="flex items-center space-x-2 text-sm">
                   <Mail className="h-4 w-4" />
-                  <span>Email: pr@ketto.org</span>
+                  <span>Email: pr@varak.org</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm mt-1">
                   <Phone className="h-4 w-4" />
@@ -99,13 +104,13 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-6 text-white">About Us</h3>
             <ul className="space-y-3">
-              <li><a href="#" className="text-gray-200 hover:text-white transition-colors text-sm">Team Ketto</a></li>
+              <li><a href="#" className="text-gray-200 hover:text-white transition-colors text-sm">Team Varak</a></li>
               <li><a href="#" className="text-gray-200 hover:text-white transition-colors text-sm">In The News</a></li>
               <li><a href="#" className="text-gray-200 hover:text-white transition-colors text-sm">Web Stories</a></li>
               <li><a href="#" className="text-gray-200 hover:text-white transition-colors text-sm">Careers</a></li>
-              <li><a href="#" className="text-gray-200 hover:text-white transition-colors text-sm">Ketto Blog</a></li>
+              <li><a href="#" className="text-gray-200 hover:text-white transition-colors text-sm">Varak Blog</a></li>
               <li><a href="#" className="text-gray-200 hover:text-white transition-colors text-sm">Success Stories</a></li>
-              <li><a href="#" className="text-gray-200 hover:text-white transition-colors text-sm">Is Ketto Genuine?</a></li>
+              <li><a href="#" className="text-gray-200 hover:text-white transition-colors text-sm">Is Varak Genuine?</a></li>
             </ul>
           </div>
 
@@ -115,7 +120,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li><a href="#" className="text-gray-200 hover:text-white transition-colors text-sm">Medical Finance</a></li>
               <li><a href="#" className="text-gray-200 hover:text-white transition-colors text-sm">FAQs & Help Center</a></li>
-              <li><a href="#" className="text-gray-200 hover:text-white transition-colors text-sm">Are Ketto Campaigns Genuine?</a></li>
+              <li><a href="#" className="text-gray-200 hover:text-white transition-colors text-sm">Are Varak Campaigns Genuine?</a></li>
               <li><a href="#" className="text-gray-200 hover:text-white transition-colors text-sm">Fundraiser Video</a></li>
               <li><a href="#" className="text-gray-200 hover:text-white transition-colors text-sm">Trust & Safety</a></li>
               <li><a href="#" className="text-gray-200 hover:text-white transition-colors text-sm">Plans & Pricing*</a></li>
@@ -147,7 +152,7 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="text-center space-y-3">
             <div className="flex flex-wrap justify-center items-center gap-4 text-sm text-gray-300">
-              <span>Copyright © 2025 Ketto Online Ventures Pvt Ltd. All Rights Reserved.</span>
+              <span>Copyright © 2025 Varak Online Ventures Pvt Ltd. All Rights Reserved.</span>
               <a href="#" className="hover:text-white transition-colors">Terms of Use</a>
               <span>|</span>
               <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
@@ -157,7 +162,7 @@ const Footer = () => {
               <a href="#" className="hover:text-white transition-colors">Use of cookies</a>
             </div>
             <div className="text-sm text-gray-300 max-w-4xl mx-auto">
-              Ketto is a private limited company operating an online intermediary platform providing crowdfunding services for medical, social and charitable causes. We facilitate transactions between contributors and campaigners. Ketto does not provide any financial benefits in any form whatsoever to any person making contributions on its platform.
+              Varak is a private limited company operating an online intermediary platform providing crowdfunding services for medical, social and charitable causes. We facilitate transactions between contributors and campaigners. Varak does not provide any financial benefits in any form whatsoever to any person making contributions on its platform.
             </div>
           </div>
         </div>
