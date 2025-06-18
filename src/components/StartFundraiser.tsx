@@ -1,6 +1,8 @@
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { PlusCircle, Share2, DollarSign, ArrowRight, Clock, Users, Smartphone, CheckCircle } from "lucide-react";
+import { PlusCircle, Share2, DollarSign, ArrowRight, Clock, Users, Smartphone, CheckCircle, Heart, Shield, Zap, Star } from "lucide-react";
+
 const steps = [{
   number: 1,
   icon: PlusCircle,
@@ -31,6 +33,7 @@ const steps = [{
   bgColor: "bg-rose-50",
   borderColor: "border-rose-200"
 }];
+
 const StartFundraiser = () => {
   return <section className="py-20 bg-gray-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -94,66 +97,134 @@ const StartFundraiser = () => {
                   </div>
                 </div>;
           })}
-            
-            {/* Additional Enhancement - Process Flow Indicator */}
-            
           </div>
 
           {/* Right Side - Enhanced Content */}
-          <div className="lg:pl-8">
-            {/* Feature Card */}
-            <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 border border-gray-100">
-              <div className="text-center mb-6">
-                <div className="w-16 h-16 bg-gradient-to-r from-rose-500 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <Users className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  Join 3.2 Lakh+ Fundraisers
-                </h3>
-                <p className="text-gray-600">
-                  Start your fundraiser and reach thousands of supporters ready to help your cause.
-                </p>
+          <div className="lg:pl-8 space-y-8">
+            {/* Main Feature Card with Gradient Background */}
+            <div className="relative bg-gradient-to-br from-rose-500 via-pink-600 to-purple-600 rounded-3xl shadow-2xl p-8 text-white overflow-hidden">
+              {/* Background Pattern */}
+              <div className="absolute inset-0 opacity-10">
+                <div className="absolute top-4 right-4 w-32 h-32 bg-white rounded-full blur-3xl"></div>
+                <div className="absolute bottom-4 left-4 w-24 h-24 bg-yellow-300 rounded-full blur-2xl"></div>
               </div>
               
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-4 mb-6">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-rose-500">0%</div>
-                  <div className="text-xs text-gray-500">Platform Fee</div>
+              <div className="relative z-10">
+                <div className="text-center mb-8">
+                  <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <Heart className="h-10 w-10 text-white" />
+                  </div>
+                  <h3 className="text-3xl font-bold mb-3">
+                    Join 3.2 Lakh+ Fundraisers
+                  </h3>
+                  <p className="text-pink-100 text-lg leading-relaxed">
+                    Start your fundraiser and reach thousands of supporters ready to help your cause make a real difference.
+                  </p>
                 </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-rose-500">24/7</div>
-                  <div className="text-xs text-gray-500">Support</div>
+                
+                {/* Enhanced Stats Grid */}
+                <div className="grid grid-cols-3 gap-6 mb-8">
+                  <div className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20">
+                    <div className="text-3xl font-bold text-white mb-1">0%</div>
+                    <div className="text-xs text-pink-100 font-semibold uppercase tracking-wide">Platform Fee</div>
+                  </div>
+                  <div className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20">
+                    <div className="text-3xl font-bold text-white mb-1">24/7</div>
+                    <div className="text-xs text-pink-100 font-semibold uppercase tracking-wide">Support</div>
+                  </div>
+                  <div className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20">
+                    <div className="text-3xl font-bold text-white mb-1">2 min</div>
+                    <div className="text-xs text-pink-100 font-semibold uppercase tracking-wide">Setup</div>
+                  </div>
                 </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-rose-500">2 min</div>
-                  <div className="text-xs text-gray-500">Setup</div>
-                </div>
-              </div>
 
-              <Button className="w-full bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white py-3">
-                Start Your Fundraiser Now
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+                <Button className="w-full bg-white text-rose-600 hover:bg-gray-50 py-4 text-lg font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                  Start Your Fundraiser Now
+                  <ArrowRight className="ml-2 h-6 w-6" />
+                </Button>
+              </div>
             </div>
 
-            {/* Benefits List */}
+            {/* Trust Indicators */}
+            <div className="bg-white rounded-3xl shadow-lg p-8 border border-gray-100">
+              <div className="text-center mb-6">
+                <div className="flex justify-center items-center gap-2 mb-4">
+                  <Shield className="h-6 w-6 text-green-500" />
+                  <h4 className="text-xl font-bold text-gray-900">Trusted & Secure Platform</h4>
+                </div>
+                <p className="text-gray-600">Your fundraiser is protected with bank-level security</p>
+              </div>
+              
+              {/* Trust Badges */}
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="flex items-center gap-3 p-4 bg-green-50 rounded-2xl border border-green-100">
+                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                  <span className="text-green-700 font-semibold text-sm">SSL Encrypted</span>
+                </div>
+                <div className="flex items-center gap-3 p-4 bg-blue-50 rounded-2xl border border-blue-100">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
+                  <span className="text-blue-700 font-semibold text-sm">Bank Grade Security</span>
+                </div>
+              </div>
+              
+              {/* Success Rate */}
+              <div className="text-center p-6 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl border border-emerald-100">
+                <div className="flex justify-center items-center gap-2 mb-2">
+                  <Star className="h-5 w-5 text-yellow-500 fill-current" />
+                  <Star className="h-5 w-5 text-yellow-500 fill-current" />
+                  <Star className="h-5 w-5 text-yellow-500 fill-current" />
+                  <Star className="h-5 w-5 text-yellow-500 fill-current" />
+                  <Star className="h-5 w-5 text-yellow-500 fill-current" />
+                </div>
+                <div className="text-2xl font-bold text-emerald-700 mb-1">95% Success Rate</div>
+                <div className="text-sm text-emerald-600">Average fundraiser reaches 85% of goal</div>
+              </div>
+            </div>
+
+            {/* Enhanced Benefits List */}
             <div className="space-y-4">
-              <div className="flex items-center gap-3 p-4 bg-white rounded-lg shadow-sm border border-gray-100">
-                <div className="w-2 h-2 bg-rose-500 rounded-full"></div>
-                <span className="text-gray-700 font-medium">Free to start</span>
-              </div>
-              <div className="flex items-center gap-3 p-4 bg-white rounded-lg shadow-sm border border-gray-100">
-                <div className="w-2 h-2 bg-rose-500 rounded-full"></div>
-                <span className="text-gray-700 font-medium">Secure & trusted platform</span>
-              </div>
-              <div className="flex items-center gap-3 p-4 bg-white rounded-lg shadow-sm border border-gray-100">
-                <div className="w-2 h-2 bg-rose-500 rounded-full"></div>
-                <span className="text-gray-700 font-medium">Share across all social platforms</span>
-              </div>
-              <div className="flex items-center gap-3 p-4 bg-white rounded-lg shadow-sm border border-gray-100">
-                <div className="w-2 h-2 bg-rose-500 rounded-full"></div>
-                <span className="text-gray-700 font-medium">Quick fund withdrawal</span>
+              <h4 className="text-xl font-bold text-gray-900 mb-6 text-center">Why Choose FundHope?</h4>
+              
+              <div className="grid gap-4">
+                <div className="flex items-center gap-4 p-5 bg-white rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <div className="w-12 h-12 bg-gradient-to-r from-green-400 to-emerald-500 rounded-2xl flex items-center justify-center shadow-lg">
+                    <Zap className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <div className="font-bold text-gray-900 mb-1">Free to start</div>
+                    <div className="text-sm text-gray-500">No upfront costs or hidden fees</div>
+                  </div>
+                </div>
+                
+                <div className="flex items-center gap-4 p-5 bg-white rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <div className="w-12 h-12 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-2xl flex items-center justify-center shadow-lg">
+                    <Shield className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <div className="font-bold text-gray-900 mb-1">Secure & trusted platform</div>
+                    <div className="text-sm text-gray-500">Bank-level encryption & security</div>
+                  </div>
+                </div>
+                
+                <div className="flex items-center gap-4 p-5 bg-white rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <div className="w-12 h-12 bg-gradient-to-r from-purple-400 to-pink-500 rounded-2xl flex items-center justify-center shadow-lg">
+                    <Share2 className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <div className="font-bold text-gray-900 mb-1">Share across all social platforms</div>
+                    <div className="text-sm text-gray-500">One-click sharing to maximize reach</div>
+                  </div>
+                </div>
+                
+                <div className="flex items-center gap-4 p-5 bg-white rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <div className="w-12 h-12 bg-gradient-to-r from-orange-400 to-red-500 rounded-2xl flex items-center justify-center shadow-lg">
+                    <Clock className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <div className="font-bold text-gray-900 mb-1">Quick fund withdrawal</div>
+                    <div className="text-sm text-gray-500">Get your funds in 5 minutes</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -175,4 +246,5 @@ const StartFundraiser = () => {
       </div>
     </section>;
 };
+
 export default StartFundraiser;
