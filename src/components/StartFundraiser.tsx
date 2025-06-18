@@ -59,7 +59,9 @@ const StartFundraiser = () => {
                   
                   <CardContent className="relative p-8 text-center">
                     {/* Step Number with Gradient */}
-                    
+                    <div className={`w-20 h-20 bg-gradient-to-br ${step.color} rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                      <span className="text-2xl font-bold text-white">{step.number}</span>
+                    </div>
 
                     {/* Icon */}
                     <div className="w-16 h-16 bg-rose-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-rose-200 transition-colors duration-300">
