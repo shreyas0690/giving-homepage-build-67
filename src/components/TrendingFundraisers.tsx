@@ -2,7 +2,14 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { Heart, Clock, Users, Facebook, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { Heart, Clock, Facebook, ArrowRight } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const fundraisers = [
   {
@@ -37,6 +44,61 @@ const fundraisers = [
     supporters: 1228,
     daysLeft: 76,
     category: "TR"
+  },
+  {
+    id: 4,
+    title: "Help Priya Fight Cancer - Emergency Medical Support",
+    organizer: "Amit Sharma",
+    image: "https://images.unsplash.com/photo-1638202993928-7267aad84c31?auto=format&fit=crop&w=400&h=250",
+    raised: 1523000,
+    goal: 2800000,
+    supporters: 892,
+    daysLeft: 23,
+    category: "AS"
+  },
+  {
+    id: 5,
+    title: "Support Ravi's Heart Surgery - Save a Life",
+    organizer: "Meera Patel",
+    image: "https://images.unsplash.com/photo-1551190822-a9333d879b1f?auto=format&fit=crop&w=400&h=250",
+    raised: 3200000,
+    goal: 4500000,
+    supporters: 2156,
+    daysLeft: 12,
+    category: "MP"
+  },
+  {
+    id: 6,
+    title: "Help Build Clean Water Wells in Rural Villages",
+    organizer: "NGO Green Earth",
+    image: "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?auto=format&fit=crop&w=400&h=250",
+    raised: 876500,
+    goal: 1500000,
+    supporters: 567,
+    daysLeft: 45,
+    category: "GE"
+  },
+  {
+    id: 7,
+    title: "Emergency Fund for Accident Victim Recovery",
+    organizer: "Deepak Kumar",
+    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=400&h=250",
+    raised: 425000,
+    goal: 800000,
+    supporters: 234,
+    daysLeft: 8,
+    category: "DK"
+  },
+  {
+    id: 8,
+    title: "Support Education for Underprivileged Children",
+    organizer: "Sunita Foundation",
+    image: "https://images.unsplash.com/photo-1497486751825-1233686d5d80?auto=format&fit=crop&w=400&h=250",
+    raised: 654000,
+    goal: 1200000,
+    supporters: 789,
+    daysLeft: 67,
+    category: "SF"
   }
 ];
 
@@ -64,90 +126,91 @@ const TrendingFundraisers = () => {
           </p>
         </div>
 
-        {/* Navigation Arrows and Cards Container */}
-        <div className="relative">
-          {/* Left Arrow */}
-          <button className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-4 shadow-xl border border-gray-100 hover:shadow-2xl hover:scale-110 transition-all duration-300 group">
-            <ChevronLeft className="h-6 w-6 text-gray-700 group-hover:text-rose-500 transition-colors" />
-          </button>
-
-          {/* Right Arrow */}
-          <button className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-4 shadow-xl border border-gray-100 hover:shadow-2xl hover:scale-110 transition-all duration-300 group">
-            <ChevronRight className="h-6 w-6 text-gray-700 group-hover:text-rose-500 transition-colors" />
-          </button>
-
-          {/* Fundraiser Cards */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 px-16">
-            {fundraisers.map((fundraiser) => {
-              const progressPercentage = (fundraiser.raised / fundraiser.goal) * 100;
-              
-              return (
-                <Card key={fundraiser.id} className="group hover:shadow-xl transition-all duration-300 overflow-hidden bg-white">
-                  <div className="relative overflow-hidden">
-                    <img 
-                      src={fundraiser.image} 
-                      alt={fundraiser.title}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  
-                  <CardContent className="p-6">
-                    <div className="space-y-4">
-                      <div>
-                        <h3 className="font-bold text-lg text-gray-900 line-clamp-2 mb-2 leading-tight tracking-tight">
-                          {fundraiser.title}
-                        </h3>
-                        <p className="text-sm text-gray-600 font-medium tracking-wide">by {fundraiser.organizer}</p>
+        {/* Carousel */}
+        <div className="mb-12">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4">
+              {fundraisers.map((fundraiser) => {
+                const progressPercentage = (fundraiser.raised / fundraiser.goal) * 100;
+                
+                return (
+                  <CarouselItem key={fundraiser.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                    <Card className="group hover:shadow-xl transition-all duration-300 overflow-hidden bg-white h-full">
+                      <div className="relative overflow-hidden">
+                        <img 
+                          src={fundraiser.image} 
+                          alt={fundraiser.title}
+                          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
                       </div>
+                      
+                      <CardContent className="p-6">
+                        <div className="space-y-4">
+                          <div>
+                            <h3 className="font-bold text-lg text-gray-900 line-clamp-2 mb-2 leading-tight tracking-tight">
+                              {fundraiser.title}
+                            </h3>
+                            <p className="text-sm text-gray-600 font-medium tracking-wide">by {fundraiser.organizer}</p>
+                          </div>
 
-                      <div className="space-y-3">
-                        <div className="flex justify-between items-center">
-                          <span className="text-2xl font-bold text-gray-900 tracking-tight">
-                            {formatCurrency(fundraiser.raised)}
-                          </span>
-                          <span className="text-sm text-gray-500 font-medium">
-                            raised out of {formatCurrency(fundraiser.goal)}
-                          </span>
+                          <div className="space-y-3">
+                            <div className="flex justify-between items-center">
+                              <span className="text-2xl font-bold text-gray-900 tracking-tight">
+                                {formatCurrency(fundraiser.raised)}
+                              </span>
+                              <span className="text-sm text-gray-500 font-medium">
+                                raised out of {formatCurrency(fundraiser.goal)}
+                              </span>
+                            </div>
+                            <Progress value={progressPercentage} className="h-2 bg-gray-200">
+                              <div 
+                                className="h-full bg-gradient-to-r from-rose-500 to-pink-600 transition-all duration-300"
+                                style={{ width: `${progressPercentage}%` }}
+                              />
+                            </Progress>
+                          </div>
+
+                          <div className="flex items-center justify-between text-sm">
+                            <div className="flex items-center space-x-1 text-gray-600">
+                              <Clock className="h-4 w-4" />
+                              <span className="font-bold tracking-wide">{fundraiser.daysLeft}</span>
+                              <span className="font-medium">Days Left</span>
+                            </div>
+                            <div className="flex items-center space-x-1 text-gray-600">
+                              <Heart className="h-4 w-4 text-red-500" />
+                              <span className="font-bold tracking-wide">{fundraiser.supporters}</span>
+                              <span className="font-medium">Supporters</span>
+                            </div>
+                          </div>
+
+                          <div className="flex gap-3 pt-2">
+                            <Button 
+                              variant="outline" 
+                              className="flex-1 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold tracking-wide"
+                            >
+                              <Facebook className="h-4 w-4 mr-2" />
+                              Share
+                            </Button>
+                            <Button className="flex-1 bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-semibold tracking-wide">
+                              Contribute
+                            </Button>
+                          </div>
                         </div>
-                        <Progress value={progressPercentage} className="h-2 bg-gray-200">
-                          <div 
-                            className="h-full bg-gradient-to-r from-rose-500 to-pink-600 transition-all duration-300"
-                            style={{ width: `${progressPercentage}%` }}
-                          />
-                        </Progress>
-                      </div>
-
-                      <div className="flex items-center justify-between text-sm">
-                        <div className="flex items-center space-x-1 text-gray-600">
-                          <Clock className="h-4 w-4" />
-                          <span className="font-bold tracking-wide">{fundraiser.daysLeft}</span>
-                          <span className="font-medium">Days Left</span>
-                        </div>
-                        <div className="flex items-center space-x-1 text-gray-600">
-                          <Heart className="h-4 w-4 text-red-500" />
-                          <span className="font-bold tracking-wide">{fundraiser.supporters}</span>
-                          <span className="font-medium">Supporters</span>
-                        </div>
-                      </div>
-
-                      <div className="flex gap-3 pt-2">
-                        <Button 
-                          variant="outline" 
-                          className="flex-1 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold tracking-wide"
-                        >
-                          <Facebook className="h-4 w-4 mr-2" />
-                          Share
-                        </Button>
-                        <Button className="flex-1 bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-semibold tracking-wide">
-                          Contribute
-                        </Button>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
+                      </CardContent>
+                    </Card>
+                  </CarouselItem>
+                );
+              })}
+            </CarouselContent>
+            <CarouselPrevious className="left-2" />
+            <CarouselNext className="right-2" />
+          </Carousel>
         </div>
 
         {/* View More Button */}
