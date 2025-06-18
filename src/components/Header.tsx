@@ -15,9 +15,9 @@ const Header = () => {
             <img 
               src="/lovable-uploads/6f963d4c-07e4-448f-9377-5fee8010d0fc.png" 
               alt="Varak Logo" 
-              className="h-12 w-12"
+              className="h-16 w-16"
             />
-            <span className="text-2xl font-bold text-gray-900 ml-2">Varak</span>
+            <span className="text-2xl font-bold text-gray-900 ml-1">Varak</span>
           </div>
 
           {/* Desktop Navigation */}
