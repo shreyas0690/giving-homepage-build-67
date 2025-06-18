@@ -1,4 +1,5 @@
 
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Quote, Star, ArrowLeft, ArrowRight } from "lucide-react";
@@ -77,7 +78,7 @@ const SuccessStories = () => {
           </button>
 
           {/* Story Card */}
-          <div className="bg-white rounded-xl shadow-lg overflow-hidden flex-1 max-w-4xl">
+          <div className="bg-white rounded-xl shadow-lg overflow-hidden flex-1">
             <div className="grid lg:grid-cols-2 gap-0">
               {/* Image Section */}
               <div className="relative">
@@ -156,3 +157,4 @@ const SuccessStories = () => {
 };
 
 export default SuccessStories;
+
