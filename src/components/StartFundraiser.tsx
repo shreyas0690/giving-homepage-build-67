@@ -1,197 +1,218 @@
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { PlusCircle, Share2, DollarSign, ArrowRight, Clock, Users, Smartphone, CheckCircle, Heart, Shield, Zap, Star, TrendingUp, Award, Target } from "lucide-react";
-const steps = [{
-  number: 1,
-  icon: PlusCircle,
-  title: "Start your fundraiser",
-  description: "It'll take only 2 minutes. Just tell us a few details about you and the ones you are raising funds for.",
-  highlight: "Only 2 minutes",
-  features: ["Quick Setup", "Easy Form", "Instant Approval"],
-  bgPattern: "bg-gradient-to-br from-rose-50 to-pink-50"
-}, {
-  number: 2,
-  icon: Share2,
-  title: "Share your fundraiser",
-  description: "All you need to do is share the fundraiser with your friends and family. In no time, support will start pouring in.",
-  subtext: "Share your fundraiser directly from dashboard on social media.",
-  highlight: "Easy sharing",
-  features: ["Social Media", "WhatsApp", "Direct Links"],
-  bgPattern: "bg-gradient-to-br from-rose-50 to-purple-50"
-}, {
-  number: 3,
-  icon: DollarSign,
-  title: "Withdraw Funds",
-  description: "The funds raised can be withdrawn without any hassle directly to your bank account.",
-  subtext: "It takes only 5 minutes to withdraw funds on FundHope.",
-  highlight: "5 minutes withdrawal",
-  features: ["Direct Bank Transfer", "No Hidden Fees", "Instant Process"],
-  bgPattern: "bg-gradient-to-br from-pink-50 to-rose-50"
-}];
-const floatingElements = [{
-  icon: Heart,
-  position: "top-10 left-10",
-  delay: "0s",
-  color: "text-rose-400"
-}, {
-  icon: Star,
-  position: "top-20 right-20",
-  delay: "1s",
-  color: "text-pink-400"
-}, {
-  icon: TrendingUp,
-  position: "bottom-20 left-20",
-  delay: "2s",
-  color: "text-rose-300"
-}, {
-  icon: Award,
-  position: "top-1/2 right-10",
-  delay: "0.5s",
-  color: "text-pink-300"
-}, {
-  icon: Target,
-  position: "bottom-10 right-32",
-  delay: "1.5s",
-  color: "text-rose-400"
-}];
+import { PlusCircle, Share2, DollarSign, ArrowRight, Clock, Users, Smartphone, CheckCircle, Heart, Shield, Zap, Star, TrendingUp, Award, Target, Sparkles } from "lucide-react";
+
+const steps = [
+  {
+    number: 1,
+    icon: PlusCircle,
+    title: "Start your fundraiser",
+    description: "It'll take only 2 minutes. Just tell us a few details about you and the ones you are raising funds for.",
+    highlight: "Only 2 minutes",
+    features: ["Quick Setup", "Easy Form", "Instant Approval"],
+    bgGradient: "from-rose-500/10 via-pink-500/5 to-rose-400/10"
+  },
+  {
+    number: 2,
+    icon: Share2,
+    title: "Share your fundraiser",
+    description: "All you need to do is share the fundraiser with your friends and family. In no time, support will start pouring in.",
+    subtext: "Share your fundraiser directly from dashboard on social media.",
+    highlight: "Easy sharing",
+    features: ["Social Media", "WhatsApp", "Direct Links"],
+    bgGradient: "from-pink-500/10 via-rose-500/5 to-pink-400/10"
+  },
+  {
+    number: 3,
+    icon: DollarSign,
+    title: "Withdraw Funds",
+    description: "The funds raised can be withdrawn without any hassle directly to your bank account.",
+    subtext: "It takes only 5 minutes to withdraw funds on FundHope.",
+    highlight: "5 minutes withdrawal",
+    features: ["Direct Bank Transfer", "No Hidden Fees", "Instant Process"],
+    bgGradient: "from-rose-400/10 via-pink-400/5 to-rose-500/10"
+  }
+];
+
 const StartFundraiser = () => {
-  return <section className="py-20 bg-gray-50 relative overflow-hidden">
-      {/* Floating Background Elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        {floatingElements.map((element, index) => {
-        const Icon = element.icon;
-        return <div key={index} className={`absolute ${element.position} opacity-20 animate-pulse`} style={{
-          animationDelay: element.delay,
-          animationDuration: "3s"
-        }}>
-              <Icon className={`h-8 w-8 ${element.color}`} />
-            </div>;
-      })}
+  return (
+    <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-hidden">
+      {/* Sophisticated Background Pattern */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-0 w-full h-full opacity-30">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-rose-200/30 to-pink-200/30 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-32 right-20 w-96 h-96 bg-gradient-to-r from-pink-200/20 to-rose-200/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-rose-300/20 to-pink-300/20 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        </div>
       </div>
 
-      {/* Decorative Background Shapes */}
+      {/* Floating Icons */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-1/4 w-64 h-64 bg-gradient-to-r from-rose-100 to-pink-100 rounded-full opacity-30 blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-1/4 w-80 h-80 bg-gradient-to-r from-pink-100 to-purple-100 rounded-full opacity-20 blur-3xl animate-pulse" style={{
-        animationDelay: "1s"
-      }}></div>
+        <Heart className="absolute top-16 left-16 h-6 w-6 text-rose-300/40 animate-bounce" style={{ animationDelay: '0s' }} />
+        <Star className="absolute top-24 right-24 h-5 w-5 text-pink-300/40 animate-bounce" style={{ animationDelay: '1s' }} />
+        <Sparkles className="absolute bottom-32 left-32 h-6 w-6 text-rose-400/40 animate-bounce" style={{ animationDelay: '2s' }} />
+        <TrendingUp className="absolute top-1/3 right-16 h-5 w-5 text-pink-400/40 animate-bounce" style={{ animationDelay: '0.5s' }} />
+        <Target className="absolute bottom-20 right-40 h-6 w-6 text-rose-300/40 animate-bounce" style={{ animationDelay: '1.5s' }} />
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Enhanced Header */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Enhanced Header Section */}
         <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-rose-100 text-rose-700 rounded-full text-sm font-medium mb-6 animate-fade-in">
-            <Zap className="h-4 w-4" />
+          <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-rose-100 to-pink-100 text-rose-700 rounded-full text-sm font-semibold mb-8 shadow-lg backdrop-blur-sm border border-rose-200/50">
+            <Zap className="h-5 w-5 animate-pulse" />
             Simple & Fast Process
+            <div className="w-2 h-2 bg-rose-500 rounded-full animate-pulse"></div>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            Start a Fundraiser in
-            <span className="text-rose-600 relative">
-              <span className="relative z-10"> three simple steps</span>
-              <div className="absolute inset-0 bg-rose-100 transform -skew-x-12 scale-110 opacity-30"></div>
+          
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 leading-tight">
+            Start a Fundraiser in{' '}
+            <span className="relative inline-block">
+              <span className="relative z-10 bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">
+                three simple steps
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-rose-100 to-pink-100 transform rotate-1 scale-110 rounded-lg opacity-60"></div>
             </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Join thousands of successful fundraisers and make a difference in just minutes with our streamlined process
-          </p>
           
-          {/* Progress indicator */}
-          <div className="flex justify-center mt-8">
-            <div className="flex items-center gap-2">
-              {[1, 2, 3].map(step => <div key={step} className="flex items-center">
-                  <div className="w-3 h-3 rounded-full bg-rose-600 animate-pulse" style={{
-                animationDelay: `${step * 0.3}s`
-              }}></div>
-                  {step < 3 && <div className="w-8 h-0.5 bg-rose-200 mx-2"></div>}
-                </div>)}
-            </div>
+          <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed mb-10">
+            Join thousands of successful fundraisers and make a difference in just minutes with our streamlined, secure process
+          </p>
+
+          {/* Animated Progress Dots */}
+          <div className="flex justify-center items-center gap-4 mb-8">
+            {[1, 2, 3].map((step, index) => (
+              <div key={step} className="flex items-center">
+                <div className="relative">
+                  <div 
+                    className="w-4 h-4 rounded-full bg-gradient-to-r from-rose-500 to-pink-500 shadow-lg animate-pulse"
+                    style={{ animationDelay: `${index * 0.5}s` }}
+                  ></div>
+                  <div className="absolute inset-0 w-4 h-4 rounded-full bg-gradient-to-r from-rose-400 to-pink-400 animate-ping opacity-30"></div>
+                </div>
+                {step < 3 && (
+                  <div className="w-12 h-0.5 bg-gradient-to-r from-rose-300 to-pink-300 mx-3 relative overflow-hidden">
+                    <div 
+                      className="absolute inset-0 bg-gradient-to-r from-rose-500 to-pink-500 animate-pulse"
+                      style={{ animationDelay: `${index * 0.5 + 0.25}s` }}
+                    ></div>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Enhanced Steps with Advanced Design */}
-        <div className="grid md:grid-cols-3 gap-8 mb-20">
+        {/* Advanced Steps Grid */}
+        <div className="grid lg:grid-cols-3 gap-12 mb-20">
           {steps.map((step, index) => {
-          const Icon = step.icon;
-          return <div key={step.number} className="relative group">
-                {/* Enhanced Connector Line with Animation */}
-                {index < steps.length - 1 && <div className="hidden md:block absolute top-20 left-full w-8 h-0.5 bg-gradient-to-r from-rose-300 to-pink-300 z-10 transform translate-x-4">
-                    <div className="absolute inset-0 bg-gradient-to-r from-rose-500 to-pink-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-                  </div>}
+            const Icon = step.icon;
+            return (
+              <div key={step.number} className="relative group">
+                {/* Connection Line for Desktop */}
+                {index < steps.length - 1 && (
+                  <div className="hidden lg:block absolute top-24 left-full w-12 h-0.5 bg-gradient-to-r from-rose-200 to-pink-200 z-10 transform translate-x-6">
+                    <div className="absolute inset-0 bg-gradient-to-r from-rose-500 to-pink-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left"></div>
+                  </div>
+                )}
                 
-                {/* Advanced Step Card */}
-                <div className={`${step.bgPattern} rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 p-8 text-center relative overflow-hidden group-hover:scale-105 transform`}>
-                  {/* Decorative Corner Elements */}
-                  <div className="absolute top-0 right-0 w-20 h-20 bg-white opacity-10 rounded-bl-full"></div>
-                  <div className="absolute bottom-0 left-0 w-16 h-16 bg-white opacity-10 rounded-tr-full"></div>
+                {/* Enhanced Step Card */}
+                <Card className={`relative overflow-hidden border-0 shadow-2xl hover:shadow-3xl transition-all duration-500 group-hover:scale-105 transform bg-gradient-to-br ${step.bgGradient} backdrop-blur-sm`}>
+                  {/* Decorative Elements */}
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-white/20 to-transparent rounded-bl-full"></div>
+                  <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-white/20 to-transparent rounded-tr-full"></div>
                   
-                  {/* Animated Step Number */}
-                  <div className="relative mb-6">
-                    <div className="w-20 h-20 bg-gradient-to-br from-rose-600 to-pink-600 rounded-2xl flex items-center justify-center mx-auto shadow-lg relative overflow-hidden group-hover:shadow-xl transition-all duration-300">
-                      <div className="absolute inset-0 bg-gradient-to-br from-rose-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <span className="text-2xl font-bold text-white relative z-10">{step.number}</span>
+                  <CardContent className="p-10 text-center relative">
+                    {/* Step Number with Enhanced Design */}
+                    <div className="relative mb-8">
+                      <div className="w-24 h-24 bg-gradient-to-br from-rose-600 to-pink-600 rounded-3xl flex items-center justify-center mx-auto shadow-2xl relative overflow-hidden group-hover:shadow-3xl transition-all duration-500 group-hover:rotate-6 transform">
+                        <div className="absolute inset-0 bg-gradient-to-br from-rose-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <span className="text-3xl font-bold text-white relative z-10">{step.number}</span>
+                        
+                        {/* Animated Rings */}
+                        <div className="absolute inset-2 border-2 border-white/30 rounded-2xl animate-pulse"></div>
+                        <div className="absolute -inset-1 border border-white/20 rounded-3xl animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+                      </div>
                       
-                      {/* Animated Ring */}
-                      <div className="absolute inset-0 border-2 border-white opacity-30 rounded-2xl animate-pulse"></div>
+                      {/* Floating Badge */}
+                      <div className="absolute -top-3 -right-3 w-10 h-10 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg animate-bounce">
+                        {step.number}
+                      </div>
+                    </div>
+
+                    {/* Enhanced Icon */}
+                    <div className="relative mb-8">
+                      <div className="w-20 h-20 bg-white/80 backdrop-blur-sm rounded-3xl flex items-center justify-center mx-auto shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:rotate-12 transform border border-rose-100">
+                        <Icon className="h-10 w-10 text-rose-600 group-hover:scale-125 transition-transform duration-500" />
+                      </div>
                     </div>
                     
-                    {/* Floating Step Indicator */}
-                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-rose-500 rounded-full flex items-center justify-center text-white text-xs font-bold animate-bounce">
-                      {step.number}
-                    </div>
-                  </div>
+                    {/* Enhanced Content */}
+                    <h3 className="text-3xl font-bold text-gray-900 mb-6 group-hover:text-rose-700 transition-colors duration-500">
+                      {step.title}
+                    </h3>
+                    
+                    <p className="text-gray-700 mb-6 leading-relaxed text-lg">
+                      {step.description}
+                    </p>
+                    
+                    {step.subtext && (
+                      <p className="text-gray-600 text-base mb-8 italic font-medium">
+                        {step.subtext}
+                      </p>
+                    )}
 
-                  {/* Enhanced Icon with Animation */}
-                  <div className="relative mb-6">
-                    <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:rotate-12 transform">
-                      <Icon className="h-8 w-8 text-rose-600 group-hover:scale-110 transition-transform duration-300" />
+                    {/* Feature Pills */}
+                    <div className="mb-8">
+                      <div className="flex flex-wrap justify-center gap-3">
+                        {step.features.map((feature, featureIndex) => (
+                          <span 
+                            key={featureIndex} 
+                            className="px-4 py-2 bg-white/90 backdrop-blur-sm text-rose-600 rounded-full text-sm font-semibold shadow-md border border-rose-100 hover:shadow-lg transition-shadow duration-300"
+                          >
+                            {feature}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                  
-                  {/* Enhanced Content */}
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-rose-700 transition-colors duration-300">
-                    {step.title}
-                  </h3>
-                  
-                  <p className="text-gray-600 mb-4 leading-relaxed text-base">
-                    {step.description}
-                  </p>
-                  
-                  {step.subtext && <p className="text-gray-500 text-sm mb-6 italic">
-                      {step.subtext}
-                    </p>}
+                    
+                    {/* Enhanced Highlight Badge */}
+                    <div className="relative">
+                      <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-rose-500 to-pink-500 text-white rounded-full text-base font-bold shadow-xl group-hover:shadow-2xl transition-all duration-500 hover:from-rose-600 hover:to-pink-600">
+                        <CheckCircle className="h-5 w-5 animate-pulse" />
+                        {step.highlight}
+                        <div className="absolute inset-0 bg-gradient-to-r from-rose-400 to-pink-400 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500 animate-pulse"></div>
+                      </div>
+                    </div>
 
-                  {/* Feature List */}
-                  <div className="mb-6">
-                    <div className="flex flex-wrap justify-center gap-2">
-                      {step.features.map((feature, featureIndex) => <span key={featureIndex} className="px-3 py-1 bg-white text-rose-600 rounded-full text-xs font-medium shadow-sm">
-                          {feature}
-                        </span>)}
+                    {/* Progress Indicator */}
+                    <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-rose-100 to-pink-100 rounded-b-lg">
+                      <div 
+                        className="h-full bg-gradient-to-r from-rose-500 to-pink-500 transition-all duration-1000 ease-out rounded-b-lg"
+                        style={{ width: `${(index + 1) * 33.33}%` }}
+                      ></div>
                     </div>
-                  </div>
-                  
-                  {/* Enhanced Highlight Badge */}
-                  <div className="relative">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-rose-500 to-pink-500 text-white rounded-full text-sm font-bold shadow-lg group-hover:shadow-xl transition-all duration-300">
-                      <CheckCircle className="h-4 w-4 animate-pulse" />
-                      {step.highlight}
-                      <div className="absolute inset-0 bg-gradient-to-r from-rose-400 to-pink-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"></div>
-                    </div>
-                  </div>
-
-                  {/* Progress Bar */}
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-rose-200 to-pink-200">
-                    <div className="h-full bg-gradient-to-r from-rose-500 to-pink-500 transition-all duration-1000 ease-out" style={{
-                  width: `${(index + 1) * 33.33}%`
-                }}></div>
-                  </div>
-                </div>
-              </div>;
-        })}
+                  </CardContent>
+                </Card>
+              </div>
+            );
+          })}
         </div>
 
-        {/* Enhanced CTA Section */}
-        
+        {/* Enhanced Call-to-Action */}
+        <div className="text-center">
+          <div className="inline-flex items-center gap-4 px-8 py-4 bg-gradient-to-r from-rose-600 to-pink-600 text-white rounded-full text-lg font-bold shadow-2xl hover:shadow-3xl transition-all duration-500 hover:from-rose-700 hover:to-pink-700 transform hover:scale-105 cursor-pointer">
+            <PlusCircle className="h-6 w-6" />
+            Start Your Fundraiser Now
+            <ArrowRight className="h-6 w-6 animate-pulse" />
+          </div>
+          <p className="text-gray-600 mt-6 text-lg">
+            Join <span className="font-bold text-rose-600">50,000+</span> successful fundraisers
+          </p>
+        </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default StartFundraiser;
