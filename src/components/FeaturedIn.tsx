@@ -116,7 +116,10 @@ const FeaturedIn = () => {
                           onError={(e) => {
                             // Fallback to text if image fails to load
                             e.currentTarget.style.display = 'none';
-                            e.currentTarget.nextElementSibling.style.display = 'flex';
+                            const nextElement = e.currentTarget.nextElementSibling as HTMLElement;
+                            if (nextElement) {
+                              nextElement.style.display = 'flex';
+                            }
                           }}
                         />
                         <div className="w-12 h-12 bg-gradient-to-r from-gray-500 to-gray-600 rounded-lg hidden items-center justify-center">
