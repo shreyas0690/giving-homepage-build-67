@@ -19,109 +19,111 @@ const features = [
     stats: "99.9% secure transactions"
   },
   {
+    icon: Clock,
+    title: "Quick Setup",
+    description: "Launch your fundraiser in under 5 minutes with our intuitive campaign builder.",
+    stats: "5 minutes to start"
+  },
+  {
     icon: Users,
-    title: "Global Reach", 
+    title: "Global Reach",
     description: "Connect with supporters worldwide through our platform used in 50+ countries.",
     stats: "50+ countries"
   },
   {
-    icon: Award,
-    title: "Easy-To-Manage Tools",
-    description: "Intuitive dashboard and management tools to boost your fundraising results.",
-    stats: "User-friendly interface"
-  },
-  {
     icon: DollarSign,
-    title: "Multiple Payment Options",
-    description: "Receive contributions via all popular payment modes for maximum convenience.",
-    stats: "All major payment methods"
+    title: "Low Fees",
+    description: "Keep more of what you raise with our transparent, low-cost fee structure.",
+    stats: "Only 2.9% + $0.30 per donation"
   },
   {
     icon: Heart,
-    title: "Get Expert Support 24/7",
+    title: "24/7 Support",
     description: "Our dedicated support team is here to help you succeed every step of the way.",
     stats: "24/7 customer support"
   },
   {
+    icon: Award,
+    title: "Proven Results",
+    description: "Join millions who have successfully raised funds for their causes on our platform.",
+    stats: "$50M+ raised successfully"
+  },
+  {
     icon: Smartphone,
-    title: "Smart Dashboard",
-    description: "A dedicated smart dashboard to manage your campaign and track progress efficiently.",
-    stats: "Real-time analytics"
+    title: "Mobile Optimized",
+    description: "Manage your campaign and engage supporters on-the-go with our mobile-friendly platform.",
+    stats: "Mobile-first design"
   },
   {
     icon: Globe,
-    title: "Withdraw Funds Easily",
-    description: "Hassle-free fund withdrawal process with quick processing times.",
-    stats: "Quick withdrawals"
-  },
-  {
-    icon: Clock,
-    title: "International Payment Support",
-    description: "Accept donations from supporters worldwide with full international payment support.",
-    stats: "Global payment processing"
+    title: "Social Integration",
+    description: "Seamlessly share across all social platforms to maximize your campaign's reach.",
+    stats: "All major platforms"
   }
 ];
 
 const WhySection = () => {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
             Why Choose FundHope?
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            We provide the tools and support you need to run successful fundraising campaigns
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            We're the trusted platform for fundraising success. Here's why millions of people 
+            choose us to bring their causes to life.
           </p>
         </div>
 
-        {/* Features Grid - exactly matching the image layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        {/* Features Grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
-              <div key={index} className="text-center group">
-                {/* White card background with shadow */}
-                <div className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
-                  {/* Icon with teal circular background */}
-                  <div className="w-16 h-16 mx-auto mb-6 bg-teal-500 rounded-full flex items-center justify-center">
+              <Card 
+                key={index} 
+                className="group hover:shadow-xl transition-all duration-300 bg-white/80 backdrop-blur-sm border-0 hover:bg-white"
+              >
+                <CardContent className="p-6 text-center">
+                  <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-r from-rose-500 to-pink-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                     <Icon className="h-8 w-8 text-white" />
                   </div>
                   
-                  {/* Title */}
-                  <h3 className="text-xl font-bold text-gray-900 mb-4 leading-tight">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">
                     {feature.title}
                   </h3>
-                  
-                  {/* Description */}
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                  <p className="text-gray-600 text-sm leading-relaxed mb-3">
                     {feature.description}
                   </p>
-                </div>
-              </div>
+                  <div className="text-xs font-semibold text-rose-600 bg-rose-50 rounded-full px-3 py-1 inline-block">
+                    {feature.stats}
+                  </div>
+                </CardContent>
+              </Card>
             );
           })}
         </div>
 
-        {/* Bottom Stats - matching the image style */}
-        <div className="bg-gradient-to-r from-rose-500 to-pink-600 rounded-2xl p-12 shadow-xl">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+        {/* Bottom Stats */}
+        <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-5xl font-bold text-white mb-2">2M+</div>
-              <div className="text-white/90 text-lg">Active Users</div>
+              <div className="text-4xl font-bold text-gray-900 mb-2">2M+</div>
+              <div className="text-gray-600">Active Users</div>
             </div>
             <div>
-              <div className="text-5xl font-bold text-white mb-2">$50M+</div>
-              <div className="text-white/90 text-lg">Total Raised</div>
+              <div className="text-4xl font-bold text-gray-900 mb-2">$50M+</div>
+              <div className="text-gray-600">Total Raised</div>
             </div>
             <div>
-              <div className="text-5xl font-bold text-white mb-2">15K+</div>
-              <div className="text-white/90 text-lg">Success Stories</div>
+              <div className="text-4xl font-bold text-gray-900 mb-2">15K+</div>
+              <div className="text-gray-600">Success Stories</div>
             </div>
             <div>
-              <div className="text-5xl font-bold text-white mb-2">50+</div>
-              <div className="text-white/90 text-lg">Countries</div>
+              <div className="text-4xl font-bold text-gray-900 mb-2">50+</div>
+              <div className="text-gray-600">Countries</div>
             </div>
           </div>
         </div>
