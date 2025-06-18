@@ -9,7 +9,7 @@ const companyLogos = [
   },
   {
     name: "Microsoft",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
   },
   {
     name: "Apple",
@@ -17,11 +17,11 @@ const companyLogos = [
   },
   {
     name: "Amazon",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
   },
   {
     name: "Meta",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg",
   },
   {
     name: "Netflix",
@@ -30,12 +30,64 @@ const companyLogos = [
   {
     name: "Tesla",
     logo: "https://logoeps.com/wp-content/uploads/2013/03/tesla-vector-logo.png",
+  },
+  {
+    name: "IBM",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
+  },
+  {
+    name: "Oracle",
+    logo: "https://logos-world.net/wp-content/uploads/2020/09/Oracle-Logo.png",
+  },
+  {
+    name: "Samsung",
+    logo: "https://logos-world.net/wp-content/uploads/2020/04/Samsung-Logo.png",
+  },
+  {
+    name: "Intel",
+    logo: "https://logos-world.net/wp-content/uploads/2020/03/Intel-Logo.png",
+  },
+  {
+    name: "Adobe",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/8/8d/Adobe_Corporate_Logo.svg",
+  },
+  {
+    name: "Spotify",
+    logo: "https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png",
+  },
+  {
+    name: "Uber",
+    logo: "https://logos-world.net/wp-content/uploads/2020/05/Uber-Logo.png",
+  },
+  {
+    name: "Airbnb",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_Bélo.svg",
+  },
+  {
+    name: "Twitter",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg",
+  },
+  {
+    name: "LinkedIn",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png",
+  },
+  {
+    name: "Dropbox",
+    logo: "https://logos-world.net/wp-content/uploads/2020/03/Dropbox-Logo.png",
+  },
+  {
+    name: "Slack",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Slack_icon_2019.svg",
+  },
+  {
+    name: "Zoom",
+    logo: "https://logos-world.net/wp-content/uploads/2020/12/Zoom-Logo.png",
   }
 ];
 
 const FeaturedIn = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const itemsPerView = 7;
+  const itemsPerView = 8;
   const maxIndex = Math.max(0, companyLogos.length - itemsPerView);
 
   const nextSlide = () => {
@@ -45,6 +97,8 @@ const FeaturedIn = () => {
   const prevSlide = () => {
     setCurrentIndex((prev) => Math.max(prev - 1, 0));
   };
+
+  const visibleLogos = companyLogos.slice(currentIndex, currentIndex + itemsPerView);
 
   return (
     <section className="py-12 bg-gray-50">
@@ -71,21 +125,22 @@ const FeaturedIn = () => {
           {/* Logos Container */}
           <div className="overflow-hidden max-w-5xl mx-auto">
             <div className="flex items-center justify-center gap-8 py-4">
-              {companyLogos.map((company, index) => (
+              {visibleLogos.map((company, index) => (
                 <div
-                  key={index}
+                  key={currentIndex + index}
                   className="flex-shrink-0 flex items-center justify-center hover:scale-110 transition-transform duration-300"
                 >
-                  <div className="w-20 h-20 flex items-center justify-center bg-white rounded-lg shadow-md border border-gray-100 p-4">
+                  <div className="w-20 h-20 flex items-center justify-center">
                     <img 
                       src={company.logo} 
                       alt={`${company.name} logo`}
-                      className="w-full h-full object-contain"
+                      className="w-full h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
                       onError={(e) => {
-                        const nextElement = e.currentTarget.nextElementSibling as HTMLElement;
-                        if (nextElement) {
-                          e.currentTarget.style.display = 'none';
-                          nextElement.style.display = 'flex';
+                        const target = e.currentTarget as HTMLImageElement;
+                        target.style.display = 'none';
+                        const fallback = target.nextElementSibling as HTMLElement;
+                        if (fallback) {
+                          fallback.style.display = 'flex';
                         }
                       }}
                     />
