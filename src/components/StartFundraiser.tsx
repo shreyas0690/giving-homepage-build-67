@@ -1,38 +1,30 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { PlusCircle, Share2, DollarSign, ArrowRight, Users, TrendingUp } from "lucide-react";
-
-const steps = [
-  {
-    number: 1,
-    icon: PlusCircle,
-    title: "Create Your Campaign",
-    description: "Set up your fundraiser in minutes with our simple form. Add photos, tell your story, and set your goal.",
-    feature: "2-minute setup",
-    color: "from-rose-500 to-pink-600"
-  },
-  {
-    number: 2,
-    icon: Share2,
-    title: "Share & Promote",
-    description: "Reach your network through social media, email, and direct sharing. Watch donations pour in from supporters.",
-    feature: "Social integration",
-    color: "from-pink-500 to-rose-600"
-  },
-  {
-    number: 3,
-    icon: DollarSign,
-    title: "Receive Funds",
-    description: "Get instant access to raised funds with secure, direct bank transfers. No waiting, no hassle.",
-    feature: "Instant withdrawal",
-    color: "from-rose-600 to-pink-500"
-  }
-];
-
+const steps = [{
+  number: 1,
+  icon: PlusCircle,
+  title: "Create Your Campaign",
+  description: "Set up your fundraiser in minutes with our simple form. Add photos, tell your story, and set your goal.",
+  feature: "2-minute setup",
+  color: "from-rose-500 to-pink-600"
+}, {
+  number: 2,
+  icon: Share2,
+  title: "Share & Promote",
+  description: "Reach your network through social media, email, and direct sharing. Watch donations pour in from supporters.",
+  feature: "Social integration",
+  color: "from-pink-500 to-rose-600"
+}, {
+  number: 3,
+  icon: DollarSign,
+  title: "Receive Funds",
+  description: "Get instant access to raised funds with secure, direct bank transfers. No waiting, no hassle.",
+  feature: "Instant withdrawal",
+  color: "from-rose-600 to-pink-500"
+}];
 const StartFundraiser = () => {
-  return (
-    <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-rose-50/30">
+  return <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-rose-50/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
         <div className="text-center mb-20">
@@ -57,13 +49,10 @@ const StartFundraiser = () => {
         {/* Steps Grid */}
         <div className="grid lg:grid-cols-3 gap-8 mb-20">
           {steps.map((step, index) => {
-            const Icon = step.icon;
-            return (
-              <div key={step.number} className="relative group">
+          const Icon = step.icon;
+          return <div key={step.number} className="relative group">
                 {/* Connecting Line */}
-                {index < steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-20 left-full w-16 h-px bg-gradient-to-r from-rose-300 to-transparent z-10 transform translate-x-8"></div>
-                )}
+                {index < steps.length - 1}
                 
                 <Card className="relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2 bg-white">
                   <div className="absolute inset-0 bg-gradient-to-br from-white to-rose-50/50"></div>
@@ -95,9 +84,8 @@ const StartFundraiser = () => {
                     </div>
                   </CardContent>
                 </Card>
-              </div>
-            );
-          })}
+              </div>;
+        })}
         </div>
 
         {/* Stats Section */}
@@ -142,8 +130,6 @@ const StartFundraiser = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default StartFundraiser;
