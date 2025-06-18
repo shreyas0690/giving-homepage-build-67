@@ -1,19 +1,20 @@
 
+
 import { Card, CardContent } from "@/components/ui/card";
 import { 
-  ThumbsUp, 
+  TrendingUp, 
   Users, 
   Settings, 
   CreditCard, 
-  HelpCircle,
-  Monitor,
-  HandCoins,
+  Headphones,
+  BarChart3,
+  Banknote,
   Globe
 } from "lucide-react";
 
 const features = [
   {
-    icon: ThumbsUp,
+    icon: TrendingUp,
     title: "Industry's best fundraising success rate",
     description: "Proven track record with highest success rates in the industry"
   },
@@ -33,17 +34,17 @@ const features = [
     description: "Accept donations through multiple secure payment options"
   },
   {
-    icon: HelpCircle,
+    icon: Headphones,
     title: "Get Expert Support 24/7",
     description: "Round-the-clock assistance from our dedicated support team"
   },
   {
-    icon: Monitor,
+    icon: BarChart3,
     title: "A Dedicated Smart-Dashboard",
     description: "Comprehensive analytics and management in one place"
   },
   {
-    icon: HandCoins,
+    icon: Banknote,
     title: "Withdraw Funds Without Hassle",
     description: "Quick and easy fund withdrawal process"
   },
@@ -71,9 +72,9 @@ const WhySection = () => {
             const Icon = feature.icon;
             return (
               <div key={index} className="text-center">
-                {/* Icon Circle with teal/cyan color matching the reference */}
-                <div className="w-20 h-20 mx-auto rounded-full border-2 border-cyan-400 flex items-center justify-center mb-4 bg-cyan-50">
-                  <Icon className="h-8 w-8 text-cyan-500" />
+                {/* Icon Circle */}
+                <div className="w-20 h-20 mx-auto rounded-full border-2 border-rose-400 flex items-center justify-center mb-4">
+                  <Icon className="h-8 w-8 text-rose-500" />
                 </div>
                 
                 {/* Yellow underline */}
@@ -98,3 +99,4 @@ const WhySection = () => {
 };
 
 export default WhySection;
+
