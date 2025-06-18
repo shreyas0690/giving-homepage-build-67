@@ -37,7 +37,7 @@ const fundraisers = [
     id: 3,
     title: "Offer A Helping Hand To Support Sahil Jadhav's Treatment",
     organizer: "Tanu Rajan",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=400&h=250", // Medical treatment
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&h=250", // Medical circuit board for treatment
     raised: 1941544,
     goal: 2000000,
     supporters: 1228,
@@ -48,7 +48,7 @@ const fundraisers = [
     id: 4,
     title: "Help Priya Fight Cancer - Emergency Medical Support",
     organizer: "Amit Sharma",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=400&h=250", // Cancer awareness/medical
+    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=400&h=250", // Emergency/ambulance for cancer support
     raised: 1523000,
     goal: 2800000,
     supporters: 892,
