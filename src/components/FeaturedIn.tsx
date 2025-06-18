@@ -5,52 +5,64 @@ import { useState } from "react";
 
 const companyLogos = [
   {
-    name: "TechCorp",
-    logo: "TC",
+    name: "Google",
+    logo: "G",
+    color: "from-red-500 to-yellow-500",
+    bgColor: "bg-red-50"
+  },
+  {
+    name: "Microsoft",
+    logo: "M",
+    color: "from-blue-600 to-blue-700",
+    bgColor: "bg-blue-50"
+  },
+  {
+    name: "Apple",
+    logo: "🍎",
+    color: "from-gray-700 to-gray-800",
+    bgColor: "bg-gray-50"
+  },
+  {
+    name: "Amazon",
+    logo: "A",
+    color: "from-orange-400 to-yellow-500",
+    bgColor: "bg-orange-50"
+  },
+  {
+    name: "Meta",
+    logo: "f",
     color: "from-blue-500 to-blue-600",
-    bgColor: "bg-blue-100"
+    bgColor: "bg-blue-50"
   },
   {
-    name: "InnovateLab",
-    logo: "IL",
-    color: "from-green-500 to-green-600",
-    bgColor: "bg-green-100"
+    name: "Netflix",
+    logo: "N",
+    color: "from-red-600 to-red-700",
+    bgColor: "bg-red-50"
   },
   {
-    name: "DataFlow",
-    logo: "DF",
-    color: "from-purple-500 to-purple-600",
-    bgColor: "bg-purple-100"
-  },
-  {
-    name: "CloudWorks",
-    logo: "CW",
-    color: "from-orange-500 to-orange-600",
-    bgColor: "bg-orange-100"
-  },
-  {
-    name: "NextGen",
-    logo: "NG",
+    name: "Tesla",
+    logo: "T",
     color: "from-red-500 to-red-600",
-    bgColor: "bg-red-100"
+    bgColor: "bg-red-50"
   },
   {
-    name: "QuantumSoft",
-    logo: "QS",
-    color: "from-indigo-500 to-indigo-600",
-    bgColor: "bg-indigo-100"
+    name: "Spotify",
+    logo: "♪",
+    color: "from-green-500 to-green-600",
+    bgColor: "bg-green-50"
   },
   {
-    name: "AlphaTech",
-    logo: "AT",
-    color: "from-teal-500 to-teal-600",
-    bgColor: "bg-teal-100"
+    name: "Uber",
+    logo: "U",
+    color: "from-black to-gray-800",
+    bgColor: "bg-gray-50"
   },
   {
-    name: "VisionAI",
-    logo: "VA",
-    color: "from-pink-500 to-pink-600",
-    bgColor: "bg-pink-100"
+    name: "Airbnb",
+    logo: "🏠",
+    color: "from-pink-500 to-red-500",
+    bgColor: "bg-pink-50"
   }
 ];
 
@@ -73,8 +85,9 @@ const FeaturedIn = () => {
         {/* Header */}
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-2">
-            Featured In
+            Trusted by Leading Companies
           </h2>
+          <p className="text-gray-600">Join thousands of companies who trust our platform</p>
         </div>
 
         {/* Logo Carousel Container */}
@@ -105,8 +118,8 @@ const FeaturedIn = () => {
                 >
                   <Card className="bg-white hover:shadow-lg transition-all duration-300 border-0 p-6 group cursor-pointer">
                     <div className="flex flex-col items-center space-y-3">
-                      <div className={`w-16 h-16 rounded-lg bg-gradient-to-r ${company.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                        <span className="text-white font-bold text-lg">
+                      <div className={`w-16 h-16 rounded-lg bg-gradient-to-r ${company.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-md`}>
+                        <span className="text-white font-bold text-2xl">
                           {company.logo}
                         </span>
                       </div>
