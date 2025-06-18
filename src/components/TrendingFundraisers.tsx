@@ -1,3 +1,4 @@
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -15,7 +16,7 @@ const fundraisers = [
     id: 1,
     title: "Support My Dad's Brain Injury Recovery – Urgent Help Needed",
     organizer: "Alok Ramayan Chaurasia",
-    image: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?auto=format&fit=crop&w=400&h=250", // Brain/light bulb for brain injury
+    image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&w=400&h=250", // Light bulb for brain injury
     raised: 2825498,
     goal: 3000000,
     supporters: 3563,
@@ -37,7 +38,7 @@ const fundraisers = [
     id: 3,
     title: "Offer A Helping Hand To Support Sahil Jadhav's Treatment",
     organizer: "Tanu Rajan",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&h=250", // Medical circuit board for treatment
+    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=400&h=250", // Medical hands/helping hand for treatment
     raised: 1941544,
     goal: 2000000,
     supporters: 1228,
