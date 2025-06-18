@@ -1,11 +1,9 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { 
   Heart, 
   GraduationCap, 
   Home, 
   Stethoscope, 
-  Leaf, 
   Users,
   Baby,
   Flower2
@@ -37,13 +35,13 @@ const causes = [
     bgColor: "bg-gradient-to-br from-rose-400 to-rose-500"
   },
   {
-    icon: Leaf,
+    icon: Heart,
     title: "ANIMAL",
     color: "text-white",
     bgColor: "bg-gradient-to-br from-rose-400 to-rose-500"
   },
   {
-    icon: Home,
+    icon: Users,
     title: "OTHERS",
     color: "text-white",
     bgColor: "bg-gradient-to-br from-rose-400 to-rose-500"
