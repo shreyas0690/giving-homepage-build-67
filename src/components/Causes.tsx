@@ -7,7 +7,7 @@ import {
   Users,
   Baby,
   Flower2,
-  Paw,
+  Dog,
   HandHeart
 } from "lucide-react";
 
@@ -37,7 +37,7 @@ const causes = [
     bgColor: "bg-gradient-to-br from-rose-400 to-rose-500"
   },
   {
-    icon: Paw,
+    icon: Dog,
     title: "ANIMAL",
     color: "text-white",
     bgColor: "bg-gradient-to-br from-rose-400 to-rose-500"
