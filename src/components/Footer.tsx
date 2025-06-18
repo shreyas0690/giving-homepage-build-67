@@ -3,7 +3,7 @@ import { Heart, Facebook, Twitter, Instagram, Linkedin, Youtube, Phone, Mail } f
 
 const Footer = () => {
   return (
-    <footer className="bg-teal-800 text-white">
+    <footer className="text-white" style={{ backgroundColor: "#111827" }}>
       {/* Main Footer */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid lg:grid-cols-5 md:grid-cols-2 gap-8">
@@ -36,7 +36,7 @@ const Footer = () => {
             {/* Followers Count */}
             <div>
               <div className="text-2xl font-bold text-white">2.5M +</div>
-              <div className="text-teal-300 text-sm">Followers</div>
+              <div className="text-gray-300 text-sm">Followers</div>
             </div>
 
             {/* Contact Information */}
@@ -127,12 +127,15 @@ const Footer = () => {
 
         {/* Payment Methods */}
         <div className="mt-12 pt-8">
-          <div className="flex flex-wrap items-center justify-end gap-2">
+          <div className="flex flex-wrap items-center justify-end gap-3">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/1200px-Visa_Inc._logo.svg.png" alt="Visa" className="h-8 bg-white px-2 py-1 rounded" />
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1200px-Mastercard-logo.svg.png" alt="MasterCard" className="h-8 bg-white px-2 py-1 rounded" />
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/American_Express_logo.svg/1200px-American_Express_logo.svg.png" alt="American Express" className="h-8 bg-white px-2 py-1 rounded" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/American_Express_logo.svg/1200px-American_Express_logo.svg.png" alt="American Express" className="h-7 bg-white px-2 py-1 rounded" />
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/RuPay.svg/1200px-RuPay.svg.png" alt="RuPay" className="h-8 bg-white px-2 py-1 rounded" />
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/UPI-Logo-vector.svg/1200px-UPI-Logo-vector.svg.png" alt="UPI" className="h-8 bg-white px-2 py-1 rounded" />
+            <div className="bg-white px-3 py-2 rounded">
+              <span className="text-blue-600 font-bold text-sm">NET BANKING</span>
+            </div>
             <div className="bg-orange-500 px-3 py-2 rounded flex items-center">
               <span className="text-white font-bold text-sm">🔒 100% Secure</span>
             </div>
@@ -141,7 +144,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom Footer */}
-      <div className="border-t border-teal-700">
+      <div className="border-t border-gray-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="text-center space-y-3">
             <div className="flex flex-wrap justify-center items-center gap-4 text-sm text-gray-300">
