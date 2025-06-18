@@ -1,3 +1,4 @@
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Quote, Star, ArrowLeft, ArrowRight } from "lucide-react";
@@ -65,25 +66,18 @@ const SuccessStories = () => {
           </h2>
         </div>
 
-        {/* Carousel Container */}
-        <div className="relative max-w-6xl mx-auto">
-          {/* Navigation Arrows */}
+        {/* Carousel Container with Side Navigation */}
+        <div className="flex items-center justify-center gap-6 max-w-6xl mx-auto">
+          {/* Left Navigation Arrow */}
           <button
             onClick={prevStory}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-all duration-200 text-rose-500 hover:text-rose-600"
+            className="flex-shrink-0 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 border border-gray-200 hover:border-rose-300 group"
           >
-            <ArrowLeft className="h-4 w-4" />
-          </button>
-          
-          <button
-            onClick={nextStory}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-all duration-200 text-rose-500 hover:text-rose-600"
-          >
-            <ArrowRight className="h-4 w-4" />
+            <ArrowLeft className="h-5 w-5 text-gray-600 group-hover:text-rose-500 transition-colors" />
           </button>
 
           {/* Story Card */}
-          <div className="bg-white rounded-xl shadow-lg overflow-hidden mx-8">
+          <div className="bg-white rounded-xl shadow-lg overflow-hidden flex-1 max-w-4xl">
             <div className="grid lg:grid-cols-2 gap-0">
               {/* Image Section */}
               <div className="relative">
@@ -125,18 +119,26 @@ const SuccessStories = () => {
             </div>
           </div>
 
-          {/* Dots Indicator */}
-          <div className="flex justify-center mt-4 space-x-2">
-            {stories.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentStory(index)}
-                className={`w-2 h-2 rounded-full transition-colors duration-200 ${
-                  index === currentStory ? 'bg-rose-500' : 'bg-rose-300'
-                }`}
-              />
-            ))}
-          </div>
+          {/* Right Navigation Arrow */}
+          <button
+            onClick={nextStory}
+            className="flex-shrink-0 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 border border-gray-200 hover:border-rose-300 group"
+          >
+            <ArrowRight className="h-5 w-5 text-gray-600 group-hover:text-rose-500 transition-colors" />
+          </button>
+        </div>
+
+        {/* Dots Indicator */}
+        <div className="flex justify-center mt-4 space-x-2">
+          {stories.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentStory(index)}
+              className={`w-2 h-2 rounded-full transition-colors duration-200 ${
+                index === currentStory ? 'bg-rose-500' : 'bg-rose-300'
+              }`}
+            />
+          ))}
         </div>
 
         {/* CTA Button */}
