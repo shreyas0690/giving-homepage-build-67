@@ -88,44 +88,14 @@ const StartFundraiser = () => {
 
         {/* Stats Section */}
         <div className="grid md:grid-cols-3 gap-8 mb-16">
-          <div className="text-center">
-            <div className="flex items-center justify-center mb-3">
-              <Users className="h-6 w-6 text-rose-600 mr-2" />
-              <span className="text-3xl font-bold text-gray-900">50K+</span>
-            </div>
-            <p className="text-gray-600">Active Fundraisers</p>
-          </div>
-          <div className="text-center">
-            <div className="flex items-center justify-center mb-3">
-              <DollarSign className="h-6 w-6 text-rose-600 mr-2" />
-              <span className="text-3xl font-bold text-gray-900">$10M+</span>
-            </div>
-            <p className="text-gray-600">Funds Raised</p>
-          </div>
-          <div className="text-center">
-            <div className="flex items-center justify-center mb-3">
-              <TrendingUp className="h-6 w-6 text-rose-600 mr-2" />
-              <span className="text-3xl font-bold text-gray-900">98%</span>
-            </div>
-            <p className="text-gray-600">Success Rate</p>
-          </div>
+          
+          
+          
         </div>
 
         {/* CTA Section */}
         <div className="text-center">
-          <div className="bg-gradient-to-r from-rose-600 to-pink-600 rounded-2xl p-12 shadow-2xl">
-            <h3 className="text-3xl font-bold text-white mb-4">
-              Ready to make a difference?
-            </h3>
-            <p className="text-rose-100 mb-8 text-lg max-w-md mx-auto">
-              Start your fundraising journey today and watch your community rally behind your cause
-            </p>
-            <Button className="bg-white text-rose-600 hover:bg-gray-50 px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-              <PlusCircle className="h-5 w-5 mr-2" />
-              Start Your Fundraiser Now
-              <ArrowRight className="h-5 w-5 ml-2" />
-            </Button>
-          </div>
+          
         </div>
       </div>
     </section>;
