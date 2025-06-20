@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -235,6 +234,7 @@ const SignInModal = ({ open, onOpenChange }: SignInModalProps) => {
 
           {/* Promotional Banner */}
           <div className="mx-6 mb-6 bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-200 rounded-lg p-4">
+            {/* ... keep existing code (promotional banner content) */}
             <div className="flex items-center gap-3">
               <div className="text-2xl">🎁</div>
               <div>
@@ -258,6 +258,7 @@ const SignInModal = ({ open, onOpenChange }: SignInModalProps) => {
               <>
                 {/* Email/Mobile Input for OTP */}
                 <div className="space-y-2">
+                  {/* ... keep existing code (email/mobile input fields and validation) */}
                   <Label htmlFor="email" className="text-gray-600 text-sm">
                     Email / Mobile Number *
                   </Label>
@@ -338,11 +339,25 @@ const SignInModal = ({ open, onOpenChange }: SignInModalProps) => {
                     Login via Password
                   </button>
                 </div>
+
+                {/* Start Fundraiser Link */}
+                <div className="text-center text-sm text-gray-600">
+                  Want to start a fundraiser?{' '}
+                  <button 
+                    className="text-rose-600 hover:text-rose-700 font-medium hover:underline transition-colors"
+                    onClick={() => {
+                      console.log('Open start fundraiser modal');
+                    }}
+                  >
+                    Click here
+                  </button>
+                </div>
               </>
             ) : (
               <>
                 {/* Password Login Form */}
                 <div className="space-y-4">
+                  {/* ... keep existing code (password login form fields) */}
                   <div className="space-y-2">
                     <Label htmlFor="login-email" className="text-gray-600 text-sm">
                       Email / Mobile Number *
@@ -404,6 +419,19 @@ const SignInModal = ({ open, onOpenChange }: SignInModalProps) => {
                     Login via OTP
                   </button>
                 </div>
+
+                {/* Start Fundraiser Link for Password Login */}
+                <div className="text-center text-sm text-gray-600">
+                  Want to start a fundraiser?{' '}
+                  <button 
+                    className="text-rose-600 hover:text-rose-700 font-medium hover:underline transition-colors"
+                    onClick={() => {
+                      console.log('Open start fundraiser modal');
+                    }}
+                  >
+                    Click here
+                  </button>
+                </div>
               </>
             )}
 
@@ -413,14 +441,6 @@ const SignInModal = ({ open, onOpenChange }: SignInModalProps) => {
               <button className="text-rose-600 hover:text-rose-700">Terms of Service</button>
               {' '}and{' '}
               <button className="text-rose-600 hover:text-rose-700">Privacy Policy</button>
-            </div>
-
-            {/* Start Fundraiser */}
-            <div className="text-center text-sm text-gray-600">
-              Want to start a fundraiser?{' '}
-              <button className="text-rose-600 hover:text-rose-700 font-medium">
-                Click here
-              </button>
             </div>
           </div>
         </DialogContent>
