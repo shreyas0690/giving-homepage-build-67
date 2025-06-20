@@ -1,5 +1,6 @@
+
 import { useState } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -219,16 +220,19 @@ const StartFundraiserModal = ({
   return (
     <>
       <Dialog open={open && !showMobileVerification} onOpenChange={onOpenChange}>
-        <DialogContent className="sm:max-w-sm w-full mx-4 rounded-2xl border-0 shadow-2xl bg-white">
-          <DialogHeader className="text-center pb-4">
-            <DialogTitle className="text-xl font-bold text-gray-900">
+        <DialogContent className="w-[95vw] max-w-md mx-auto my-4 rounded-2xl border-0 shadow-2xl bg-white max-h-[90vh] overflow-y-auto">
+          <DialogHeader className="text-center pb-2">
+            <DialogTitle className="text-lg sm:text-xl font-bold text-gray-900">
               Start Your Fundraiser
             </DialogTitle>
+            <DialogDescription className="sr-only">
+              Create your account to start a fundraiser
+            </DialogDescription>
           </DialogHeader>
 
           <Separator className="mb-4" />
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-3 px-1">
             {/* Name Field */}
             <div className="space-y-1">
               <Label htmlFor="name" className="text-sm font-medium text-gray-700">
@@ -242,7 +246,7 @@ const StartFundraiserModal = ({
                   placeholder="Enter your full name" 
                   value={formData.name} 
                   onChange={e => handleInputChange('name', e.target.value)} 
-                  className={`pl-10 h-10 border-gray-200 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500 transition-all duration-200 ${errors.name ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''}`}
+                  className={`pl-10 h-10 border-gray-200 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500 transition-all duration-200 text-sm ${errors.name ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''}`}
                 />
               </div>
               {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
@@ -261,7 +265,7 @@ const StartFundraiserModal = ({
                   placeholder="Enter your email address" 
                   value={formData.email} 
                   onChange={e => handleInputChange('email', e.target.value)} 
-                  className={`pl-10 h-10 border-gray-200 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500 transition-all duration-200 ${errors.email ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''}`}
+                  className={`pl-10 h-10 border-gray-200 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500 transition-all duration-200 text-sm ${errors.email ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''}`}
                 />
               </div>
               {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
@@ -280,7 +284,7 @@ const StartFundraiserModal = ({
                   placeholder="Create a strong password" 
                   value={formData.password} 
                   onChange={e => handleInputChange('password', e.target.value)} 
-                  className={`pl-10 pr-12 h-10 border-gray-200 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500 transition-all duration-200 ${errors.password ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''}`}
+                  className={`pl-10 pr-12 h-10 border-gray-200 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500 transition-all duration-200 text-sm ${errors.password ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''}`}
                 />
                 <button 
                   type="button" 
@@ -300,15 +304,15 @@ const StartFundraiserModal = ({
               </Label>
               <div className="flex gap-2">
                 <Select value={countryCode} onValueChange={setCountryCode}>
-                  <SelectTrigger className="w-24 h-10 border-gray-200 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500">
+                  <SelectTrigger className="w-20 sm:w-24 h-10 border-gray-200 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500 text-sm">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
                     {countries.map(country => 
                       <SelectItem key={country.code} value={country.code}>
-                        <div className="flex items-center gap-2">
-                          <span>{country.flag}</span>
-                          <span>{country.code}</span>
+                        <div className="flex items-center gap-1 sm:gap-2">
+                          <span className="text-xs sm:text-sm">{country.flag}</span>
+                          <span className="text-xs sm:text-sm">{country.code}</span>
                         </div>
                       </SelectItem>
                     )}
@@ -322,7 +326,7 @@ const StartFundraiserModal = ({
                     placeholder="Enter mobile number" 
                     value={formData.mobile} 
                     onChange={e => handleInputChange('mobile', e.target.value)} 
-                    className={`pl-10 h-10 border-gray-200 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500 transition-all duration-200 ${errors.mobile ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''}`}
+                    className={`pl-10 h-10 border-gray-200 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500 transition-all duration-200 text-sm ${errors.mobile ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''}`}
                   />
                 </div>
               </div>
@@ -330,8 +334,8 @@ const StartFundraiserModal = ({
             </div>
 
             {/* Already have account link */}
-            <div className="text-center">
-              <p className="text-sm text-gray-600">
+            <div className="text-center pt-2">
+              <p className="text-xs sm:text-sm text-gray-600">
                 Already have an account?{' '}
                 <button 
                   type="button" 
@@ -347,7 +351,7 @@ const StartFundraiserModal = ({
             <Button 
               type="submit" 
               disabled={isSubmitting}
-              className="w-full h-10 bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              className="w-full h-10 bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none text-sm sm:text-base"
             >
               {isSubmitting ? "Sending OTP..." : "Next"}
             </Button>

@@ -84,8 +84,8 @@ const MobileVerificationModal = ({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-sm w-full mx-4 rounded-2xl border-0 shadow-2xl bg-white">
-        <DialogHeader className="text-center pb-4">
+      <DialogContent className="w-[95vw] max-w-sm mx-auto my-4 rounded-2xl border-0 shadow-2xl bg-white max-h-[90vh] overflow-y-auto">
+        <DialogHeader className="text-center pb-2">
           <div className="flex items-center justify-between mb-2">
             <Button
               variant="ghost"
@@ -98,15 +98,15 @@ const MobileVerificationModal = ({
             <div className="flex-1" />
           </div>
           
-          <div className="w-16 h-16 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Phone className="h-8 w-8 text-rose-600" />
+          <div className="w-12 h-12 sm:w-16 sm:h-16 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-3">
+            <Phone className="h-6 w-6 sm:h-8 sm:w-8 text-rose-600" />
           </div>
           
-          <DialogTitle className="text-xl font-bold text-gray-900">
+          <DialogTitle className="text-lg sm:text-xl font-bold text-gray-900">
             Verify Mobile Number
           </DialogTitle>
           
-          <DialogDescription className="text-gray-600 text-sm">
+          <DialogDescription className="text-gray-600 text-xs sm:text-sm px-2">
             We've sent a 6-digit verification code to<br />
             <span className="font-medium text-gray-900">
               {countryCode} {mobileNumber}
@@ -114,12 +114,12 @@ const MobileVerificationModal = ({
           </DialogDescription>
         </DialogHeader>
 
-        <Separator className="mb-6" />
+        <Separator className="mb-4" />
 
-        <div className="space-y-6">
+        <div className="space-y-4 px-1">
           {/* OTP Input */}
           <div className="space-y-2">
-            <Label className="text-sm font-medium text-gray-700 text-center block">
+            <Label className="text-xs sm:text-sm font-medium text-gray-700 text-center block">
               Enter verification code
             </Label>
             <div className="flex justify-center">
@@ -129,12 +129,12 @@ const MobileVerificationModal = ({
                 onChange={(value) => setOtp(value)}
               >
                 <InputOTPGroup>
-                  <InputOTPSlot index={0} className="w-12 h-12 text-lg border-gray-200 focus:border-rose-500 focus:ring-rose-500" />
-                  <InputOTPSlot index={1} className="w-12 h-12 text-lg border-gray-200 focus:border-rose-500 focus:ring-rose-500" />
-                  <InputOTPSlot index={2} className="w-12 h-12 text-lg border-gray-200 focus:border-rose-500 focus:ring-rose-500" />
-                  <InputOTPSlot index={3} className="w-12 h-12 text-lg border-gray-200 focus:border-rose-500 focus:ring-rose-500" />
-                  <InputOTPSlot index={4} className="w-12 h-12 text-lg border-gray-200 focus:border-rose-500 focus:ring-rose-500" />
-                  <InputOTPSlot index={5} className="w-12 h-12 text-lg border-gray-200 focus:border-rose-500 focus:ring-rose-500" />
+                  <InputOTPSlot index={0} className="w-8 h-8 sm:w-12 sm:h-12 text-sm sm:text-lg border-gray-200 focus:border-rose-500 focus:ring-rose-500" />
+                  <InputOTPSlot index={1} className="w-8 h-8 sm:w-12 sm:h-12 text-sm sm:text-lg border-gray-200 focus:border-rose-500 focus:ring-rose-500" />
+                  <InputOTPSlot index={2} className="w-8 h-8 sm:w-12 sm:h-12 text-sm sm:text-lg border-gray-200 focus:border-rose-500 focus:ring-rose-500" />
+                  <InputOTPSlot index={3} className="w-8 h-8 sm:w-12 sm:h-12 text-sm sm:text-lg border-gray-200 focus:border-rose-500 focus:ring-rose-500" />
+                  <InputOTPSlot index={4} className="w-8 h-8 sm:w-12 sm:h-12 text-sm sm:text-lg border-gray-200 focus:border-rose-500 focus:ring-rose-500" />
+                  <InputOTPSlot index={5} className="w-8 h-8 sm:w-12 sm:h-12 text-sm sm:text-lg border-gray-200 focus:border-rose-500 focus:ring-rose-500" />
                 </InputOTPGroup>
               </InputOTP>
             </div>
@@ -143,17 +143,17 @@ const MobileVerificationModal = ({
           {/* Timer and Resend */}
           <div className="text-center">
             {!canResend ? (
-              <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
-                <Clock className="h-4 w-4" />
+              <div className="flex items-center justify-center gap-2 text-xs sm:text-sm text-gray-600">
+                <Clock className="h-3 w-3 sm:h-4 sm:w-4" />
                 <span>Resend code in {timeLeft}s</span>
               </div>
             ) : (
               <Button
                 variant="ghost"
                 onClick={handleResendOTP}
-                className="text-rose-600 hover:text-rose-700 font-medium hover:bg-rose-50"
+                className="text-rose-600 hover:text-rose-700 font-medium hover:bg-rose-50 text-xs sm:text-sm"
               >
-                <RotateCcw className="h-4 w-4 mr-2" />
+                <RotateCcw className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
                 Resend Code
               </Button>
             )}
@@ -163,7 +163,7 @@ const MobileVerificationModal = ({
           <Button
             onClick={handleVerifyOTP}
             disabled={otp.length !== 6 || isVerifying}
-            className="w-full h-10 bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+            className="w-full h-10 bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none text-xs sm:text-sm"
           >
             {isVerifying ? "Verifying..." : "Verify & Continue"}
           </Button>
