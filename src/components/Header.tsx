@@ -51,7 +51,7 @@ const Header = () => {
                     Fundraise For
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <div className="grid w-[400px] gap-3 p-4">
+                    <div className="grid w-[400px] gap-3 p-4 bg-white border shadow-lg rounded-lg">
                       <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                         <div className="text-sm font-medium leading-none">Medical Treatment</div>
                         <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
@@ -78,6 +78,12 @@ const Header = () => {
                       </NavigationMenuLink>
                     </div>
                   </NavigationMenuContent>
+                </NavigationMenuItem>
+
+                <NavigationMenuItem>
+                  <NavigationMenuLink className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-rose-50 hover:text-rose-600 focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50">
+                    Browse Fundraisers
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
@@ -142,6 +148,7 @@ const Header = () => {
                     </div>
                   </details>
                   
+                  <a href="#" className="text-gray-700 hover:text-rose-500 transition-colors font-medium">Browse Fundraisers</a>
                   <a href="#" className="text-gray-700 hover:text-rose-500 transition-colors font-medium">How it Works</a>
                 </div>
                 
@@ -150,13 +157,13 @@ const Header = () => {
                     variant="outline" 
                     size="sm" 
                     onClick={handleOpenSignIn}
-                    className="border-2 border-rose-200 text-rose-600 hover:bg-rose-50 font-medium"
+                    className="border-2 border-rose-200 text-rose-600 hover:bg-rose-50 font-medium w-full"
                   >
                     <User className="h-4 w-4 mr-2" />
                     Sign In
                   </Button>
                   <Button 
-                    className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 font-medium"
+                    className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 font-medium w-full"
                     onClick={handleOpenStartFundraiser}
                   >
                     Start Fundraiser
