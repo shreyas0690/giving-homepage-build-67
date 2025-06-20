@@ -1,7 +1,21 @@
 
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { Menu, X, Search, User } from "lucide-react";
+import { Menu, X, Search, User, ChevronDown } from "lucide-react";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import SignInModal from "@/components/SignInModal";
 import StartFundraiserModal from "@/components/StartFundraiserModal";
 
@@ -20,42 +34,115 @@ const Header = () => {
 
   return (
     <>
-      <header className="bg-white shadow-sm border-b sticky top-0 z-50">
+      <header className="bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+          <div className="flex justify-between items-center h-20">
             {/* Logo */}
-            <div className="flex items-center -space-x-2">
+            <div className="flex items-center -space-x-2 group">
               <img 
                 src="/lovable-uploads/6f963d4c-07e4-448f-9377-5fee8010d0fc.png" 
                 alt="Varak Logo" 
-                className="h-16 w-16"
+                className="h-16 w-16 transition-transform group-hover:scale-105"
               />
-              <span className="text-2xl font-bold text-gray-900">Varak</span>
+              <span className="text-3xl font-bold bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">
+                Varak
+              </span>
             </div>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
-              <a href="#" className="text-gray-700 hover:text-rose-500 transition-colors">Browse Fundraisers</a>
-              <a href="#" className="text-gray-700 hover:text-rose-500 transition-colors">Browse Causes</a>
-              <a href="#" className="text-gray-700 hover:text-rose-500 transition-colors">How it Works</a>
-            </nav>
+            <NavigationMenu className="hidden md:flex">
+              <NavigationMenuList className="space-x-2">
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="text-gray-700 hover:text-rose-600 transition-colors bg-transparent hover:bg-rose-50 font-medium">
+                    Browse Fundraisers
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <div className="grid w-[400px] gap-3 p-4">
+                      <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                        <div className="text-sm font-medium leading-none">Medical</div>
+                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                          Help people with medical expenses and treatments
+                        </p>
+                      </NavigationMenuLink>
+                      <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                        <div className="text-sm font-medium leading-none">Education</div>
+                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                          Support students and educational initiatives
+                        </p>
+                      </NavigationMenuLink>
+                      <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                        <div className="text-sm font-medium leading-none">Emergency</div>
+                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                          Urgent causes that need immediate help
+                        </p>
+                      </NavigationMenuLink>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+                
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="text-gray-700 hover:text-rose-600 transition-colors bg-transparent hover:bg-rose-50 font-medium">
+                    Browse Causes
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <div className="grid w-[400px] gap-3 p-4">
+                      <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                        <div className="text-sm font-medium leading-none">Non-Profit</div>
+                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                          Support registered charitable organizations
+                        </p>
+                      </NavigationMenuLink>
+                      <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                        <div className="text-sm font-medium leading-none">Community</div>
+                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                          Local community projects and initiatives
+                        </p>
+                      </NavigationMenuLink>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+
+                <NavigationMenuItem>
+                  <NavigationMenuLink className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-rose-50 hover:text-rose-600 focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50">
+                    How it Works
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
 
             {/* Desktop Actions */}
-            <div className="hidden md:flex items-center space-x-4">
-              <Button variant="ghost" size="sm">
+            <div className="hidden md:flex items-center space-x-3">
+              <Button variant="ghost" size="sm" className="text-gray-700 hover:text-rose-600 hover:bg-rose-50 transition-colors">
                 <Search className="h-4 w-4 mr-2" />
                 Search
               </Button>
+              
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="text-gray-700 hover:text-rose-600 hover:bg-rose-50 transition-colors">
+                    <User className="h-4 w-4 mr-2" />
+                    Account
+                    <ChevronDown className="h-4 w-4 ml-1" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <DropdownMenuItem onClick={handleOpenSignIn}>
+                    Sign In
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    Create Account
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    My Fundraisers
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    Donations
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              
               <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={handleOpenSignIn}
-              >
-                <User className="h-4 w-4 mr-2" />
-                Sign In
-              </Button>
-              <Button 
-                className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700"
+                className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
                 onClick={handleOpenStartFundraiser}
               >
                 Start Fundraiser
@@ -65,7 +152,7 @@ const Header = () => {
             {/* Mobile menu button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2"
+              className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -73,21 +160,47 @@ const Header = () => {
 
           {/* Mobile Navigation */}
           {isMenuOpen && (
-            <div className="md:hidden py-4 border-t">
+            <div className="md:hidden py-6 border-t border-gray-100 animate-fade-in">
               <div className="flex flex-col space-y-4">
-                <a href="#" className="text-gray-700 hover:text-rose-500 transition-colors">Browse Fundraisers</a>
-                <a href="#" className="text-gray-700 hover:text-rose-500 transition-colors">Browse Causes</a>
-                <a href="#" className="text-gray-700 hover:text-rose-500 transition-colors">How it Works</a>
-                <div className="flex flex-col space-y-2 pt-4">
+                <div className="space-y-3">
+                  <details className="group">
+                    <summary className="flex justify-between items-center text-gray-700 hover:text-rose-500 transition-colors cursor-pointer font-medium">
+                      Browse Fundraisers
+                      <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
+                    </summary>
+                    <div className="mt-3 ml-4 space-y-2">
+                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors">Medical</a>
+                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors">Education</a>
+                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors">Emergency</a>
+                    </div>
+                  </details>
+                  
+                  <details className="group">
+                    <summary className="flex justify-between items-center text-gray-700 hover:text-rose-500 transition-colors cursor-pointer font-medium">
+                      Browse Causes
+                      <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
+                    </summary>
+                    <div className="mt-3 ml-4 space-y-2">
+                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors">Non-Profit</a>
+                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors">Community</a>
+                    </div>
+                  </details>
+                  
+                  <a href="#" className="text-gray-700 hover:text-rose-500 transition-colors font-medium">How it Works</a>
+                </div>
+                
+                <div className="flex flex-col space-y-3 pt-4 border-t border-gray-100">
                   <Button 
                     variant="outline" 
                     size="sm" 
                     onClick={handleOpenSignIn}
+                    className="border-rose-200 text-rose-600 hover:bg-rose-50"
                   >
+                    <User className="h-4 w-4 mr-2" />
                     Sign In
                   </Button>
                   <Button 
-                    className="bg-gradient-to-r from-rose-500 to-pink-600"
+                    className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700"
                     onClick={handleOpenStartFundraiser}
                   >
                     Start Fundraiser
