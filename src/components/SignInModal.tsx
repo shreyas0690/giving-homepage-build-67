@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -173,6 +174,11 @@ const SignInModal = ({ open, onOpenChange }: SignInModalProps) => {
     setIsForgotPasswordOpen(true);
   };
 
+  const handleLoginViaOTP = () => {
+    setShowPasswordLogin(false);
+    setPassword('');
+  };
+
   const handleMobileVerificationComplete = () => {
     setIsMobileVerificationOpen(false);
     toast({
@@ -327,7 +333,7 @@ const SignInModal = ({ open, onOpenChange }: SignInModalProps) => {
                 <div className="text-center">
                   <button 
                     onClick={() => setShowPasswordLogin(true)}
-                    className="text-rose-600 hover:text-rose-700 text-sm font-medium"
+                    className="text-rose-600 hover:text-rose-700 hover:underline text-sm font-medium"
                   >
                     Login via Password
                   </button>
@@ -382,13 +388,20 @@ const SignInModal = ({ open, onOpenChange }: SignInModalProps) => {
                   {isLoading ? 'Logging in...' : 'Login'}
                 </Button>
 
-                {/* Forgot Password */}
-                <div className="text-center">
+                {/* Forgot Password and Login via OTP */}
+                <div className="flex justify-center items-center gap-4 text-center">
                   <button 
                     onClick={handleForgotPassword}
-                    className="text-rose-600 hover:text-rose-700 text-sm font-medium"
+                    className="text-rose-600 hover:text-rose-700 hover:underline text-sm font-medium"
                   >
                     Forgot Password?
+                  </button>
+                  <span className="text-gray-400">|</span>
+                  <button 
+                    onClick={handleLoginViaOTP}
+                    className="text-rose-600 hover:text-rose-700 hover:underline text-sm font-medium"
+                  >
+                    Login via OTP
                   </button>
                 </div>
               </>
