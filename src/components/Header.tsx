@@ -15,6 +15,8 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
+  DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
 import SignInModal from "@/components/SignInModal";
 import StartFundraiserModal from "@/components/StartFundraiserModal";
@@ -62,13 +64,49 @@ const Header = () => {
 
                 <NavigationMenuItem>
                   <DropdownMenu>
-                    <DropdownMenuTrigger className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-rose-50 hover:text-rose-600 focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50">
+                    <DropdownMenuTrigger className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-rose-50 hover:text-rose-600 focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-rose-50 data-[state=open]:text-rose-600">
                       Browse Fundraisers
-                      <ChevronDown className="ml-1 h-4 w-4" />
+                      <ChevronDown className="ml-1 h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent className="bg-white border shadow-lg rounded-lg">
-                      <DropdownMenuItem className="hover:bg-rose-50 hover:text-rose-600 transition-colors">
+                    <DropdownMenuContent className="w-64 bg-white border border-gray-200 shadow-xl rounded-lg p-2 z-50">
+                      <DropdownMenuLabel className="text-sm font-semibold text-gray-900 px-2 py-1">
+                        Medical & Health
+                      </DropdownMenuLabel>
+                      <DropdownMenuItem className="hover:bg-rose-50 hover:text-rose-600 transition-colors cursor-pointer rounded-md px-3 py-2">
                         Medical Treatment
+                      </DropdownMenuItem>
+                      <DropdownMenuItem className="hover:bg-rose-50 hover:text-rose-600 transition-colors cursor-pointer rounded-md px-3 py-2">
+                        Cancer Treatment
+                      </DropdownMenuItem>
+                      <DropdownMenuItem className="hover:bg-rose-50 hover:text-rose-600 transition-colors cursor-pointer rounded-md px-3 py-2">
+                        Accident & Emergency
+                      </DropdownMenuItem>
+                      <DropdownMenuItem className="hover:bg-rose-50 hover:text-rose-600 transition-colors cursor-pointer rounded-md px-3 py-2">
+                        Heart Surgery
+                      </DropdownMenuItem>
+                      
+                      <DropdownMenuSeparator className="my-2" />
+                      
+                      <DropdownMenuLabel className="text-sm font-semibold text-gray-900 px-2 py-1">
+                        Education & Social
+                      </DropdownMenuLabel>
+                      <DropdownMenuItem className="hover:bg-rose-50 hover:text-rose-600 transition-colors cursor-pointer rounded-md px-3 py-2">
+                        Education Support
+                      </DropdownMenuItem>
+                      <DropdownMenuItem className="hover:bg-rose-50 hover:text-rose-600 transition-colors cursor-pointer rounded-md px-3 py-2">
+                        Disaster Relief
+                      </DropdownMenuItem>
+                      <DropdownMenuItem className="hover:bg-rose-50 hover:text-rose-600 transition-colors cursor-pointer rounded-md px-3 py-2">
+                        Animal Welfare
+                      </DropdownMenuItem>
+                      <DropdownMenuItem className="hover:bg-rose-50 hover:text-rose-600 transition-colors cursor-pointer rounded-md px-3 py-2">
+                        Community Development
+                      </DropdownMenuItem>
+                      
+                      <DropdownMenuSeparator className="my-2" />
+                      
+                      <DropdownMenuItem className="hover:bg-rose-50 hover:text-rose-600 transition-colors cursor-pointer rounded-md px-3 py-2 font-medium">
+                        View All Categories →
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
@@ -133,7 +171,18 @@ const Header = () => {
                       </svg>
                     </summary>
                     <div className="mt-2 ml-4 space-y-2 pb-2">
-                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors p-2 hover:bg-rose-50 rounded-md">Medical Treatment</a>
+                      <div className="mb-3">
+                        <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Medical & Health</h4>
+                        <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors p-2 hover:bg-rose-50 rounded-md">Medical Treatment</a>
+                        <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors p-2 hover:bg-rose-50 rounded-md">Cancer Treatment</a>
+                        <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors p-2 hover:bg-rose-50 rounded-md">Accident & Emergency</a>
+                      </div>
+                      <div>
+                        <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Education & Social</h4>
+                        <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors p-2 hover:bg-rose-50 rounded-md">Education Support</a>
+                        <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors p-2 hover:bg-rose-50 rounded-md">Disaster Relief</a>
+                        <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors p-2 hover:bg-rose-50 rounded-md">Animal Welfare</a>
+                      </div>
                     </div>
                   </details>
                   
