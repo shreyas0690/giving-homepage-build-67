@@ -3,10 +3,12 @@ import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Menu, X, Search, User } from "lucide-react";
 import SignInModal from "@/components/SignInModal";
+import StartFundraiserModal from "@/components/StartFundraiserModal";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
+  const [isStartFundraiserModalOpen, setIsStartFundraiserModalOpen] = useState(false);
 
   return (
     <>
@@ -44,7 +46,10 @@ const Header = () => {
                 <User className="h-4 w-4 mr-2" />
                 Sign In
               </Button>
-              <Button className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700">
+              <Button 
+                className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700"
+                onClick={() => setIsStartFundraiserModalOpen(true)}
+              >
                 Start Fundraiser
               </Button>
             </div>
@@ -73,7 +78,12 @@ const Header = () => {
                   >
                     Sign In
                   </Button>
-                  <Button className="bg-gradient-to-r from-rose-500 to-pink-600">Start Fundraiser</Button>
+                  <Button 
+                    className="bg-gradient-to-r from-rose-500 to-pink-600"
+                    onClick={() => setIsStartFundraiserModalOpen(true)}
+                  >
+                    Start Fundraiser
+                  </Button>
                 </div>
               </div>
             </div>
@@ -85,6 +95,12 @@ const Header = () => {
       <SignInModal 
         open={isSignInModalOpen} 
         onOpenChange={setIsSignInModalOpen} 
+      />
+
+      {/* Start Fundraiser Modal */}
+      <StartFundraiserModal 
+        open={isStartFundraiserModalOpen} 
+        onOpenChange={setIsStartFundraiserModalOpen} 
       />
     </>
   );
