@@ -10,6 +10,14 @@ const Header = () => {
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
   const [isStartFundraiserModalOpen, setIsStartFundraiserModalOpen] = useState(false);
 
+  const handleOpenSignIn = () => {
+    setIsSignInModalOpen(true);
+  };
+
+  const handleOpenStartFundraiser = () => {
+    setIsStartFundraiserModalOpen(true);
+  };
+
   return (
     <>
       <header className="bg-white shadow-sm border-b sticky top-0 z-50">
@@ -41,14 +49,14 @@ const Header = () => {
               <Button 
                 variant="ghost" 
                 size="sm" 
-                onClick={() => setIsSignInModalOpen(true)}
+                onClick={handleOpenSignIn}
               >
                 <User className="h-4 w-4 mr-2" />
                 Sign In
               </Button>
               <Button 
                 className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700"
-                onClick={() => setIsStartFundraiserModalOpen(true)}
+                onClick={handleOpenStartFundraiser}
               >
                 Start Fundraiser
               </Button>
@@ -74,13 +82,13 @@ const Header = () => {
                   <Button 
                     variant="outline" 
                     size="sm" 
-                    onClick={() => setIsSignInModalOpen(true)}
+                    onClick={handleOpenSignIn}
                   >
                     Sign In
                   </Button>
                   <Button 
                     className="bg-gradient-to-r from-rose-500 to-pink-600"
-                    onClick={() => setIsStartFundraiserModalOpen(true)}
+                    onClick={handleOpenStartFundraiser}
                   >
                     Start Fundraiser
                   </Button>
@@ -94,13 +102,15 @@ const Header = () => {
       {/* Sign In Modal */}
       <SignInModal 
         open={isSignInModalOpen} 
-        onOpenChange={setIsSignInModalOpen} 
+        onOpenChange={setIsSignInModalOpen}
+        onOpenStartFundraiser={handleOpenStartFundraiser}
       />
 
       {/* Start Fundraiser Modal */}
       <StartFundraiserModal 
         open={isStartFundraiserModalOpen} 
-        onOpenChange={setIsStartFundraiserModalOpen} 
+        onOpenChange={setIsStartFundraiserModalOpen}
+        onOpenSignIn={handleOpenSignIn}
       />
     </>
   );

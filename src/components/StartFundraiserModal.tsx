@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -13,6 +12,7 @@ import MobileVerificationModal from "@/components/MobileVerificationModal";
 interface StartFundraiserModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  onOpenSignIn?: () => void;
 }
 
 const countries = [{
@@ -79,7 +79,8 @@ const countries = [{
 
 const StartFundraiserModal = ({
   open,
-  onOpenChange
+  onOpenChange,
+  onOpenSignIn
 }: StartFundraiserModalProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [countryCode, setCountryCode] = useState('+1');
@@ -208,6 +209,13 @@ const StartFundraiserModal = ({
     setShowMobileVerification(false);
   };
 
+  const handleOpenSignIn = () => {
+    onOpenChange(false);
+    if (onOpenSignIn) {
+      onOpenSignIn();
+    }
+  };
+
   return (
     <>
       <Dialog open={open && !showMobileVerification} onOpenChange={onOpenChange}>
@@ -328,9 +336,7 @@ const StartFundraiserModal = ({
                 <button 
                   type="button" 
                   className="text-rose-600 hover:text-rose-700 font-medium hover:underline transition-colors" 
-                  onClick={() => {
-                    console.log('Open login modal');
-                  }}
+                  onClick={handleOpenSignIn}
                 >
                   Login
                 </button>

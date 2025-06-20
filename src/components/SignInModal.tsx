@@ -11,9 +11,10 @@ import MobileVerificationModal from "@/components/MobileVerificationModal";
 interface SignInModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  onOpenStartFundraiser?: () => void;
 }
 
-const SignInModal = ({ open, onOpenChange }: SignInModalProps) => {
+const SignInModal = ({ open, onOpenChange, onOpenStartFundraiser }: SignInModalProps) => {
   const [emailOrMobile, setEmailOrMobile] = useState('');
   const [password, setPassword] = useState('');
   const [showPasswordLogin, setShowPasswordLogin] = useState(false);
@@ -198,6 +199,13 @@ const SignInModal = ({ open, onOpenChange }: SignInModalProps) => {
     setShowPasswordLogin(false);
   };
 
+  const handleStartFundraiser = () => {
+    onOpenChange(false);
+    if (onOpenStartFundraiser) {
+      onOpenStartFundraiser();
+    }
+  };
+
   return (
     <>
       <Dialog open={open} onOpenChange={onOpenChange}>
@@ -345,9 +353,7 @@ const SignInModal = ({ open, onOpenChange }: SignInModalProps) => {
                   Want to start a fundraiser?{' '}
                   <button 
                     className="text-rose-600 hover:text-rose-700 font-medium hover:underline transition-colors"
-                    onClick={() => {
-                      console.log('Open start fundraiser modal');
-                    }}
+                    onClick={handleStartFundraiser}
                   >
                     Click here
                   </button>
@@ -425,9 +431,7 @@ const SignInModal = ({ open, onOpenChange }: SignInModalProps) => {
                   Want to start a fundraiser?{' '}
                   <button 
                     className="text-rose-600 hover:text-rose-700 font-medium hover:underline transition-colors"
-                    onClick={() => {
-                      console.log('Open start fundraiser modal');
-                    }}
+                    onClick={handleStartFundraiser}
                   >
                     Click here
                   </button>
