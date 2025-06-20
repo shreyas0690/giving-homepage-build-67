@@ -1,10 +1,8 @@
-
 import { useState } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { PlusCircle, Share2, DollarSign, ArrowRight, Users, TrendingUp } from "lucide-react";
 import StartFundraiserModal from "@/components/StartFundraiserModal";
-
 const steps = [{
   icon: PlusCircle,
   title: "Create Your Campaign",
@@ -24,12 +22,9 @@ const steps = [{
   feature: "Instant withdrawal",
   color: "from-rose-600 to-pink-500"
 }];
-
 const StartFundraiser = () => {
   const [isStartFundraiserModalOpen, setIsStartFundraiserModalOpen] = useState(false);
-
-  return (
-    <>
+  return <>
       <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br from-slate-50 via-white to-rose-50/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header Section */}
@@ -55,9 +50,8 @@ const StartFundraiser = () => {
           {/* Steps Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16 md:mb-20">
             {steps.map((step, index) => {
-              const Icon = step.icon;
-              return (
-                <div key={index} className="relative group">
+            const Icon = step.icon;
+            return <div key={index} className="relative group">
                   <Card className="relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2 bg-white h-full">
                     <div className="absolute inset-0 bg-gradient-to-br from-white to-rose-50/50"></div>
                     
@@ -85,31 +79,19 @@ const StartFundraiser = () => {
                       </div>
                     </CardContent>
                   </Card>
-                </div>
-              );
-            })}
+                </div>;
+          })}
           </div>
 
           {/* CTA Section */}
           <div className="text-center">
-            <Button 
-              className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-              onClick={() => setIsStartFundraiserModalOpen(true)}
-            >
-              Start Your Fundraiser Today
-              <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
-            </Button>
+            
           </div>
         </div>
       </section>
 
       {/* Start Fundraiser Modal */}
-      <StartFundraiserModal 
-        open={isStartFundraiserModalOpen} 
-        onOpenChange={setIsStartFundraiserModalOpen} 
-      />
-    </>
-  );
+      <StartFundraiserModal open={isStartFundraiserModalOpen} onOpenChange={setIsStartFundraiserModalOpen} />
+    </>;
 };
-
 export default StartFundraiser;
