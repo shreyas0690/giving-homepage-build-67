@@ -85,15 +85,15 @@ const StartFundraiserModal = ({ open, onOpenChange }: StartFundraiserModalProps)
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md w-full mx-4 p-0 gap-0 bg-white max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-md w-full mx-4 p-0 gap-0 bg-white max-h-[90vh] overflow-y-auto rounded-2xl">
         {/* Header with Language Toggle */}
-        <DialogHeader className="p-4 pb-2 text-center relative border-b">
-          <div className="absolute left-4 top-4">
+        <DialogHeader className="p-6 pb-4 text-center relative">
+          <div className="absolute left-6 top-6">
             <Select value={language} onValueChange={setLanguage}>
-              <SelectTrigger className="w-24 h-8 text-xs">
+              <SelectTrigger className="w-24 h-8 text-xs border border-gray-300 rounded-md bg-white">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-white border border-gray-300 rounded-md shadow-lg z-50">
                 <SelectItem value="english">English</SelectItem>
                 <SelectItem value="hindi">हिंदी</SelectItem>
               </SelectContent>
@@ -102,7 +102,7 @@ const StartFundraiserModal = ({ open, onOpenChange }: StartFundraiserModalProps)
           
           <button
             onClick={() => onOpenChange(false)}
-            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100"
+            className="absolute right-6 top-6 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100"
           >
             <X className="h-4 w-4" />
             <span className="sr-only">Close</span>
@@ -113,18 +113,21 @@ const StartFundraiserModal = ({ open, onOpenChange }: StartFundraiserModalProps)
           </DialogTitle>
         </DialogHeader>
 
+        {/* Divider Line */}
+        <div className="w-full h-px bg-gray-200"></div>
+
         {/* Form Content */}
-        <div className="px-6 py-4 space-y-4">
+        <div className="px-6 py-6 space-y-5">
           {/* Purpose Dropdown */}
           <div className="space-y-2">
-            <Label className="text-gray-600 text-sm font-medium">
+            <Label className="text-gray-700 text-sm font-medium">
               {t.purpose}
             </Label>
             <Select value={purpose} onValueChange={setPurpose}>
-              <SelectTrigger className="w-full border-gray-300 focus:border-rose-500 focus:ring-rose-500">
+              <SelectTrigger className="w-full border border-gray-300 rounded-md focus:border-rose-500 focus:ring-1 focus:ring-rose-500 bg-gray-50 h-11">
                 <SelectValue placeholder={t.medicalTreatment} />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-white border border-gray-300 rounded-md shadow-lg z-50">
                 <SelectItem value="medical-treatment">{t.medicalTreatment}</SelectItem>
                 <SelectItem value="cancer">{t.cancer}</SelectItem>
               </SelectContent>
@@ -133,7 +136,7 @@ const StartFundraiserModal = ({ open, onOpenChange }: StartFundraiserModalProps)
 
           {/* Name Field */}
           <div className="space-y-2">
-            <Label htmlFor="name" className="text-gray-600 text-sm font-medium">
+            <Label htmlFor="name" className="text-gray-700 text-sm font-medium">
               {t.name} *
             </Label>
             <div className="relative">
@@ -142,7 +145,7 @@ const StartFundraiserModal = ({ open, onOpenChange }: StartFundraiserModalProps)
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full border-gray-300 focus:border-rose-500 focus:ring-rose-500 pr-10"
+                className="w-full border border-gray-300 rounded-md focus:border-rose-500 focus:ring-1 focus:ring-rose-500 pr-10 h-11"
                 placeholder=""
               />
               <User className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -161,7 +164,7 @@ const StartFundraiserModal = ({ open, onOpenChange }: StartFundraiserModalProps)
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full border-gray-300 focus:border-rose-500 focus:ring-rose-500 pr-10"
+                className="w-full border border-gray-300 rounded-md focus:border-rose-500 focus:ring-1 focus:ring-rose-500 pr-10 h-11"
                 placeholder=""
               />
               <Mail className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-rose-500" />
@@ -180,7 +183,7 @@ const StartFundraiserModal = ({ open, onOpenChange }: StartFundraiserModalProps)
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full border-gray-300 focus:border-rose-500 focus:ring-rose-500 pr-10"
+                className="w-full border border-gray-300 rounded-md focus:border-rose-500 focus:ring-1 focus:ring-rose-500 pr-10 h-11"
                 placeholder=""
               />
               <button
@@ -209,7 +212,7 @@ const StartFundraiserModal = ({ open, onOpenChange }: StartFundraiserModalProps)
                 type="tel"
                 value={mobile}
                 onChange={(e) => setMobile(e.target.value)}
-                className="w-full border-gray-300 focus:border-rose-500 focus:ring-rose-500 pr-10"
+                className="w-full border border-gray-300 rounded-md focus:border-rose-500 focus:ring-1 focus:ring-rose-500 pr-10 h-11"
                 placeholder=""
               />
               <Phone className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-rose-500" />
@@ -219,14 +222,14 @@ const StartFundraiserModal = ({ open, onOpenChange }: StartFundraiserModalProps)
 
           {/* Country Field */}
           <div className="space-y-2">
-            <Label className="text-gray-600 text-sm font-medium">
+            <Label className="text-gray-700 text-sm font-medium">
               {t.country}
             </Label>
             <Select value={country} onValueChange={setCountry}>
-              <SelectTrigger className="w-full border-gray-300 focus:border-rose-500 focus:ring-rose-500">
+              <SelectTrigger className="w-full border border-gray-300 rounded-md focus:border-rose-500 focus:ring-1 focus:ring-rose-500 bg-gray-50 h-11">
                 <SelectValue placeholder={t.selectCountry} />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-white border border-gray-300 rounded-md shadow-lg z-50">
                 {countries.map((country) => (
                   <SelectItem key={country.value} value={country.value}>
                     <span className="flex items-center gap-2">
@@ -242,7 +245,7 @@ const StartFundraiserModal = ({ open, onOpenChange }: StartFundraiserModalProps)
           {/* Login Link */}
           <div className="text-center text-sm text-gray-600 pt-4">
             {t.alreadyAccount}{' '}
-            <button className="text-cyan-500 hover:text-cyan-600 font-medium">
+            <button className="text-rose-500 hover:text-rose-600 font-medium">
               {t.login}
             </button>
           </div>
@@ -250,7 +253,7 @@ const StartFundraiserModal = ({ open, onOpenChange }: StartFundraiserModalProps)
           {/* Next Button */}
           <Button 
             onClick={handleNext}
-            className="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-medium py-3 rounded-lg mt-6"
+            className="w-full bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-medium py-3 rounded-lg mt-6 h-12"
           >
             {t.next}
           </Button>
