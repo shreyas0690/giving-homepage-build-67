@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { Menu, X, Search, User, ChevronDown } from "lucide-react";
+import { Menu, X, Search, User } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,12 +10,6 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import SignInModal from "@/components/SignInModal";
 import StartFundraiserModal from "@/components/StartFundraiserModal";
 
@@ -54,14 +48,14 @@ const Header = () => {
               <NavigationMenuList className="space-x-2">
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className="text-gray-700 hover:text-rose-600 transition-colors bg-transparent hover:bg-rose-50 font-medium">
-                    Browse Fundraisers
+                    Fundraise For
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <div className="grid w-[400px] gap-3 p-4">
                       <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                        <div className="text-sm font-medium leading-none">Medical</div>
+                        <div className="text-sm font-medium leading-none">Medical Treatment</div>
                         <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Help people with medical expenses and treatments
+                          Get help with medical expenses and treatments
                         </p>
                       </NavigationMenuLink>
                       <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
@@ -74,22 +68,6 @@ const Header = () => {
                         <div className="text-sm font-medium leading-none">Emergency</div>
                         <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                           Urgent causes that need immediate help
-                        </p>
-                      </NavigationMenuLink>
-                    </div>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-                
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-gray-700 hover:text-rose-600 transition-colors bg-transparent hover:bg-rose-50 font-medium">
-                    Browse Causes
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <div className="grid w-[400px] gap-3 p-4">
-                      <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                        <div className="text-sm font-medium leading-none">Non-Profit</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Support registered charitable organizations
                         </p>
                       </NavigationMenuLink>
                       <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
@@ -111,38 +89,24 @@ const Header = () => {
             </NavigationMenu>
 
             {/* Desktop Actions */}
-            <div className="hidden md:flex items-center space-x-3">
+            <div className="hidden md:flex items-center space-x-4">
               <Button variant="ghost" size="sm" className="text-gray-700 hover:text-rose-600 hover:bg-rose-50 transition-colors">
                 <Search className="h-4 w-4 mr-2" />
                 Search
               </Button>
               
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="sm" className="text-gray-700 hover:text-rose-600 hover:bg-rose-50 transition-colors">
-                    <User className="h-4 w-4 mr-2" />
-                    Account
-                    <ChevronDown className="h-4 w-4 ml-1" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56">
-                  <DropdownMenuItem onClick={handleOpenSignIn}>
-                    Sign In
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    Create Account
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    My Fundraisers
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    Donations
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                onClick={handleOpenSignIn}
+                className="border-2 border-rose-200 text-rose-600 hover:bg-rose-50 hover:border-rose-300 font-medium px-6 transition-all duration-200"
+              >
+                <User className="h-4 w-4 mr-2" />
+                Sign In
+              </Button>
               
               <Button 
-                className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
+                className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 font-medium px-6"
                 onClick={handleOpenStartFundraiser}
               >
                 Start Fundraiser
@@ -165,23 +129,15 @@ const Header = () => {
                 <div className="space-y-3">
                   <details className="group">
                     <summary className="flex justify-between items-center text-gray-700 hover:text-rose-500 transition-colors cursor-pointer font-medium">
-                      Browse Fundraisers
-                      <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
+                      Fundraise For
+                      <svg className="h-4 w-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
                     </summary>
                     <div className="mt-3 ml-4 space-y-2">
-                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors">Medical</a>
+                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors">Medical Treatment</a>
                       <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors">Education</a>
                       <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors">Emergency</a>
-                    </div>
-                  </details>
-                  
-                  <details className="group">
-                    <summary className="flex justify-between items-center text-gray-700 hover:text-rose-500 transition-colors cursor-pointer font-medium">
-                      Browse Causes
-                      <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
-                    </summary>
-                    <div className="mt-3 ml-4 space-y-2">
-                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors">Non-Profit</a>
                       <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors">Community</a>
                     </div>
                   </details>
@@ -194,13 +150,13 @@ const Header = () => {
                     variant="outline" 
                     size="sm" 
                     onClick={handleOpenSignIn}
-                    className="border-rose-200 text-rose-600 hover:bg-rose-50"
+                    className="border-2 border-rose-200 text-rose-600 hover:bg-rose-50 font-medium"
                   >
                     <User className="h-4 w-4 mr-2" />
                     Sign In
                   </Button>
                   <Button 
-                    className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700"
+                    className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 font-medium"
                     onClick={handleOpenStartFundraiser}
                   >
                     Start Fundraiser
