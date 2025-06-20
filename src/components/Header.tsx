@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { Menu, X, Search, User } from "lucide-react";
+import { Menu, X, Search, User, ChevronDown } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,6 +10,12 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import SignInModal from "@/components/SignInModal";
 import StartFundraiserModal from "@/components/StartFundraiserModal";
 
@@ -49,43 +55,23 @@ const Header = () => {
             <NavigationMenu className="hidden md:flex">
               <NavigationMenuList className="space-x-2">
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-gray-700 hover:text-rose-600 transition-colors bg-transparent hover:bg-rose-50 font-medium">
+                  <NavigationMenuLink className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-rose-50 hover:text-rose-600 focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50">
                     Fundraise For
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <div className="grid w-[400px] gap-3 p-4 bg-white border shadow-lg rounded-lg">
-                      <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                        <div className="text-sm font-medium leading-none">Medical Treatment</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Get help with medical expenses and treatments
-                        </p>
-                      </NavigationMenuLink>
-                      <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                        <div className="text-sm font-medium leading-none">Education</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Support students and educational initiatives
-                        </p>
-                      </NavigationMenuLink>
-                      <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                        <div className="text-sm font-medium leading-none">Emergency</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Urgent causes that need immediate help
-                        </p>
-                      </NavigationMenuLink>
-                      <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                        <div className="text-sm font-medium leading-none">Community</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Local community projects and initiatives
-                        </p>
-                      </NavigationMenuLink>
-                    </div>
-                  </NavigationMenuContent>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuLink className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-rose-50 hover:text-rose-600 focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50">
-                    Browse Fundraisers
-                  </NavigationMenuLink>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-rose-50 hover:text-rose-600 focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50">
+                      Browse Fundraisers
+                      <ChevronDown className="ml-1 h-4 w-4" />
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="bg-white border shadow-lg rounded-lg">
+                      <DropdownMenuItem className="hover:bg-rose-50 hover:text-rose-600 transition-colors">
+                        Medical Treatment
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
@@ -137,22 +123,20 @@ const Header = () => {
               <div className="flex flex-col space-y-1">
                 {/* Mobile Menu Items */}
                 <div className="space-y-1 mb-4">
+                  <a href="#" className="text-gray-700 hover:text-rose-500 transition-colors font-medium block p-3 hover:bg-rose-50 rounded-lg">Fundraise For</a>
+                  
                   <details className="group">
                     <summary className="flex justify-between items-center text-gray-700 hover:text-rose-500 transition-colors cursor-pointer font-medium p-3 hover:bg-rose-50 rounded-lg touch-manipulation">
-                      Fundraise For
+                      Browse Fundraisers
                       <svg className="h-5 w-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
                     </summary>
                     <div className="mt-2 ml-4 space-y-2 pb-2">
                       <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors p-2 hover:bg-rose-50 rounded-md">Medical Treatment</a>
-                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors p-2 hover:bg-rose-50 rounded-md">Education</a>
-                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors p-2 hover:bg-rose-50 rounded-md">Emergency</a>
-                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors p-2 hover:bg-rose-50 rounded-md">Community</a>
                     </div>
                   </details>
                   
-                  <a href="#" className="text-gray-700 hover:text-rose-500 transition-colors font-medium block p-3 hover:bg-rose-50 rounded-lg">Browse Fundraisers</a>
                   <a href="#" className="text-gray-700 hover:text-rose-500 transition-colors font-medium block p-3 hover:bg-rose-50 rounded-lg">How it Works</a>
                   
                   {/* Search for Mobile */}
