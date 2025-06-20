@@ -54,12 +54,12 @@ const Header = () => {
               <NavigationMenuList className="space-x-2">
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className="text-gray-700 hover:text-rose-600 transition-colors bg-transparent hover:bg-rose-50 font-medium">
-                    Browse Fundraisers
+                    Browse Causes
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <div className="grid w-[400px] gap-3 p-4">
                       <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                        <div className="text-sm font-medium leading-none">Medical</div>
+                        <div className="text-sm font-medium leading-none">Medical Treatment</div>
                         <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                           Help people with medical expenses and treatments
                         </p>
@@ -76,16 +76,6 @@ const Header = () => {
                           Urgent causes that need immediate help
                         </p>
                       </NavigationMenuLink>
-                    </div>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-                
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-gray-700 hover:text-rose-600 transition-colors bg-transparent hover:bg-rose-50 font-medium">
-                    Browse Causes
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <div className="grid w-[400px] gap-3 p-4">
                       <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                         <div className="text-sm font-medium leading-none">Non-Profit</div>
                         <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
@@ -160,45 +150,42 @@ const Header = () => {
 
           {/* Mobile Navigation */}
           {isMenuOpen && (
-            <div className="md:hidden py-6 border-t border-gray-100 animate-fade-in">
+            <div className="md:hidden pb-6 pt-4 border-t border-gray-100 animate-fade-in">
               <div className="flex flex-col space-y-4">
                 <div className="space-y-3">
                   <details className="group">
-                    <summary className="flex justify-between items-center text-gray-700 hover:text-rose-500 transition-colors cursor-pointer font-medium">
-                      Browse Fundraisers
-                      <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
-                    </summary>
-                    <div className="mt-3 ml-4 space-y-2">
-                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors">Medical</a>
-                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors">Education</a>
-                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors">Emergency</a>
-                    </div>
-                  </details>
-                  
-                  <details className="group">
-                    <summary className="flex justify-between items-center text-gray-700 hover:text-rose-500 transition-colors cursor-pointer font-medium">
+                    <summary className="flex justify-between items-center text-gray-700 hover:text-rose-500 transition-colors cursor-pointer font-medium py-2">
                       Browse Causes
                       <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
                     </summary>
-                    <div className="mt-3 ml-4 space-y-2">
-                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors">Non-Profit</a>
-                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors">Community</a>
+                    <div className="mt-3 ml-4 space-y-3">
+                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors py-1">Medical Treatment</a>
+                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors py-1">Education</a>
+                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors py-1">Emergency</a>
+                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors py-1">Non-Profit</a>
+                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors py-1">Community</a>
                     </div>
                   </details>
                   
-                  <a href="#" className="text-gray-700 hover:text-rose-500 transition-colors font-medium">How it Works</a>
+                  <a href="#" className="block text-gray-700 hover:text-rose-500 transition-colors font-medium py-2">How it Works</a>
                 </div>
                 
                 <div className="flex flex-col space-y-3 pt-4 border-t border-gray-100">
+                  <Button variant="ghost" size="sm" className="justify-start text-gray-700 hover:text-rose-600 hover:bg-rose-50">
+                    <Search className="h-4 w-4 mr-2" />
+                    Search
+                  </Button>
+                  
                   <Button 
                     variant="outline" 
                     size="sm" 
                     onClick={handleOpenSignIn}
-                    className="border-rose-200 text-rose-600 hover:bg-rose-50"
+                    className="justify-start border-rose-200 text-rose-600 hover:bg-rose-50"
                   >
                     <User className="h-4 w-4 mr-2" />
                     Sign In
                   </Button>
+                  
                   <Button 
                     className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700"
                     onClick={handleOpenStartFundraiser}
