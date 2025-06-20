@@ -9,20 +9,6 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
   const [isStartFundraiserModalOpen, setIsStartFundraiserModalOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const handleLoginSuccess = () => {
-    setIsLoggedIn(true);
-    setIsSignInModalOpen(false);
-  };
-
-  const handleStartFundraiserClick = () => {
-    if (isLoggedIn) {
-      setIsStartFundraiserModalOpen(true);
-    } else {
-      setIsSignInModalOpen(true);
-    }
-  };
 
   return (
     <>
@@ -52,24 +38,17 @@ const Header = () => {
                 <Search className="h-4 w-4 mr-2" />
                 Search
               </Button>
-              {!isLoggedIn ? (
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  onClick={() => setIsSignInModalOpen(true)}
-                >
-                  <User className="h-4 w-4 mr-2" />
-                  Sign In
-                </Button>
-              ) : (
-                <Button variant="ghost" size="sm">
-                  <User className="h-4 w-4 mr-2" />
-                  Profile
-                </Button>
-              )}
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={() => setIsSignInModalOpen(true)}
+              >
+                <User className="h-4 w-4 mr-2" />
+                Sign In
+              </Button>
               <Button 
                 className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700"
-                onClick={handleStartFundraiserClick}
+                onClick={() => setIsStartFundraiserModalOpen(true)}
               >
                 Start Fundraiser
               </Button>
@@ -92,22 +71,16 @@ const Header = () => {
                 <a href="#" className="text-gray-700 hover:text-rose-500 transition-colors">Browse Causes</a>
                 <a href="#" className="text-gray-700 hover:text-rose-500 transition-colors">How it Works</a>
                 <div className="flex flex-col space-y-2 pt-4">
-                  {!isLoggedIn ? (
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      onClick={() => setIsSignInModalOpen(true)}
-                    >
-                      Sign In
-                    </Button>
-                  ) : (
-                    <Button variant="outline" size="sm">
-                      Profile
-                    </Button>
-                  )}
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    onClick={() => setIsSignInModalOpen(true)}
+                  >
+                    Sign In
+                  </Button>
                   <Button 
                     className="bg-gradient-to-r from-rose-500 to-pink-600"
-                    onClick={handleStartFundraiserClick}
+                    onClick={() => setIsStartFundraiserModalOpen(true)}
                   >
                     Start Fundraiser
                   </Button>
@@ -121,17 +94,14 @@ const Header = () => {
       {/* Sign In Modal */}
       <SignInModal 
         open={isSignInModalOpen} 
-        onOpenChange={setIsSignInModalOpen}
-        onLoginSuccess={handleLoginSuccess}
+        onOpenChange={setIsSignInModalOpen} 
       />
 
-      {/* Start Fundraiser Modal - Only show if logged in */}
-      {isLoggedIn && (
-        <StartFundraiserModal 
-          open={isStartFundraiserModalOpen} 
-          onOpenChange={setIsStartFundraiserModalOpen} 
-        />
-      )}
+      {/* Start Fundraiser Modal */}
+      <StartFundraiserModal 
+        open={isStartFundraiserModalOpen} 
+        onOpenChange={setIsStartFundraiserModalOpen} 
+      />
     </>
   );
 };
