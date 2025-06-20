@@ -1,7 +1,6 @@
-
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { Menu, X, Search, User, ChevronDown } from "lucide-react";
+import { Menu, X, User, ChevronDown } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -20,6 +19,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import SignInModal from "@/components/SignInModal";
 import StartFundraiserModal from "@/components/StartFundraiserModal";
+import { Search } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -122,10 +122,7 @@ const Header = () => {
 
             {/* Desktop Actions */}
             <div className="hidden md:flex items-center space-x-4">
-              <Button variant="ghost" size="sm" className="text-gray-700 hover:text-rose-600 hover:bg-rose-50 transition-colors">
-                <Search className="h-4 w-4 mr-2" />
-                Search
-              </Button>
+              
               
               <Button 
                 variant="outline" 
@@ -188,11 +185,7 @@ const Header = () => {
                   
                   <a href="#" className="text-gray-700 hover:text-rose-500 transition-colors font-medium block p-3 hover:bg-rose-50 rounded-lg">How it Works</a>
                   
-                  {/* Search for Mobile */}
-                  <button className="w-full text-left text-gray-700 hover:text-rose-500 transition-colors font-medium p-3 hover:bg-rose-50 rounded-lg flex items-center">
-                    <Search className="h-4 w-4 mr-3" />
-                    Search
-                  </button>
+                  
                 </div>
                 
                 {/* Mobile Action Buttons */}
