@@ -7,6 +7,7 @@ import { X, ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import ForgotPasswordModal from "@/components/ForgotPasswordModal";
 import MobileVerificationModal from "@/components/MobileVerificationModal";
+import EmailVerificationModal from "@/components/EmailVerificationModal";
 
 interface SignInModalProps {
   open: boolean;
@@ -20,6 +21,7 @@ const SignInModal = ({ open, onOpenChange, onOpenStartFundraiser }: SignInModalP
   const [showPasswordLogin, setShowPasswordLogin] = useState(false);
   const [isForgotPasswordOpen, setIsForgotPasswordOpen] = useState(false);
   const [isMobileVerificationOpen, setIsMobileVerificationOpen] = useState(false);
+  const [isEmailVerificationOpen, setIsEmailVerificationOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [countryCode, setCountryCode] = useState('+91');
   const { toast } = useToast();
@@ -64,7 +66,7 @@ const SignInModal = ({ open, onOpenChange, onOpenStartFundraiser }: SignInModalP
       setIsLoading(false);
       
       if (isMobileNumber(cleanInput)) {
-        // Mobile number - open verification modal
+        // Mobile number - open mobile verification modal
         console.log('OTP requested for mobile:', cleanInput);
         onOpenChange(false);
         setIsMobileVerificationOpen(true);
@@ -73,20 +75,14 @@ const SignInModal = ({ open, onOpenChange, onOpenStartFundraiser }: SignInModalP
           description: `Verification code sent to ${countryCode} ${cleanInput}`,
         });
       } else {
-        // Email - simulate email OTP
+        // Email - open email verification modal
         console.log('OTP requested for email:', cleanInput);
+        onOpenChange(false);
+        setIsEmailVerificationOpen(true);
         toast({
           title: "OTP Sent",
           description: `Verification code sent to ${cleanInput}. Please check your email.`,
         });
-        
-        // For demo purposes, show a toast with the OTP
-        setTimeout(() => {
-          toast({
-            title: "Demo OTP",
-            description: "For demo: Your OTP is 123456",
-          });
-        }, 2000);
       }
     }, 1500);
   };
@@ -188,8 +184,22 @@ const SignInModal = ({ open, onOpenChange, onOpenStartFundraiser }: SignInModalP
     resetForm();
   };
 
+  const handleEmailVerificationComplete = () => {
+    setIsEmailVerificationOpen(false);
+    toast({
+      title: "Login Successful",
+      description: "Email verified successfully! You are now logged in.",
+    });
+    resetForm();
+  };
+
   const handleMobileVerificationBack = () => {
     setIsMobileVerificationOpen(false);
+    onOpenChange(true);
+  };
+
+  const handleEmailVerificationBack = () => {
+    setIsEmailVerificationOpen(false);
     onOpenChange(true);
   };
 
@@ -464,6 +474,15 @@ const SignInModal = ({ open, onOpenChange, onOpenStartFundraiser }: SignInModalP
         countryCode={countryCode}
         onVerificationComplete={handleMobileVerificationComplete}
         onBack={handleMobileVerificationBack}
+      />
+
+      {/* Email Verification Modal */}
+      <EmailVerificationModal
+        open={isEmailVerificationOpen}
+        onOpenChange={setIsEmailVerificationOpen}
+        email={emailOrMobile}
+        onVerificationComplete={handleEmailVerificationComplete}
+        onBack={handleEmailVerificationBack}
       />
     </>
   );
