@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -223,13 +222,6 @@ const SignInModal = ({ open, onOpenChange, onOpenStartFundraiser }: SignInModalP
         <DialogContent className="w-[95vw] max-w-md mx-auto my-4 p-0 gap-0 bg-white rounded-2xl border-0 shadow-2xl max-h-[90vh] overflow-y-auto">
           {/* Header */}
           <DialogHeader className="p-4 sm:p-6 pb-3 sm:pb-4 text-center relative">
-            <button
-              onClick={() => onOpenChange(false)}
-              className="absolute right-3 sm:right-4 top-3 sm:top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 p-1"
-            >
-              <X className="h-4 w-4" />
-              <span className="sr-only">Close</span>
-            </button>
             {showPasswordLogin && (
               <button
                 onClick={handleBackToOTP}

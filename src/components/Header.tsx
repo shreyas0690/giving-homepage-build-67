@@ -20,25 +20,27 @@ const Header = () => {
 
   const handleOpenSignIn = () => {
     setIsSignInModalOpen(true);
+    setIsMenuOpen(false); // Close mobile menu when opening modal
   };
 
   const handleOpenStartFundraiser = () => {
     setIsStartFundraiserModalOpen(true);
+    setIsMenuOpen(false); // Close mobile menu when opening modal
   };
 
   return (
     <>
       <header className="bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
+          <div className="flex justify-between items-center h-16 sm:h-20">
             {/* Logo */}
             <div className="flex items-center -space-x-2 group">
               <img 
                 src="/lovable-uploads/6f963d4c-07e4-448f-9377-5fee8010d0fc.png" 
                 alt="Varak Logo" 
-                className="h-16 w-16 transition-transform group-hover:scale-105"
+                className="h-12 w-12 sm:h-16 sm:w-16 transition-transform group-hover:scale-105"
               />
-              <span className="text-3xl font-bold bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">
+              <span className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">
                 Varak
               </span>
             </div>
@@ -122,7 +124,8 @@ const Header = () => {
             {/* Mobile menu button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+              className="md:hidden p-3 rounded-lg hover:bg-gray-100 transition-colors active:bg-gray-200 touch-manipulation"
+              aria-label="Toggle menu"
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -130,40 +133,49 @@ const Header = () => {
 
           {/* Mobile Navigation */}
           {isMenuOpen && (
-            <div className="md:hidden py-6 border-t border-gray-100 animate-fade-in">
-              <div className="flex flex-col space-y-4">
-                <div className="space-y-3">
+            <div className="md:hidden py-4 border-t border-gray-100 animate-fade-in bg-white">
+              <div className="flex flex-col space-y-1">
+                {/* Mobile Menu Items */}
+                <div className="space-y-1 mb-4">
                   <details className="group">
-                    <summary className="flex justify-between items-center text-gray-700 hover:text-rose-500 transition-colors cursor-pointer font-medium">
+                    <summary className="flex justify-between items-center text-gray-700 hover:text-rose-500 transition-colors cursor-pointer font-medium p-3 hover:bg-rose-50 rounded-lg touch-manipulation">
                       Fundraise For
-                      <svg className="h-4 w-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="h-5 w-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
                     </summary>
-                    <div className="mt-3 ml-4 space-y-2">
-                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors">Medical Treatment</a>
-                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors">Education</a>
-                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors">Emergency</a>
-                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors">Community</a>
+                    <div className="mt-2 ml-4 space-y-2 pb-2">
+                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors p-2 hover:bg-rose-50 rounded-md">Medical Treatment</a>
+                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors p-2 hover:bg-rose-50 rounded-md">Education</a>
+                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors p-2 hover:bg-rose-50 rounded-md">Emergency</a>
+                      <a href="#" className="block text-sm text-gray-600 hover:text-rose-500 transition-colors p-2 hover:bg-rose-50 rounded-md">Community</a>
                     </div>
                   </details>
                   
-                  <a href="#" className="text-gray-700 hover:text-rose-500 transition-colors font-medium">Browse Fundraisers</a>
-                  <a href="#" className="text-gray-700 hover:text-rose-500 transition-colors font-medium">How it Works</a>
+                  <a href="#" className="text-gray-700 hover:text-rose-500 transition-colors font-medium block p-3 hover:bg-rose-50 rounded-lg">Browse Fundraisers</a>
+                  <a href="#" className="text-gray-700 hover:text-rose-500 transition-colors font-medium block p-3 hover:bg-rose-50 rounded-lg">How it Works</a>
+                  
+                  {/* Search for Mobile */}
+                  <button className="w-full text-left text-gray-700 hover:text-rose-500 transition-colors font-medium p-3 hover:bg-rose-50 rounded-lg flex items-center">
+                    <Search className="h-4 w-4 mr-3" />
+                    Search
+                  </button>
                 </div>
                 
+                {/* Mobile Action Buttons */}
                 <div className="flex flex-col space-y-3 pt-4 border-t border-gray-100">
                   <Button 
                     variant="outline" 
-                    size="sm" 
+                    size="lg" 
                     onClick={handleOpenSignIn}
-                    className="border-2 border-rose-200 text-rose-600 hover:bg-rose-50 font-medium w-full"
+                    className="border-2 border-rose-200 text-rose-600 hover:bg-rose-50 font-medium w-full h-12 text-base"
                   >
-                    <User className="h-4 w-4 mr-2" />
+                    <User className="h-5 w-5 mr-2" />
                     Sign In
                   </Button>
                   <Button 
-                    className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 font-medium w-full"
+                    size="lg"
+                    className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 font-medium w-full h-12 text-base"
                     onClick={handleOpenStartFundraiser}
                   >
                     Start Fundraiser
