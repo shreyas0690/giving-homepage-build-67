@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -219,13 +220,12 @@ const SignInModal = ({ open, onOpenChange, onOpenStartFundraiser }: SignInModalP
   return (
     <>
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="sm:max-w-md w-full mx-4 p-0 gap-0 bg-white">
+        <DialogContent className="w-[95vw] max-w-md mx-auto my-4 p-0 gap-0 bg-white rounded-2xl border-0 shadow-2xl max-h-[90vh] overflow-y-auto">
           {/* Header */}
-          <DialogHeader className="p-6 pb-4 text-center relative">
-            {/* ... keep existing code (close button and back button) */}
+          <DialogHeader className="p-4 sm:p-6 pb-3 sm:pb-4 text-center relative">
             <button
               onClick={() => onOpenChange(false)}
-              className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100"
+              className="absolute right-3 sm:right-4 top-3 sm:top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 p-1"
             >
               <X className="h-4 w-4" />
               <span className="sr-only">Close</span>
@@ -233,16 +233,16 @@ const SignInModal = ({ open, onOpenChange, onOpenStartFundraiser }: SignInModalP
             {showPasswordLogin && (
               <button
                 onClick={handleBackToOTP}
-                className="absolute left-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100"
+                className="absolute left-3 sm:left-4 top-3 sm:top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 p-1"
               >
                 <ArrowLeft className="h-4 w-4" />
                 <span className="sr-only">Back</span>
               </button>
             )}
-            <DialogTitle className="text-2xl font-semibold text-gray-900">
+            <DialogTitle className="text-xl sm:text-2xl font-semibold text-gray-900 px-8">
               {showPasswordLogin ? 'Login with Password' : 'Login'}
             </DialogTitle>
-            <DialogDescription className="text-gray-600 text-sm mt-2">
+            <DialogDescription className="text-gray-600 text-sm mt-2 px-2">
               {showPasswordLogin 
                 ? 'Enter your credentials to continue' 
                 : 'Enter your email or mobile number to get started'
@@ -251,32 +251,30 @@ const SignInModal = ({ open, onOpenChange, onOpenStartFundraiser }: SignInModalP
           </DialogHeader>
 
           {/* Promotional Banner */}
-          <div className="mx-6 mb-6 bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-200 rounded-lg p-4">
-            {/* ... keep existing code (promotional banner content) */}
-            <div className="flex items-center gap-3">
-              <div className="text-2xl">🎁</div>
-              <div>
-                <p className="text-sm text-gray-700">
+          <div className="mx-4 sm:mx-6 mb-4 sm:mb-6 bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-200 rounded-lg p-3 sm:p-4">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="text-xl sm:text-2xl">🎁</div>
+              <div className="flex-1 min-w-0">
+                <p className="text-xs sm:text-sm text-gray-700">
                   <span className="font-medium">Save a life with just ₹10 on the Varak App.</span>
                 </p>
               </div>
               <Button 
                 variant="outline" 
                 size="sm" 
-                className="ml-auto text-rose-600 border-rose-300 hover:bg-rose-50"
+                className="ml-auto text-rose-600 border-rose-300 hover:bg-rose-50 text-xs px-2 py-1 h-auto"
               >
-                Download Now
+                Download
               </Button>
             </div>
           </div>
 
           {/* Form Content */}
-          <div className="px-6 pb-6 space-y-6">
+          <div className="px-4 sm:px-6 pb-4 sm:pb-6 space-y-4 sm:space-y-6">
             {!showPasswordLogin ? (
               <>
                 {/* Email/Mobile Input for OTP */}
                 <div className="space-y-2">
-                  {/* ... keep existing code (email/mobile input fields and validation) */}
                   <Label htmlFor="email" className="text-gray-600 text-sm">
                     Email / Mobile Number *
                   </Label>
@@ -286,7 +284,7 @@ const SignInModal = ({ open, onOpenChange, onOpenStartFundraiser }: SignInModalP
                       <select
                         value={countryCode}
                         onChange={(e) => setCountryCode(e.target.value)}
-                        className="w-20 px-2 py-2 border border-gray-300 rounded-md focus:border-rose-500 focus:ring-rose-500 text-sm"
+                        className="w-16 sm:w-20 px-1 sm:px-2 py-2 border border-gray-300 rounded-md focus:border-rose-500 focus:ring-rose-500 text-sm"
                       >
                         <option value="+91">+91</option>
                         <option value="+1">+1</option>
@@ -298,8 +296,8 @@ const SignInModal = ({ open, onOpenChange, onOpenStartFundraiser }: SignInModalP
                       type="text"
                       value={emailOrMobile}
                       onChange={(e) => setEmailOrMobile(e.target.value)}
-                      className="flex-1 border-gray-300 focus:border-rose-500 focus:ring-rose-500"
-                      placeholder="Enter email or 10-digit mobile number"
+                      className="flex-1 border-gray-300 focus:border-rose-500 focus:ring-rose-500 text-sm h-10"
+                      placeholder="Enter email or 10-digit mobile"
                     />
                   </div>
                   {emailOrMobile && (
@@ -318,7 +316,7 @@ const SignInModal = ({ open, onOpenChange, onOpenStartFundraiser }: SignInModalP
                 <Button 
                   onClick={handleGetOTP}
                   disabled={isLoading}
-                  className="w-full bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-medium py-3 rounded-lg"
+                  className="w-full bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-medium py-2.5 sm:py-3 rounded-lg text-sm sm:text-base h-auto"
                 >
                   {isLoading ? 'Sending OTP...' : 'Get OTP'}
                 </Button>
@@ -336,10 +334,9 @@ const SignInModal = ({ open, onOpenChange, onOpenStartFundraiser }: SignInModalP
                 <Button
                   onClick={handleGoogleSignIn}
                   variant="outline"
-                  className="w-full border-gray-300 hover:bg-gray-50 py-3 rounded-lg flex items-center justify-center gap-3"
+                  className="w-full border-gray-300 hover:bg-gray-50 py-2.5 sm:py-3 rounded-lg flex items-center justify-center gap-2 sm:gap-3 text-sm sm:text-base h-auto"
                 >
-                  {/* ... keep existing code (Google icon SVG) */}
-                  <svg className="w-5 h-5" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24">
                     <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                     <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
                     <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
@@ -373,7 +370,6 @@ const SignInModal = ({ open, onOpenChange, onOpenStartFundraiser }: SignInModalP
               <>
                 {/* Password Login Form */}
                 <div className="space-y-4">
-                  {/* ... keep existing code (password login form fields) */}
                   <div className="space-y-2">
                     <Label htmlFor="login-email" className="text-gray-600 text-sm">
                       Email / Mobile Number *
@@ -383,7 +379,7 @@ const SignInModal = ({ open, onOpenChange, onOpenStartFundraiser }: SignInModalP
                       type="text"
                       value={emailOrMobile}
                       onChange={(e) => setEmailOrMobile(e.target.value)}
-                      className="w-full border-gray-300 focus:border-rose-500 focus:ring-rose-500"
+                      className="w-full border-gray-300 focus:border-rose-500 focus:ring-rose-500 text-sm h-10"
                       placeholder="Enter your email or mobile number"
                     />
                   </div>
@@ -397,13 +393,13 @@ const SignInModal = ({ open, onOpenChange, onOpenStartFundraiser }: SignInModalP
                       type="password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className="w-full border-gray-300 focus:border-rose-500 focus:ring-rose-500"
+                      className="w-full border-gray-300 focus:border-rose-500 focus:ring-rose-500 text-sm h-10"
                       placeholder="Enter your password"
                     />
                   </div>
                   
                   {/* Demo Credentials Hint */}
-                  <div className="text-xs text-gray-500 bg-gray-50 p-2 rounded">
+                  <div className="text-xs text-gray-500 bg-gray-50 p-2 sm:p-3 rounded">
                     <strong>Demo Credentials:</strong><br />
                     Email: demo@example.com / password123<br />
                     Mobile: 9876543210 / mobile123
@@ -414,20 +410,20 @@ const SignInModal = ({ open, onOpenChange, onOpenStartFundraiser }: SignInModalP
                 <Button 
                   onClick={handlePasswordLogin}
                   disabled={isLoading}
-                  className="w-full bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-medium py-3 rounded-lg"
+                  className="w-full bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-medium py-2.5 sm:py-3 rounded-lg text-sm sm:text-base h-auto"
                 >
                   {isLoading ? 'Logging in...' : 'Login'}
                 </Button>
 
                 {/* Forgot Password and Login via OTP */}
-                <div className="flex justify-center items-center gap-4 text-center">
+                <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 text-center">
                   <button 
                     onClick={handleForgotPassword}
                     className="text-rose-600 hover:text-rose-700 hover:underline text-sm font-medium"
                   >
                     Forgot Password?
                   </button>
-                  <span className="text-gray-400">|</span>
+                  <span className="text-gray-400 hidden sm:inline">|</span>
                   <button 
                     onClick={handleLoginViaOTP}
                     className="text-rose-600 hover:text-rose-700 hover:underline text-sm font-medium"
