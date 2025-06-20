@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
@@ -26,23 +25,6 @@ const HeroSection = () => {
                 alt="Patient receiving care"
                 className="w-full h-full object-cover"
               />
-            </div>
-
-            {/* Small Patient Card - Bottom Left */}
-            <div className="absolute -bottom-2 -left-4 bg-white rounded-lg shadow-lg p-3 max-w-[200px]">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=150&h=150&q=80" 
-                    alt="Recovered patient"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div>
-                  <p className="text-xs font-semibold text-gray-800">Rahul Kumar</p>
-                  <p className="text-xs text-green-600">✓ Fully Recovered</p>
-                </div>
-              </div>
             </div>
             
             {/* Bottom Card */}
