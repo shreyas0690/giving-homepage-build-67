@@ -19,6 +19,7 @@ const StartFundraiserModal = ({ open, onOpenChange }: StartFundraiserModalProps)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [mobile, setMobile] = useState('');
+  const [country, setCountry] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
   const isHindi = language === 'hindi';
@@ -26,7 +27,6 @@ const StartFundraiserModal = ({ open, onOpenChange }: StartFundraiserModalProps)
   const translations = {
     english: {
       title: "Start your fundraiser",
-      selectLanguage: "Select Language",
       purpose: "Purpose of raising funds",
       medicalTreatment: "Medical Treatment",
       cancer: "Cancer",
@@ -37,13 +37,14 @@ const StartFundraiserModal = ({ open, onOpenChange }: StartFundraiserModalProps)
       createPassword: "Create a Password",
       mobile: "Mobile",
       validNumber: "Please enter a valid number",
+      country: "Country",
+      selectCountry: "Select Country",
       alreadyAccount: "Already have an account?",
       login: "Login",
       next: "Next"
     },
     hindi: {
       title: "अपना फंडरेज़र शुरू करें",
-      selectLanguage: "भाषा चुनें",
       purpose: "फंड जुटाने का उद्देश्य",
       medicalTreatment: "चिकित्सा उपचार",
       cancer: "कैंसर",
@@ -54,6 +55,8 @@ const StartFundraiserModal = ({ open, onOpenChange }: StartFundraiserModalProps)
       createPassword: "पासवर्ड बनाएं",
       mobile: "मोबाइल",
       validNumber: "कृपया एक वैध नंबर दर्ज करें",
+      country: "देश",
+      selectCountry: "देश चुनें",
       alreadyAccount: "क्या आपका पहले से खाता है?",
       login: "लॉगिन",
       next: "अगला"
@@ -62,60 +65,66 @@ const StartFundraiserModal = ({ open, onOpenChange }: StartFundraiserModalProps)
 
   const t = translations[language as keyof typeof translations];
 
+  const countries = [
+    { value: 'in', label: 'India', flag: '🇮🇳' },
+    { value: 'us', label: 'United States', flag: '🇺🇸' },
+    { value: 'uk', label: 'United Kingdom', flag: '🇬🇧' },
+    { value: 'ca', label: 'Canada', flag: '🇨🇦' },
+    { value: 'au', label: 'Australia', flag: '🇦🇺' },
+    { value: 'de', label: 'Germany', flag: '🇩🇪' },
+    { value: 'fr', label: 'France', flag: '🇫🇷' },
+    { value: 'jp', label: 'Japan', flag: '🇯🇵' },
+    { value: 'br', label: 'Brazil', flag: '🇧🇷' },
+    { value: 'mx', label: 'Mexico', flag: '🇲🇽' }
+  ];
+
   const handleNext = () => {
-    console.log('Form submitted:', { purpose, name, email, password, mobile });
+    console.log('Form submitted:', { purpose, name, email, password, mobile, country });
     // Handle form submission
   };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md w-full mx-4 p-0 gap-0 bg-white max-h-[90vh] overflow-y-auto rounded-2xl">
+      <DialogContent className="sm:max-w-md w-full mx-4 p-0 gap-0 bg-white max-h-[90vh] overflow-y-auto">
         {/* Header with Language Toggle */}
-        <DialogHeader className="p-6 pb-4 text-center relative">
-          <button
-            onClick={() => onOpenChange(false)}
-            className="absolute right-6 top-6 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100"
-          >
-            <X className="h-4 w-4" />
-            <span className="sr-only">Close</span>
-          </button>
-          
-          {/* Language Selector */}
-          <div className="mb-4">
-            <Label className="text-gray-700 text-sm font-medium mb-2 block">
-              {t.selectLanguage}
-            </Label>
+        <DialogHeader className="p-4 pb-2 text-center relative border-b">
+          <div className="absolute left-4 top-4">
             <Select value={language} onValueChange={setLanguage}>
-              <SelectTrigger className="w-32 h-10 text-sm border border-gray-300 rounded-md bg-white mx-auto">
+              <SelectTrigger className="w-24 h-8 text-xs">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="bg-white border border-gray-300 rounded-md shadow-lg z-50">
+              <SelectContent>
                 <SelectItem value="english">English</SelectItem>
                 <SelectItem value="hindi">हिंदी</SelectItem>
               </SelectContent>
             </Select>
           </div>
           
-          <DialogTitle className="text-xl font-semibold text-gray-900">
+          <button
+            onClick={() => onOpenChange(false)}
+            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100"
+          >
+            <X className="h-4 w-4" />
+            <span className="sr-only">Close</span>
+          </button>
+          
+          <DialogTitle className="text-xl font-semibold text-gray-900 pt-2">
             {t.title}
           </DialogTitle>
         </DialogHeader>
 
-        {/* Divider Line */}
-        <div className="w-full h-px bg-gray-200"></div>
-
         {/* Form Content */}
-        <div className="px-6 py-6 space-y-5">
+        <div className="px-6 py-4 space-y-4">
           {/* Purpose Dropdown */}
           <div className="space-y-2">
-            <Label className="text-gray-700 text-sm font-medium">
+            <Label className="text-gray-600 text-sm font-medium">
               {t.purpose}
             </Label>
             <Select value={purpose} onValueChange={setPurpose}>
-              <SelectTrigger className="w-full border border-gray-300 rounded-md focus:border-rose-500 focus:ring-1 focus:ring-rose-500 bg-gray-50 h-11">
+              <SelectTrigger className="w-full border-gray-300 focus:border-rose-500 focus:ring-rose-500">
                 <SelectValue placeholder={t.medicalTreatment} />
               </SelectTrigger>
-              <SelectContent className="bg-white border border-gray-300 rounded-md shadow-lg z-50">
+              <SelectContent>
                 <SelectItem value="medical-treatment">{t.medicalTreatment}</SelectItem>
                 <SelectItem value="cancer">{t.cancer}</SelectItem>
               </SelectContent>
@@ -124,7 +133,7 @@ const StartFundraiserModal = ({ open, onOpenChange }: StartFundraiserModalProps)
 
           {/* Name Field */}
           <div className="space-y-2">
-            <Label htmlFor="name" className="text-gray-700 text-sm font-medium">
+            <Label htmlFor="name" className="text-gray-600 text-sm font-medium">
               {t.name} *
             </Label>
             <div className="relative">
@@ -133,7 +142,7 @@ const StartFundraiserModal = ({ open, onOpenChange }: StartFundraiserModalProps)
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full border border-gray-300 rounded-md focus:border-rose-500 focus:ring-1 focus:ring-rose-500 pr-10 h-11"
+                className="w-full border-gray-300 focus:border-rose-500 focus:ring-rose-500 pr-10"
                 placeholder=""
               />
               <User className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -152,7 +161,7 @@ const StartFundraiserModal = ({ open, onOpenChange }: StartFundraiserModalProps)
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full border border-gray-300 rounded-md focus:border-rose-500 focus:ring-1 focus:ring-rose-500 pr-10 h-11"
+                className="w-full border-gray-300 focus:border-rose-500 focus:ring-rose-500 pr-10"
                 placeholder=""
               />
               <Mail className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-rose-500" />
@@ -171,7 +180,7 @@ const StartFundraiserModal = ({ open, onOpenChange }: StartFundraiserModalProps)
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full border border-gray-300 rounded-md focus:border-rose-500 focus:ring-1 focus:ring-rose-500 pr-10 h-11"
+                className="w-full border-gray-300 focus:border-rose-500 focus:ring-rose-500 pr-10"
                 placeholder=""
               />
               <button
@@ -200,7 +209,7 @@ const StartFundraiserModal = ({ open, onOpenChange }: StartFundraiserModalProps)
                 type="tel"
                 value={mobile}
                 onChange={(e) => setMobile(e.target.value)}
-                className="w-full border border-gray-300 rounded-md focus:border-rose-500 focus:ring-1 focus:ring-rose-500 pr-10 h-11"
+                className="w-full border-gray-300 focus:border-rose-500 focus:ring-rose-500 pr-10"
                 placeholder=""
               />
               <Phone className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-rose-500" />
@@ -208,10 +217,32 @@ const StartFundraiserModal = ({ open, onOpenChange }: StartFundraiserModalProps)
             <p className="text-xs text-rose-500">{t.validNumber}</p>
           </div>
 
+          {/* Country Field */}
+          <div className="space-y-2">
+            <Label className="text-gray-600 text-sm font-medium">
+              {t.country}
+            </Label>
+            <Select value={country} onValueChange={setCountry}>
+              <SelectTrigger className="w-full border-gray-300 focus:border-rose-500 focus:ring-rose-500">
+                <SelectValue placeholder={t.selectCountry} />
+              </SelectTrigger>
+              <SelectContent>
+                {countries.map((country) => (
+                  <SelectItem key={country.value} value={country.value}>
+                    <span className="flex items-center gap-2">
+                      <span>{country.flag}</span>
+                      <span>{country.label}</span>
+                    </span>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
           {/* Login Link */}
           <div className="text-center text-sm text-gray-600 pt-4">
             {t.alreadyAccount}{' '}
-            <button className="text-rose-500 hover:text-rose-600 font-medium">
+            <button className="text-cyan-500 hover:text-cyan-600 font-medium">
               {t.login}
             </button>
           </div>
@@ -219,7 +250,7 @@ const StartFundraiserModal = ({ open, onOpenChange }: StartFundraiserModalProps)
           {/* Next Button */}
           <Button 
             onClick={handleNext}
-            className="w-full bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-medium py-3 rounded-lg mt-6 h-12"
+            className="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-medium py-3 rounded-lg mt-6"
           >
             {t.next}
           </Button>
