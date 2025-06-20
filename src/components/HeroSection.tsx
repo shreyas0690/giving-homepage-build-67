@@ -44,6 +44,18 @@ const HeroSection = () => {
                 </div>
               </div>
             </div>
+            
+            {/* Bottom Card */}
+            <div className="absolute -bottom-6 left-4 right-4 bg-white rounded-lg shadow-lg p-6">
+              <h3 className="text-lg font-bold text-gray-800 mb-2">Start Monthly Contribution to Save Lives</h3>
+              <p className="text-sm text-gray-600 mb-4">
+                With your support, countless children will receive health care and a happy life. Start your monthly contribution today.
+              </p>
+              <Button className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white">
+                Contribute Now
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </div>
           </div>
 
           {/* Right Content */}
