@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import SignInModal from "@/components/SignInModal";
 import StartFundraiserModal from "@/components/StartFundraiserModal";
+import FundraiserCreationModal from "@/components/FundraiserCreationModal";
 import UserProfile from "@/components/UserProfile";
 import { useAuth } from "@/contexts/AuthContext";
 import { Search } from 'lucide-react';
@@ -28,16 +29,21 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
   const [isStartFundraiserModalOpen, setIsStartFundraiserModalOpen] = useState(false);
+  const [isFundraiserCreationModalOpen, setIsFundraiserCreationModalOpen] = useState(false);
   const { isAuthenticated, user, signOut } = useAuth();
 
   const handleOpenSignIn = () => {
     setIsSignInModalOpen(true);
-    setIsMenuOpen(false); // Close mobile menu when opening modal
+    setIsMenuOpen(false);
   };
 
   const handleOpenStartFundraiser = () => {
-    setIsStartFundraiserModalOpen(true);
-    setIsMenuOpen(false); // Close mobile menu when opening modal
+    if (isAuthenticated) {
+      setIsFundraiserCreationModalOpen(true);
+    } else {
+      setIsStartFundraiserModalOpen(true);
+    }
+    setIsMenuOpen(false);
   };
 
   const handleSignOut = () => {
@@ -272,11 +278,17 @@ const Header = () => {
         onOpenStartFundraiser={handleOpenStartFundraiser}
       />
 
-      {/* Start Fundraiser Modal */}
+      {/* Start Fundraiser Modal - for non-authenticated users */}
       <StartFundraiserModal 
         open={isStartFundraiserModalOpen} 
         onOpenChange={setIsStartFundraiserModalOpen}
         onOpenSignIn={handleOpenSignIn}
+      />
+
+      {/* Fundraiser Creation Modal - for authenticated users */}
+      <FundraiserCreationModal 
+        open={isFundraiserCreationModalOpen} 
+        onOpenChange={setIsFundraiserCreationModalOpen} 
       />
     </>
   );

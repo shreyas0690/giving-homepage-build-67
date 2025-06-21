@@ -1,9 +1,10 @@
-
 import { useState } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { PlusCircle, Share2, DollarSign, ArrowRight, Users, TrendingUp } from "lucide-react";
 import FundraiserCreationModal from "@/components/FundraiserCreationModal";
+import StartFundraiserModal from "@/components/StartFundraiserModal";
+import { useAuth } from "@/contexts/AuthContext";
 
 const steps = [{
   icon: PlusCircle,
@@ -27,6 +28,16 @@ const steps = [{
 
 const StartFundraiser = () => {
   const [isFundraiserCreationModalOpen, setIsFundraiserCreationModalOpen] = useState(false);
+  const [isStartFundraiserModalOpen, setIsStartFundraiserModalOpen] = useState(false);
+  const { isAuthenticated } = useAuth();
+
+  const handleStartFundraiser = () => {
+    if (isAuthenticated) {
+      setIsFundraiserCreationModalOpen(true);
+    } else {
+      setIsStartFundraiserModalOpen(true);
+    }
+  };
 
   return (
     <>
@@ -125,7 +136,7 @@ const StartFundraiser = () => {
                   <Button 
                     size="lg"
                     className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-semibold px-8 py-4 rounded-full shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200 text-lg h-14"
-                    onClick={() => setIsFundraiserCreationModalOpen(true)}
+                    onClick={handleStartFundraiser}
                   >
                     <PlusCircle className="h-5 w-5 mr-2" />
                     Start Your Fundraiser
@@ -158,10 +169,16 @@ const StartFundraiser = () => {
         </div>
       </section>
 
-      {/* Fundraiser Creation Modal */}
+      {/* Fundraiser Creation Modal - for authenticated users */}
       <FundraiserCreationModal 
         open={isFundraiserCreationModalOpen} 
         onOpenChange={setIsFundraiserCreationModalOpen} 
+      />
+
+      {/* Start Fundraiser Modal - for non-authenticated users */}
+      <StartFundraiserModal 
+        open={isStartFundraiserModalOpen} 
+        onOpenChange={setIsStartFundraiserModalOpen} 
       />
     </>
   );
