@@ -139,16 +139,23 @@ const Header = () => {
             <div className="hidden md:flex items-center space-x-4">
               {isAuthenticated && user ? (
                 <>
-                  <UserProfile user={user} onSignOut={handleSignOut} />
                   <Button 
                     className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 font-medium px-6"
                     onClick={handleOpenStartFundraiser}
                   >
                     Start Fundraiser
                   </Button>
+                  <UserProfile user={user} onSignOut={handleSignOut} />
                 </>
               ) : (
                 <>
+                  <Button 
+                    className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 font-medium px-6"
+                    onClick={handleOpenStartFundraiser}
+                  >
+                    Start Fundraiser
+                  </Button>
+                  
                   <Button 
                     variant="outline" 
                     size="sm" 
@@ -157,13 +164,6 @@ const Header = () => {
                   >
                     <User className="h-4 w-4 mr-2" />
                     Sign In
-                  </Button>
-                  
-                  <Button 
-                    className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 font-medium px-6"
-                    onClick={handleOpenStartFundraiser}
-                  >
-                    Start Fundraiser
                   </Button>
                 </>
               )}
@@ -229,6 +229,13 @@ const Header = () => {
                         </div>
                       </div>
                       <Button 
+                        size="lg"
+                        className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 font-medium w-full h-12 text-base"
+                        onClick={handleOpenStartFundraiser}
+                      >
+                        Start Fundraiser
+                      </Button>
+                      <Button 
                         variant="outline" 
                         size="lg" 
                         onClick={handleSignOut}
@@ -236,6 +243,9 @@ const Header = () => {
                       >
                         Sign Out
                       </Button>
+                    </>
+                  ) : (
+                    <>
                       <Button 
                         size="lg"
                         className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 font-medium w-full h-12 text-base"
@@ -243,9 +253,6 @@ const Header = () => {
                       >
                         Start Fundraiser
                       </Button>
-                    </>
-                  ) : (
-                    <>
                       <Button 
                         variant="outline" 
                         size="lg" 
@@ -254,13 +261,6 @@ const Header = () => {
                       >
                         <User className="h-5 w-5 mr-2" />
                         Sign In
-                      </Button>
-                      <Button 
-                        size="lg"
-                        className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 font-medium w-full h-12 text-base"
-                        onClick={handleOpenStartFundraiser}
-                      >
-                        Start Fundraiser
                       </Button>
                     </>
                   )}
