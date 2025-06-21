@@ -2,10 +2,9 @@
 import { useState } from 'react';
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
-import { Heart, DollarSign, Users, FileText, Target, MapPin, Calendar, Phone, User, GraduationCap, Briefcase, Radio } from "lucide-react";
+import { Heart, Users, GraduationCap, Briefcase, Radio, ImagePlus } from "lucide-react";
 
 interface FundraiserBasicFormProps {
   formData: any;
@@ -71,6 +70,22 @@ const hearAboutOptions = [
 ];
 
 const FundraiserBasicForm = ({ formData, onInputChange, errors }: FundraiserBasicFormProps) => {
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setSelectedImage(file);
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImagePreview(e.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+      onInputChange('fundraiserImage', file.name);
+    }
+  };
+
   return (
     <div className="space-y-4">
       {/* Purpose Display */}
@@ -88,17 +103,76 @@ const FundraiserBasicForm = ({ formData, onInputChange, errors }: FundraiserBasi
         </CardContent>
       </Card>
 
+      {/* Add Fundraiser Image */}
+      <div className="space-y-2">
+        <Label className="text-sm font-medium text-gray-900 flex items-center gap-2">
+          <ImagePlus className="h-4 w-4 text-rose-500" />
+          Add Fundraiser Image *
+        </Label>
+        <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-rose-400 transition-colors">
+          {imagePreview ? (
+            <div className="space-y-3">
+              <img 
+                src={imagePreview} 
+                alt="Fundraiser preview" 
+                className="mx-auto max-h-48 rounded-lg object-cover"
+              />
+              <div className="text-sm text-gray-600">
+                {selectedImage?.name}
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setSelectedImage(null);
+                  setImagePreview(null);
+                  onInputChange('fundraiserImage', '');
+                }}
+                className="text-rose-500 hover:text-rose-700 text-sm font-medium"
+              >
+                Remove Image
+              </button>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              <ImagePlus className="h-12 w-12 text-gray-400 mx-auto" />
+              <div>
+                <p className="text-gray-600 mb-2">
+                  Upload an image for your fundraiser
+                </p>
+                <Input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  className="hidden"
+                  id="fundraiser-image"
+                />
+                <label
+                  htmlFor="fundraiser-image"
+                  className="inline-flex items-center px-4 py-2 bg-rose-500 text-white rounded-lg hover:bg-rose-600 cursor-pointer transition-colors"
+                >
+                  Choose Image
+                </label>
+              </div>
+              <p className="text-xs text-gray-500">
+                Recommended: 16:9 aspect ratio, max 5MB
+              </p>
+            </div>
+          )}
+        </div>
+        {errors.fundraiserImage && <p className="text-red-500 text-xs">{errors.fundraiserImage}</p>}
+      </div>
+
       {/* Goal Amount */}
       <div className="space-y-2">
         <Label className="text-sm font-medium text-gray-900 flex items-center gap-2">
-          <DollarSign className="h-4 w-4 text-rose-500" />
+          <Heart className="h-4 w-4 text-rose-500" />
           How much do you want to raise? *
         </Label>
         <div className="relative">
           <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">₹</span>
           <Input
             type="number"
-            placeholder="Should be minimum 1 2000"
+            placeholder="Should be minimum ₹2000"
             value={formData.goalAmount}
             onChange={(e) => onInputChange('goalAmount', e.target.value)}
             className={`pl-8 h-10 border ${
@@ -107,41 +181,6 @@ const FundraiserBasicForm = ({ formData, onInputChange, errors }: FundraiserBasi
           />
         </div>
         {errors.goalAmount && <p className="text-red-500 text-xs">{errors.goalAmount}</p>}
-      </div>
-
-      {/* Patient Name */}
-      <div className="space-y-2">
-        <Label className="text-sm font-medium text-gray-900 flex items-center gap-2">
-          <User className="h-4 w-4 text-rose-500" />
-          Patient Name *
-        </Label>
-        <Input
-          placeholder="Enter patient's full name"
-          value={formData.patientName}
-          onChange={(e) => onInputChange('patientName', e.target.value)}
-          className={`h-10 border ${
-            errors.patientName ? 'border-red-400' : 'border-gray-300'
-          } focus:border-rose-500`}
-        />
-        {errors.patientName && <p className="text-red-500 text-xs">{errors.patientName}</p>}
-      </div>
-
-      {/* Age */}
-      <div className="space-y-2">
-        <Label className="text-sm font-medium text-gray-900 flex items-center gap-2">
-          <Calendar className="h-4 w-4 text-rose-500" />
-          Patient Age *
-        </Label>
-        <Input
-          type="number"
-          placeholder="Enter age"
-          value={formData.patientAge}
-          onChange={(e) => onInputChange('patientAge', e.target.value)}
-          className={`h-10 border ${
-            errors.patientAge ? 'border-red-400' : 'border-gray-300'
-          } focus:border-rose-500`}
-        />
-        {errors.patientAge && <p className="text-red-500 text-xs">{errors.patientAge}</p>}
       </div>
 
       {/* Patient Relationship */}
@@ -234,96 +273,6 @@ const FundraiserBasicForm = ({ formData, onInputChange, errors }: FundraiserBasi
           </SelectContent>
         </Select>
         {errors.hearAbout && <p className="text-red-500 text-xs">{errors.hearAbout}</p>}
-      </div>
-
-      {/* Hospital/City */}
-      <div className="space-y-2">
-        <Label className="text-sm font-medium text-gray-900 flex items-center gap-2">
-          <MapPin className="h-4 w-4 text-rose-500" />
-          Hospital/City *
-        </Label>
-        <Input
-          placeholder="Hospital name or city"
-          value={formData.hospitalCity}
-          onChange={(e) => onInputChange('hospitalCity', e.target.value)}
-          className={`h-10 border ${
-            errors.hospitalCity ? 'border-red-400' : 'border-gray-300'
-          } focus:border-rose-500`}
-        />
-        {errors.hospitalCity && <p className="text-red-500 text-xs">{errors.hospitalCity}</p>}
-      </div>
-
-      {/* Title */}
-      <div className="space-y-2">
-        <Label className="text-sm font-medium text-gray-900 flex items-center gap-2">
-          <FileText className="h-4 w-4 text-rose-500" />
-          Fundraiser Title *
-        </Label>
-        <Input
-          placeholder="e.g., Help Save Arya's Life - Medical Treatment"
-          value={formData.title}
-          onChange={(e) => onInputChange('title', e.target.value)}
-          className={`h-10 border ${
-            errors.title ? 'border-red-400' : 'border-gray-300'
-          } focus:border-rose-500`}
-        />
-        {errors.title && <p className="text-red-500 text-xs">{errors.title}</p>}
-      </div>
-
-      {/* Brief Description */}
-      <div className="space-y-2">
-        <Label className="text-sm font-medium text-gray-900 flex items-center gap-2">
-          <FileText className="h-4 w-4 text-rose-500" />
-          Brief Description *
-        </Label>
-        <Textarea
-          placeholder="Brief description about the medical condition and need..."
-          value={formData.briefDescription}
-          onChange={(e) => onInputChange('briefDescription', e.target.value)}
-          className={`min-h-[80px] border ${
-            errors.briefDescription ? 'border-red-400' : 'border-gray-300'
-          } focus:border-rose-500 resize-none`}
-        />
-        {errors.briefDescription && <p className="text-red-500 text-xs">{errors.briefDescription}</p>}
-      </div>
-
-      {/* Urgency */}
-      <div className="space-y-2">
-        <Label className="text-sm font-medium text-gray-900 flex items-center gap-2">
-          <Target className="h-4 w-4 text-rose-500" />
-          Urgency Level *
-        </Label>
-        <Select value={formData.urgency} onValueChange={(value) => onInputChange('urgency', value)}>
-          <SelectTrigger className={`h-10 border ${
-            errors.urgency ? 'border-red-400' : 'border-gray-300'
-          } focus:border-rose-500`}>
-            <SelectValue placeholder="Select urgency" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="critical">Critical - Life threatening</SelectItem>
-            <SelectItem value="urgent">Urgent - Few weeks needed</SelectItem>
-            <SelectItem value="moderate">Moderate - Can wait</SelectItem>
-          </SelectContent>
-        </Select>
-        {errors.urgency && <p className="text-red-500 text-xs">{errors.urgency}</p>}
-      </div>
-
-      {/* Contact Number */}
-      <div className="space-y-2">
-        <Label className="text-sm font-medium text-gray-900 flex items-center gap-2">
-          <Phone className="h-4 w-4 text-rose-500" />
-          Contact Number *
-        </Label>
-        <Input
-          type="tel"
-          placeholder="Enter mobile number"
-          value={formData.contactNumber}
-          onChange={(e) => onInputChange('contactNumber', e.target.value)}
-          className={`h-10 border ${
-            errors.contactNumber ? 'border-red-400' : 'border-gray-300'
-          } focus:border-rose-500`}
-        />
-        {errors.contactNumber && <p className="text-red-500 text-xs">{errors.contactNumber}</p>}
       </div>
     </div>
   );
