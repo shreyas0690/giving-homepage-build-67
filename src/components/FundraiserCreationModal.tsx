@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -29,6 +30,12 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
     employmentStatus: '',
     hearAbout: '',
     fundraiserImage: '',
+    patientName: '',
+    patientAge: '',
+    medicalCondition: '',
+    hospitalizationStatus: '',
+    hospital: '',
+    city: '',
     fullStory: '',
   });
 
@@ -53,6 +60,12 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
   const validateStep2 = () => {
     const newErrors: Record<string, string> = {};
     
+    if (!formData.patientName?.trim()) newErrors.patientName = 'Patient name is required';
+    if (!formData.patientAge) newErrors.patientAge = 'Patient age is required';
+    if (!formData.medicalCondition) newErrors.medicalCondition = 'Medical condition is required';
+    if (!formData.hospitalizationStatus) newErrors.hospitalizationStatus = 'Hospitalization status is required';
+    if (!formData.hospital) newErrors.hospital = 'Hospital is required';
+    if (!formData.city?.trim()) newErrors.city = 'City is required';
     if (!formData.fullStory.trim()) newErrors.fullStory = 'Story is required';
     else if (formData.fullStory.length < 200) {
       newErrors.fullStory = 'Story must be at least 200 characters';
@@ -108,6 +121,12 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
         employmentStatus: '',
         hearAbout: '',
         fundraiserImage: '',
+        patientName: '',
+        patientAge: '',
+        medicalCondition: '',
+        hospitalizationStatus: '',
+        hospital: '',
+        city: '',
         fullStory: '',
       });
       setErrors({});
@@ -153,7 +172,7 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
             </div>
             
             <DialogTitle className="text-xl font-bold text-gray-900">
-              {currentStep === 1 ? "Tell us more about your Fundraiser" : "Your Story"}
+              {currentStep === 1 ? "Tell us more about your Fundraiser" : "Tell us about the patient"}
             </DialogTitle>
             
             <Progress value={getStepProgress()} className="w-full h-2 mt-3" />
