@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -41,6 +40,8 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
       newErrors.goalAmount = 'Minimum ₹2,000 required';
     }
     if (!formData.patientRelation) newErrors.patientRelation = 'Patient relationship is required';
+    if (!formData.title.trim()) newErrors.title = 'Title is required';
+    if (!formData.urgency) newErrors.urgency = 'Urgency level is required';
     
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -49,12 +50,10 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
   const validateStep2 = () => {
     const newErrors: Record<string, string> = {};
     
-    if (!formData.title.trim()) newErrors.title = 'Title is required';
     if (!formData.fullStory.trim()) newErrors.fullStory = 'Story is required';
     else if (formData.fullStory.length < 200) {
       newErrors.fullStory = 'Story must be at least 200 characters';
     }
-    if (!formData.urgency) newErrors.urgency = 'Urgency level is required';
     
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -149,7 +148,7 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
             </div>
             
             <DialogTitle className="text-xl font-bold text-gray-900">
-              {currentStep === 1 ? "Basic Details" : "Your Story"}
+              {currentStep === 1 ? "Fundraiser Details" : "Your Story"}
             </DialogTitle>
             
             <Progress value={getStepProgress()} className="w-full h-2 mt-3" />

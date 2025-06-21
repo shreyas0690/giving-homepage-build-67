@@ -4,7 +4,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
-import { Heart, DollarSign, Users } from "lucide-react";
+import { Heart, DollarSign, Users, FileText, Target } from "lucide-react";
 
 interface FundraiserBasicFormProps {
   formData: any;
@@ -86,6 +86,44 @@ const FundraiserBasicForm = ({ formData, onInputChange, errors }: FundraiserBasi
           </SelectContent>
         </Select>
         {errors.patientRelation && <p className="text-red-500 text-xs">{errors.patientRelation}</p>}
+      </div>
+
+      {/* Title */}
+      <div className="space-y-2">
+        <Label className="text-sm font-medium text-gray-900 flex items-center gap-2">
+          <FileText className="h-4 w-4 text-rose-500" />
+          Fundraiser Title *
+        </Label>
+        <Input
+          placeholder="e.g., Help Save Arya's Life - Medical Treatment"
+          value={formData.title}
+          onChange={(e) => onInputChange('title', e.target.value)}
+          className={`h-10 border ${
+            errors.title ? 'border-red-400' : 'border-gray-300'
+          } focus:border-rose-500`}
+        />
+        {errors.title && <p className="text-red-500 text-xs">{errors.title}</p>}
+      </div>
+
+      {/* Urgency */}
+      <div className="space-y-2">
+        <Label className="text-sm font-medium text-gray-900 flex items-center gap-2">
+          <Target className="h-4 w-4 text-rose-500" />
+          Urgency Level *
+        </Label>
+        <Select value={formData.urgency} onValueChange={(value) => onInputChange('urgency', value)}>
+          <SelectTrigger className={`h-10 border ${
+            errors.urgency ? 'border-red-400' : 'border-gray-300'
+          } focus:border-rose-500`}>
+            <SelectValue placeholder="Select urgency" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="critical">Critical - Life threatening</SelectItem>
+            <SelectItem value="urgent">Urgent - Few weeks needed</SelectItem>
+            <SelectItem value="moderate">Moderate - Can wait</SelectItem>
+          </SelectContent>
+        </Select>
+        {errors.urgency && <p className="text-red-500 text-xs">{errors.urgency}</p>}
       </div>
     </div>
   );
