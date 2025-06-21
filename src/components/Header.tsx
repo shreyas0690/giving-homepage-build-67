@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Menu, X, User, ChevronDown } from "lucide-react";
@@ -19,12 +20,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 import SignInModal from "@/components/SignInModal";
 import StartFundraiserModal from "@/components/StartFundraiserModal";
+import UserProfile from "@/components/UserProfile";
+import { useAuth } from "@/contexts/AuthContext";
 import { Search } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
   const [isStartFundraiserModalOpen, setIsStartFundraiserModalOpen] = useState(false);
+  const { isAuthenticated, user, signOut } = useAuth();
 
   const handleOpenSignIn = () => {
     setIsSignInModalOpen(true);
@@ -34,6 +38,11 @@ const Header = () => {
   const handleOpenStartFundraiser = () => {
     setIsStartFundraiserModalOpen(true);
     setIsMenuOpen(false); // Close mobile menu when opening modal
+  };
+
+  const handleSignOut = () => {
+    signOut();
+    setIsMenuOpen(false);
   };
 
   return (
@@ -122,24 +131,36 @@ const Header = () => {
 
             {/* Desktop Actions */}
             <div className="hidden md:flex items-center space-x-4">
-              
-              
-              <Button 
-                variant="outline" 
-                size="sm" 
-                onClick={handleOpenSignIn}
-                className="border-2 border-rose-200 text-rose-600 hover:bg-rose-50 hover:border-rose-300 font-medium px-6 transition-all duration-200"
-              >
-                <User className="h-4 w-4 mr-2" />
-                Sign In
-              </Button>
-              
-              <Button 
-                className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 font-medium px-6"
-                onClick={handleOpenStartFundraiser}
-              >
-                Start Fundraiser
-              </Button>
+              {isAuthenticated && user ? (
+                <>
+                  <UserProfile user={user} onSignOut={handleSignOut} />
+                  <Button 
+                    className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 font-medium px-6"
+                    onClick={handleOpenStartFundraiser}
+                  >
+                    Start Fundraiser
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    onClick={handleOpenSignIn}
+                    className="border-2 border-rose-200 text-rose-600 hover:bg-rose-50 hover:border-rose-300 font-medium px-6 transition-all duration-200"
+                  >
+                    <User className="h-4 w-4 mr-2" />
+                    Sign In
+                  </Button>
+                  
+                  <Button 
+                    className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 font-medium px-6"
+                    onClick={handleOpenStartFundraiser}
+                  >
+                    Start Fundraiser
+                  </Button>
+                </>
+              )}
             </div>
 
             {/* Mobile menu button */}
@@ -190,22 +211,53 @@ const Header = () => {
                 
                 {/* Mobile Action Buttons */}
                 <div className="flex flex-col space-y-3 pt-4 border-t border-gray-100">
-                  <Button 
-                    variant="outline" 
-                    size="lg" 
-                    onClick={handleOpenSignIn}
-                    className="border-2 border-rose-200 text-rose-600 hover:bg-rose-50 font-medium w-full h-12 text-base"
-                  >
-                    <User className="h-5 w-5 mr-2" />
-                    Sign In
-                  </Button>
-                  <Button 
-                    size="lg"
-                    className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 font-medium w-full h-12 text-base"
-                    onClick={handleOpenStartFundraiser}
-                  >
-                    Start Fundraiser
-                  </Button>
+                  {isAuthenticated && user ? (
+                    <>
+                      <div className="flex items-center gap-3 p-3 bg-rose-50 rounded-lg">
+                        <div className="w-10 h-10 bg-gradient-to-r from-rose-500 to-pink-600 rounded-full flex items-center justify-center text-white font-medium text-sm">
+                          {user.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)}
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-gray-900">{user.name}</p>
+                          <p className="text-xs text-gray-500">{user.email}</p>
+                        </div>
+                      </div>
+                      <Button 
+                        variant="outline" 
+                        size="lg" 
+                        onClick={handleSignOut}
+                        className="border-2 border-red-200 text-red-600 hover:bg-red-50 font-medium w-full h-12 text-base"
+                      >
+                        Sign Out
+                      </Button>
+                      <Button 
+                        size="lg"
+                        className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 font-medium w-full h-12 text-base"
+                        onClick={handleOpenStartFundraiser}
+                      >
+                        Start Fundraiser
+                      </Button>
+                    </>
+                  ) : (
+                    <>
+                      <Button 
+                        variant="outline" 
+                        size="lg" 
+                        onClick={handleOpenSignIn}
+                        className="border-2 border-rose-200 text-rose-600 hover:bg-rose-50 font-medium w-full h-12 text-base"
+                      >
+                        <User className="h-5 w-5 mr-2" />
+                        Sign In
+                      </Button>
+                      <Button 
+                        size="lg"
+                        className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 font-medium w-full h-12 text-base"
+                        onClick={handleOpenStartFundraiser}
+                      >
+                        Start Fundraiser
+                      </Button>
+                    </>
+                  )}
                 </div>
               </div>
             </div>

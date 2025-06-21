@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { X, ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/contexts/AuthContext";
 import ForgotPasswordModal from "@/components/ForgotPasswordModal";
 import MobileVerificationModal from "@/components/MobileVerificationModal";
 import EmailVerificationModal from "@/components/EmailVerificationModal";
@@ -25,6 +26,7 @@ const SignInModal = ({ open, onOpenChange, onOpenStartFundraiser }: SignInModalP
   const [isLoading, setIsLoading] = useState(false);
   const [countryCode, setCountryCode] = useState('+91');
   const { toast } = useToast();
+  const { signIn } = useAuth();
 
   // Function to detect if input is mobile number
   const isMobileNumber = (input: string) => {
@@ -36,6 +38,24 @@ const SignInModal = ({ open, onOpenChange, onOpenStartFundraiser }: SignInModalP
   const isEmail = (input: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(input);
+  };
+
+  // Function to simulate successful login
+  const handleSuccessfulLogin = (userIdentifier: string) => {
+    const userData = {
+      name: userIdentifier.includes('@') ? 'John Doe' : 'राहुल शर्मा',
+      email: userIdentifier.includes('@') ? userIdentifier : `${userIdentifier}@example.com`,
+      avatar: undefined
+    };
+    
+    signIn(userData);
+    onOpenChange(false);
+    resetForm();
+    
+    toast({
+      title: "Login Successful",
+      description: `Welcome to Varak! You're now signed in as ${userData.name}`,
+    });
   };
 
   const handleGetOTP = async () => {
@@ -126,12 +146,7 @@ const SignInModal = ({ open, onOpenChange, onOpenStartFundraiser }: SignInModalP
       
       if (isValidLogin) {
         console.log('Password login successful for:', cleanInput);
-        toast({
-          title: "Login Successful",
-          description: `Welcome back! Logged in as ${cleanInput}`,
-        });
-        onOpenChange(false);
-        resetForm();
+        handleSuccessfulLogin(cleanInput);
       } else {
         toast({
           title: "Login Failed",
@@ -151,12 +166,7 @@ const SignInModal = ({ open, onOpenChange, onOpenStartFundraiser }: SignInModalP
     
     // Simulate Google OAuth flow
     setTimeout(() => {
-      toast({
-        title: "Google Login Successful",
-        description: "Successfully signed in with Google account",
-      });
-      onOpenChange(false);
-      resetForm();
+      handleSuccessfulLogin('john.doe@gmail.com');
     }, 2000);
   };
 
@@ -177,20 +187,12 @@ const SignInModal = ({ open, onOpenChange, onOpenStartFundraiser }: SignInModalP
 
   const handleMobileVerificationComplete = () => {
     setIsMobileVerificationOpen(false);
-    toast({
-      title: "Login Successful",
-      description: "Mobile number verified successfully! You are now logged in.",
-    });
-    resetForm();
+    handleSuccessfulLogin(emailOrMobile);
   };
 
   const handleEmailVerificationComplete = () => {
     setIsEmailVerificationOpen(false);
-    toast({
-      title: "Login Successful",
-      description: "Email verified successfully! You are now logged in.",
-    });
-    resetForm();
+    handleSuccessfulLogin(emailOrMobile);
   };
 
   const handleMobileVerificationBack = () => {
