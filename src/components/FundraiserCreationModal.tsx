@@ -23,11 +23,16 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
   const { toast } = useToast();
   
   const [formData, setFormData] = useState({
-    goalAmount: '',
+    patientName: '',
+    patientAge: '',
     patientRelation: '',
+    hospitalCity: '',
+    goalAmount: '',
     title: '',
-    fullStory: '',
+    briefDescription: '',
     urgency: '',
+    contactNumber: '',
+    fullStory: '',
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -35,13 +40,27 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
   const validateStep1 = () => {
     const newErrors: Record<string, string> = {};
     
+    if (!formData.patientName.trim()) newErrors.patientName = 'Patient name is required';
+    if (!formData.patientAge) newErrors.patientAge = 'Patient age is required';
+    else if (Number(formData.patientAge) < 1 || Number(formData.patientAge) > 120) {
+      newErrors.patientAge = 'Please enter a valid age';
+    }
+    if (!formData.patientRelation) newErrors.patientRelation = 'Patient relationship is required';
+    if (!formData.hospitalCity.trim()) newErrors.hospitalCity = 'Hospital/City is required';
     if (!formData.goalAmount) newErrors.goalAmount = 'Goal amount is required';
     else if (Number(formData.goalAmount) < 2000) {
       newErrors.goalAmount = 'Minimum ₹2,000 required';
     }
-    if (!formData.patientRelation) newErrors.patientRelation = 'Patient relationship is required';
     if (!formData.title.trim()) newErrors.title = 'Title is required';
+    if (!formData.briefDescription.trim()) newErrors.briefDescription = 'Brief description is required';
+    else if (formData.briefDescription.length < 50) {
+      newErrors.briefDescription = 'Description must be at least 50 characters';
+    }
     if (!formData.urgency) newErrors.urgency = 'Urgency level is required';
+    if (!formData.contactNumber.trim()) newErrors.contactNumber = 'Contact number is required';
+    else if (!/^\d{10}$/.test(formData.contactNumber.replace(/\D/g, ''))) {
+      newErrors.contactNumber = 'Please enter a valid 10-digit mobile number';
+    }
     
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -99,11 +118,16 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
       
       setCurrentStep(1);
       setFormData({
-        goalAmount: '',
+        patientName: '',
+        patientAge: '',
         patientRelation: '',
+        hospitalCity: '',
+        goalAmount: '',
         title: '',
-        fullStory: '',
+        briefDescription: '',
         urgency: '',
+        contactNumber: '',
+        fullStory: '',
       });
       setErrors({});
     }, 2000);
