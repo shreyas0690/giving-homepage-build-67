@@ -103,65 +103,6 @@ const FundraiserBasicForm = ({ formData, onInputChange, errors }: FundraiserBasi
         </CardContent>
       </Card>
 
-      {/* Add Fundraiser Image */}
-      <div className="space-y-2">
-        <Label className="text-sm font-medium text-gray-900 flex items-center gap-2">
-          <ImagePlus className="h-4 w-4 text-rose-500" />
-          Add Fundraiser Image *
-        </Label>
-        <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-rose-400 transition-colors">
-          {imagePreview ? (
-            <div className="space-y-3">
-              <img 
-                src={imagePreview} 
-                alt="Fundraiser preview" 
-                className="mx-auto max-h-48 rounded-lg object-cover"
-              />
-              <div className="text-sm text-gray-600">
-                {selectedImage?.name}
-              </div>
-              <button
-                type="button"
-                onClick={() => {
-                  setSelectedImage(null);
-                  setImagePreview(null);
-                  onInputChange('fundraiserImage', '');
-                }}
-                className="text-rose-500 hover:text-rose-700 text-sm font-medium"
-              >
-                Remove Image
-              </button>
-            </div>
-          ) : (
-            <div className="space-y-3">
-              <ImagePlus className="h-12 w-12 text-gray-400 mx-auto" />
-              <div>
-                <p className="text-gray-600 mb-2">
-                  Upload an image for your fundraiser
-                </p>
-                <Input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageUpload}
-                  className="hidden"
-                  id="fundraiser-image"
-                />
-                <label
-                  htmlFor="fundraiser-image"
-                  className="inline-flex items-center px-4 py-2 bg-rose-500 text-white rounded-lg hover:bg-rose-600 cursor-pointer transition-colors"
-                >
-                  Choose Image
-                </label>
-              </div>
-              <p className="text-xs text-gray-500">
-                Recommended: 16:9 aspect ratio, max 5MB
-              </p>
-            </div>
-          )}
-        </div>
-        {errors.fundraiserImage && <p className="text-red-500 text-xs">{errors.fundraiserImage}</p>}
-      </div>
-
       {/* Goal Amount */}
       <div className="space-y-2">
         <Label className="text-sm font-medium text-gray-900 flex items-center gap-2">
@@ -273,6 +214,65 @@ const FundraiserBasicForm = ({ formData, onInputChange, errors }: FundraiserBasi
           </SelectContent>
         </Select>
         {errors.hearAbout && <p className="text-red-500 text-xs">{errors.hearAbout}</p>}
+      </div>
+
+      {/* Add Fundraiser Image */}
+      <div className="space-y-2">
+        <Label className="text-sm font-medium text-gray-900 flex items-center gap-2">
+          <ImagePlus className="h-4 w-4 text-rose-500" />
+          Add Fundraiser Image
+        </Label>
+        <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-rose-400 transition-colors">
+          {imagePreview ? (
+            <div className="space-y-2">
+              <img 
+                src={imagePreview} 
+                alt="Fundraiser preview" 
+                className="mx-auto max-h-24 rounded-lg object-cover"
+              />
+              <div className="text-xs text-gray-600">
+                {selectedImage?.name}
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setSelectedImage(null);
+                  setImagePreview(null);
+                  onInputChange('fundraiserImage', '');
+                }}
+                className="text-rose-500 hover:text-rose-700 text-xs font-medium"
+              >
+                Remove Image
+              </button>
+            </div>
+          ) : (
+            <div className="space-y-2">
+              <ImagePlus className="h-8 w-8 text-gray-400 mx-auto" />
+              <div>
+                <p className="text-gray-600 mb-2 text-sm">
+                  Upload an image for your fundraiser
+                </p>
+                <Input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  className="hidden"
+                  id="fundraiser-image"
+                />
+                <label
+                  htmlFor="fundraiser-image"
+                  className="inline-flex items-center px-3 py-1.5 bg-rose-500 text-white rounded-lg hover:bg-rose-600 cursor-pointer transition-colors text-sm"
+                >
+                  Choose Image
+                </label>
+              </div>
+              <p className="text-xs text-gray-500">
+                Recommended: 16:9 aspect ratio, max 5MB
+              </p>
+            </div>
+          )}
+        </div>
+        {errors.fundraiserImage && <p className="text-red-500 text-xs">{errors.fundraiserImage}</p>}
       </div>
     </div>
   );

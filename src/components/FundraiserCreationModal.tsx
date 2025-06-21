@@ -45,7 +45,6 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
     if (!formData.educationQualification) newErrors.educationQualification = 'Education qualification is required';
     if (!formData.employmentStatus) newErrors.employmentStatus = 'Employment status is required';
     if (!formData.hearAbout) newErrors.hearAbout = 'Please tell us how you heard about us';
-    if (!formData.fundraiserImage) newErrors.fundraiserImage = 'Fundraiser image is required';
     
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
