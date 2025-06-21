@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -39,6 +38,63 @@ const categories = [
   { value: 'disaster', label: 'Disaster Relief', icon: Target },
 ];
 
+const patientRelationOptions = [
+  { value: 'self', label: 'Self' },
+  { value: 'father', label: 'Father' },
+  { value: 'mother', label: 'Mother' },
+  { value: 'grandfather', label: 'Grandfather' },
+  { value: 'grandmother', label: 'Grandmother' },
+  { value: 'husband', label: 'Husband' },
+  { value: 'wife', label: 'Wife' },
+  { value: 'son', label: 'Son' },
+  { value: 'daughter', label: 'Daughter' },
+  { value: 'twins', label: 'Twins' },
+  { value: 'grandson', label: 'Grandson' },
+  { value: 'brother', label: 'Brother' },
+  { value: 'sister', label: 'Sister' },
+  { value: 'friend', label: 'Friend' },
+  { value: 'friends_family', label: "Friend's Family" },
+  { value: 'cousin', label: 'Cousin' },
+  { value: 'uncle', label: 'Uncle' },
+  { value: 'aunt', label: 'Aunt' },
+  { value: 'nephew', label: 'Nephew' },
+  { value: 'niece', label: 'Niece' },
+  { value: 'colleague', label: 'Colleague' },
+  { value: 'relative', label: 'Relative' },
+  { value: 'legal_ward', label: 'Legal Ward' },
+  { value: 'other', label: 'Other' },
+];
+
+const educationOptions = [
+  { value: '10th_12th_pass', label: '10th/12th Pass' },
+  { value: 'graduate', label: 'Graduate' },
+  { value: 'postgraduate', label: 'Postgraduate (Masters, PhD, etc.)' },
+  { value: 'below_10th', label: 'Below 10th Pass' },
+];
+
+const employmentOptions = [
+  { value: 'salaried', label: 'Salaried' },
+  { value: 'self_employed', label: 'Self-Employed' },
+  { value: 'student', label: 'Student' },
+  { value: 'homemaker', label: 'Homemaker' },
+  { value: 'unemployed', label: 'Unemployed' },
+];
+
+const hearAboutOptions = [
+  { value: 'search_engine', label: 'Search Engine (google, etc)' },
+  { value: 'facebook', label: 'Facebook, Instagram Ad/Post' },
+  { value: 'twitter', label: 'Twitter Ad/Post' },
+  { value: 'youtube', label: 'Youtube Ad/Post' },
+  { value: 'hospital_brochure', label: 'brochure / Banner in Hospital' },
+  { value: 'hospital_staff', label: 'Recommended by Hospital Staff Member' },
+  { value: 'friend_family', label: 'Recommended by Friend / Family Member' },
+  { value: 'varak_representative', label: 'Varak Representative' },
+  { value: 'ngo', label: 'Recommended By NGO' },
+  { value: 'whatsapp', label: 'WhatsApp DM/Group' },
+  { value: 'influencer', label: 'Influencer / Content Creator' },
+  { value: 'media', label: 'Newspaper/TV/Billboard' },
+];
+
 const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModalProps) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -47,17 +103,20 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
   const { toast } = useToast();
   
   const [formData, setFormData] = useState({
-    // Step 1: Basic Info
-    title: '',
-    category: '',
+    // Step 1: Enhanced Basic Info
+    purpose: 'Medical Treatment',
     goalAmount: '',
-    description: '',
+    patientRelation: '',
+    education: '',
+    employment: '',
+    hearAbout: '',
+    images: [] as File[],
     
     // Step 2: Details
+    title: '',
     fullStory: '',
     beneficiary: '',
     urgency: '',
-    images: [] as File[],
     
     // Step 3: Personal Info (only for non-authenticated users)
     organizer: user?.name || '',
@@ -71,16 +130,14 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
   const validateStep1 = () => {
     const newErrors: Record<string, string> = {};
     
-    if (!formData.title.trim()) newErrors.title = 'Fundraiser title is required';
-    if (!formData.category) newErrors.category = 'Please select a category';
     if (!formData.goalAmount) newErrors.goalAmount = 'Goal amount is required';
-    else if (isNaN(Number(formData.goalAmount)) || Number(formData.goalAmount) < 1000) {
-      newErrors.goalAmount = 'Goal amount must be at least ₹1,000';
+    else if (isNaN(Number(formData.goalAmount)) || Number(formData.goalAmount) < 2000) {
+      newErrors.goalAmount = 'Goal amount must be at least ₹2,000';
     }
-    if (!formData.description.trim()) newErrors.description = 'Brief description is required';
-    else if (formData.description.length < 50) {
-      newErrors.description = 'Description must be at least 50 characters';
-    }
+    if (!formData.patientRelation) newErrors.patientRelation = 'Patient relationship is required';
+    if (!formData.education) newErrors.education = 'Education qualification is required';
+    if (!formData.employment) newErrors.employment = 'Employment status is required';
+    if (!formData.hearAbout) newErrors.hearAbout = 'Please tell us how you heard about Varak';
     
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -89,6 +146,7 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
   const validateStep2 = () => {
     const newErrors: Record<string, string> = {};
     
+    if (!formData.title.trim()) newErrors.title = 'Fundraiser title is required';
     if (!formData.fullStory.trim()) newErrors.fullStory = 'Full story is required';
     else if (formData.fullStory.length < 200) {
       newErrors.fullStory = 'Story must be at least 200 characters';
@@ -160,14 +218,17 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
       // Reset form
       setCurrentStep(1);
       setFormData({
-        title: '',
-        category: '',
+        purpose: 'Medical Treatment',
         goalAmount: '',
-        description: '',
+        patientRelation: '',
+        education: '',
+        employment: '',
+        hearAbout: '',
+        images: [],
+        title: '',
         fullStory: '',
         beneficiary: '',
         urgency: '',
-        images: [],
         organizer: user?.name || '',
         email: user?.email || '',
         phone: '',
@@ -192,10 +253,155 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
   const getStepProgress = () => (currentStep / 3) * 100;
 
   const renderStep1 = () => (
+    <div className="space-y-6 max-w-md mx-auto">
+      <div className="text-center">
+        <h3 className="text-xl font-semibold text-gray-900 mb-2">Tell us more about your Fundraiser</h3>
+      </div>
+      
+      <div className="space-y-4">
+        {/* Purpose Section */}
+        <div className="bg-red-50 p-4 rounded-lg border border-red-200">
+          <div className="flex items-center gap-2 mb-2">
+            <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
+              <Heart className="h-3 w-3 text-white" />
+            </div>
+            <span className="text-sm font-medium text-gray-900">
+              Raising funds for <span className="font-bold text-red-600">Medical Treatment</span> purpose
+            </span>
+          </div>
+          <button className="text-xs text-blue-600 hover:underline">Change purpose?</button>
+        </div>
+
+        {/* Goal Amount */}
+        <div>
+          <Label className="text-sm font-medium text-gray-700 flex items-center gap-1">
+            How much do you want to raise? *
+            <div className="w-4 h-4 bg-gray-400 rounded-full flex items-center justify-center text-white text-xs">?</div>
+          </Label>
+          <div className="relative mt-1">
+            <Input
+              type="number"
+              placeholder="Should be minimum ₹ 2000"
+              value={formData.goalAmount}
+              onChange={(e) => handleInputChange('goalAmount', e.target.value)}
+              className={`${errors.goalAmount ? 'border-red-500' : 'border-gray-300'}`}
+            />
+          </div>
+          <p className="text-xs text-gray-500 mt-1">Should be minimum ₹ 2000</p>
+          {errors.goalAmount && <p className="text-red-500 text-xs mt-1">{errors.goalAmount}</p>}
+        </div>
+
+        {/* Patient Relationship */}
+        <div>
+          <Label className="text-sm font-medium text-gray-700">The Patient is my... *</Label>
+          <Select value={formData.patientRelation} onValueChange={(value) => handleInputChange('patientRelation', value)}>
+            <SelectTrigger className={`mt-1 ${errors.patientRelation ? 'border-red-500' : 'border-gray-300'}`}>
+              <SelectValue placeholder="Select relationship" />
+            </SelectTrigger>
+            <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
+              {patientRelationOptions.map((option) => (
+                <SelectItem key={option.value} value={option.value}>
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          {errors.patientRelation && <p className="text-red-500 text-xs mt-1">{errors.patientRelation}</p>}
+        </div>
+
+        {/* Education */}
+        <div>
+          <Label className="text-sm font-medium text-gray-700">Your Education Qualification *</Label>
+          <Select value={formData.education} onValueChange={(value) => handleInputChange('education', value)}>
+            <SelectTrigger className={`mt-1 ${errors.education ? 'border-red-500' : 'border-gray-300'}`}>
+              <SelectValue placeholder="Select education" />
+            </SelectTrigger>
+            <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
+              {educationOptions.map((option) => (
+                <SelectItem key={option.value} value={option.value}>
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          {errors.education && <p className="text-red-500 text-xs mt-1">{errors.education}</p>}
+        </div>
+
+        {/* Employment */}
+        <div>
+          <Label className="text-sm font-medium text-gray-700">Your Employment Status *</Label>
+          <Select value={formData.employment} onValueChange={(value) => handleInputChange('employment', value)}>
+            <SelectTrigger className={`mt-1 ${errors.employment ? 'border-red-500' : 'border-gray-300'}`}>
+              <SelectValue placeholder="Select employment status" />
+            </SelectTrigger>
+            <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
+              {employmentOptions.map((option) => (
+                <SelectItem key={option.value} value={option.value}>
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          {errors.employment && <p className="text-red-500 text-xs mt-1">{errors.employment}</p>}
+        </div>
+
+        {/* How did you hear about */}
+        <div>
+          <Label className="text-sm font-medium text-gray-700">How did you first hear about Varak? *</Label>
+          <Select value={formData.hearAbout} onValueChange={(value) => handleInputChange('hearAbout', value)}>
+            <SelectTrigger className={`mt-1 ${errors.hearAbout ? 'border-red-500' : 'border-gray-300'}`}>
+              <SelectValue placeholder="Select option" />
+            </SelectTrigger>
+            <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
+              {hearAboutOptions.map((option) => (
+                <SelectItem key={option.value} value={option.value}>
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          {errors.hearAbout && <p className="text-red-500 text-xs mt-1">{errors.hearAbout}</p>}
+        </div>
+
+        {/* Image Upload */}
+        <div>
+          <Label className="text-sm font-medium text-gray-700">Add fundraiser image / video <span className="text-gray-400">(Optional)</span></Label>
+          <div className="mt-2">
+            <input
+              type="file"
+              multiple
+              accept="image/*"
+              onChange={handleImageUpload}
+              className="hidden"
+              id="image-upload"
+            />
+            <Button variant="outline" asChild className="w-full">
+              <label htmlFor="image-upload" className="cursor-pointer flex items-center justify-center gap-2">
+                Upload
+              </label>
+            </Button>
+          </div>
+          {formData.images.length > 0 && (
+            <div className="mt-2">
+              <p className="text-xs text-gray-600">{formData.images.length} image(s) selected</p>
+            </div>
+          )}
+          <p className="text-xs text-gray-500 mt-1">You can easily make changes to your fundraiser at any time</p>
+        </div>
+
+        {/* Platform fee note */}
+        <div className="bg-teal-50 p-3 rounded-lg text-center">
+          <p className="text-xs text-teal-700">Varak's zero platform fee policy will ensure more funds for you...</p>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderStep2 = () => (
     <div className="space-y-6">
       <div>
-        <h3 className="text-xl font-semibold text-gray-900 mb-2">Basic Information</h3>
-        <p className="text-gray-600">Tell us about your fundraiser</p>
+        <h3 className="text-xl font-semibold text-gray-900 mb-2">Detailed Information</h3>
+        <p className="text-gray-600">Provide more details to build trust</p>
       </div>
       
       <div className="space-y-4">
@@ -211,69 +417,6 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
           {errors.title && <p className="text-red-500 text-xs mt-1">{errors.title}</p>}
         </div>
 
-        <div>
-          <Label htmlFor="category" className="text-sm font-medium">Category *</Label>
-          <Select value={formData.category} onValueChange={(value) => handleInputChange('category', value)}>
-            <SelectTrigger className={errors.category ? 'border-red-500' : ''}>
-              <SelectValue placeholder="Select category" />
-            </SelectTrigger>
-            <SelectContent>
-              {categories.map((category) => {
-                const Icon = category.icon;
-                return (
-                  <SelectItem key={category.value} value={category.value}>
-                    <div className="flex items-center gap-2">
-                      <Icon className="h-4 w-4" />
-                      {category.label}
-                    </div>
-                  </SelectItem>
-                );
-              })}
-            </SelectContent>
-          </Select>
-          {errors.category && <p className="text-red-500 text-xs mt-1">{errors.category}</p>}
-        </div>
-
-        <div>
-          <Label htmlFor="goalAmount" className="text-sm font-medium">Goal Amount (₹) *</Label>
-          <div className="relative">
-            <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-            <Input
-              id="goalAmount"
-              type="number"
-              placeholder="100000"
-              value={formData.goalAmount}
-              onChange={(e) => handleInputChange('goalAmount', e.target.value)}
-              className={`pl-10 ${errors.goalAmount ? 'border-red-500' : ''}`}
-            />
-          </div>
-          {errors.goalAmount && <p className="text-red-500 text-xs mt-1">{errors.goalAmount}</p>}
-        </div>
-
-        <div>
-          <Label htmlFor="description" className="text-sm font-medium">Brief Description *</Label>
-          <Textarea
-            id="description"
-            placeholder="Briefly describe what this fundraiser is for and why it's important..."
-            value={formData.description}
-            onChange={(e) => handleInputChange('description', e.target.value)}
-            className={`min-h-[100px] ${errors.description ? 'border-red-500' : ''}`}
-          />
-          <p className="text-xs text-gray-500 mt-1">{formData.description.length}/500 characters</p>
-          {errors.description && <p className="text-red-500 text-xs mt-1">{errors.description}</p>}
-        </div>
-      </div>
-    </div>
-  );
-
-  const renderStep2 = () => (
-    <div className="space-y-6">
-      <div>
-        <h3 className="text-xl font-semibold text-gray-900 mb-2">Detailed Information</h3>
-        <p className="text-gray-600">Provide more details to build trust</p>
-      </div>
-      
-      <div className="space-y-4">
         <div>
           <Label htmlFor="fullStory" className="text-sm font-medium">Full Story *</Label>
           <Textarea
@@ -313,33 +456,6 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
           </Select>
           {errors.urgency && <p className="text-red-500 text-xs mt-1">{errors.urgency}</p>}
         </div>
-
-        <div>
-          <Label htmlFor="images" className="text-sm font-medium">Upload Images (Optional)</Label>
-          <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-rose-500 transition-colors">
-            <Upload className="h-8 w-8 text-gray-400 mx-auto mb-2" />
-            <p className="text-sm text-gray-600 mb-2">Upload up to 5 images</p>
-            <input
-              type="file"
-              multiple
-              accept="image/*"
-              onChange={handleImageUpload}
-              className="hidden"
-              id="image-upload"
-            />
-            <Button variant="outline" asChild>
-              <label htmlFor="image-upload" className="cursor-pointer">
-                <Camera className="h-4 w-4 mr-2" />
-                Choose Images
-              </label>
-            </Button>
-          </div>
-          {formData.images.length > 0 && (
-            <div className="mt-2">
-              <p className="text-xs text-gray-600">{formData.images.length} image(s) selected</p>
-            </div>
-          )}
-        </div>
       </div>
     </div>
   );
@@ -360,9 +476,9 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
             <CardContent className="p-6">
               <h4 className="font-semibold text-gray-900 mb-4">Fundraiser Summary</h4>
               <div className="space-y-3 text-sm">
-                <div><span className="font-medium">Title:</span> {formData.title}</div>
+                <div><span className="font-medium">Purpose:</span> {formData.purpose}</div>
                 <div><span className="font-medium">Goal:</span> ₹{Number(formData.goalAmount).toLocaleString()}</div>
-                <div><span className="font-medium">Category:</span> {categories.find(c => c.value === formData.category)?.label}</div>
+                <div><span className="font-medium">Patient:</span> {patientRelationOptions.find(r => r.value === formData.patientRelation)?.label}</div>
                 <div><span className="font-medium">Organizer:</span> {user?.name}</div>
               </div>
             </CardContent>
@@ -438,12 +554,29 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
       <Dialog open={open && !showSignUp} onOpenChange={onOpenChange}>
         <DialogContent className="w-[95vw] max-w-2xl mx-auto my-4 rounded-2xl border-0 shadow-2xl bg-white max-h-[90vh] overflow-y-auto">
           <DialogHeader className="text-center pb-4">
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <div className="flex items-center gap-2">
+                {[1, 2, 3].map((step) => (
+                  <div
+                    key={step}
+                    className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
+                      step === currentStep
+                        ? 'bg-teal-500 text-white'
+                        : step < currentStep
+                        ? 'bg-teal-200 text-teal-800'
+                        : 'bg-gray-200 text-gray-600'
+                    }`}
+                  >
+                    {step}
+                  </div>
+                ))}
+              </div>
+            </div>
             <DialogTitle className="text-2xl font-bold text-gray-900">
               Create Your Fundraiser
             </DialogTitle>
-            <div className="mt-4">
+            <div className="mt-2">
               <Progress value={getStepProgress()} className="w-full h-2" />
-              <p className="text-sm text-gray-600 mt-2">Step {currentStep} of 3</p>
             </div>
           </DialogHeader>
 
@@ -471,9 +604,15 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
             <Button
               onClick={handleNext}
               disabled={isSubmitting}
-              className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white flex items-center gap-2"
+              className={`${
+                currentStep === 1 
+                  ? 'bg-teal-500 hover:bg-teal-600' 
+                  : 'bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700'
+              } text-white flex items-center gap-2`}
             >
-              {currentStep === 3 ? (
+              {currentStep === 1 ? (
+                'Save and continue'
+              ) : currentStep === 3 ? (
                 isSubmitting ? (
                   "Creating..."
                 ) : isAuthenticated ? (
