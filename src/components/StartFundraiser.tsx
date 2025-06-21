@@ -1,8 +1,10 @@
+
 import { useState } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { PlusCircle, Share2, DollarSign, ArrowRight, Users, TrendingUp } from "lucide-react";
-import StartFundraiserModal from "@/components/StartFundraiserModal";
+import FundraiserCreationModal from "@/components/FundraiserCreationModal";
+
 const steps = [{
   icon: PlusCircle,
   title: "Create Your Campaign",
@@ -22,9 +24,12 @@ const steps = [{
   feature: "Instant withdrawal",
   color: "from-rose-600 to-pink-500"
 }];
+
 const StartFundraiser = () => {
-  const [isStartFundraiserModalOpen, setIsStartFundraiserModalOpen] = useState(false);
-  return <>
+  const [isFundraiserCreationModalOpen, setIsFundraiserCreationModalOpen] = useState(false);
+
+  return (
+    <>
       <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br from-slate-50 via-white to-rose-50/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header Section */}
@@ -50,8 +55,9 @@ const StartFundraiser = () => {
           {/* Steps Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16 md:mb-20">
             {steps.map((step, index) => {
-            const Icon = step.icon;
-            return <div key={index} className="relative group">
+              const Icon = step.icon;
+              return (
+                <div key={index} className="relative group">
                   <Card className="relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2 bg-white h-full">
                     <div className="absolute inset-0 bg-gradient-to-br from-white to-rose-50/50"></div>
                     
@@ -79,19 +85,86 @@ const StartFundraiser = () => {
                       </div>
                     </CardContent>
                   </Card>
-                </div>;
-          })}
+                </div>
+              );
+            })}
           </div>
 
           {/* CTA Section */}
           <div className="text-center">
-            
+            <div className="bg-white rounded-3xl shadow-2xl p-8 sm:p-12 md:p-16 max-w-4xl mx-auto relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-rose-50 to-pink-50 opacity-50"></div>
+              
+              <div className="relative">
+                <div className="flex items-center justify-center gap-4 mb-6">
+                  <div className="flex -space-x-2">
+                    <div className="w-10 h-10 bg-gradient-to-r from-rose-500 to-pink-600 rounded-full border-2 border-white"></div>
+                    <div className="w-10 h-10 bg-gradient-to-r from-pink-500 to-rose-600 rounded-full border-2 border-white"></div>
+                    <div className="w-10 h-10 bg-gradient-to-r from-rose-600 to-pink-500 rounded-full border-2 border-white"></div>
+                  </div>
+                  <div className="text-left">
+                    <p className="text-sm font-medium text-gray-600">Join 50,000+ fundraisers</p>
+                    <div className="flex items-center gap-1">
+                      {[...Array(5)].map((_, i) => (
+                        <div key={i} className="w-4 h-4 bg-yellow-400 rounded-full"></div>
+                      ))}
+                      <span className="text-sm text-gray-600 ml-1">4.9/5 rating</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                  Ready to make a difference?
+                </h3>
+                
+                <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+                  Start your fundraiser today and turn your cause into a movement. It takes less than 5 minutes to get started.
+                </p>
+                
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <Button 
+                    size="lg"
+                    className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-semibold px-8 py-4 rounded-full shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200 text-lg h-14"
+                    onClick={() => setIsFundraiserCreationModalOpen(true)}
+                  >
+                    <PlusCircle className="h-5 w-5 mr-2" />
+                    Start Your Fundraiser
+                    <ArrowRight className="h-5 w-5 ml-2" />
+                  </Button>
+                  
+                  <div className="flex items-center gap-2 text-gray-600">
+                    <TrendingUp className="h-4 w-4" />
+                    <span className="text-sm">₹2.5 Cr+ raised this month</span>
+                  </div>
+                </div>
+                
+                <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-gray-500">
+                  <div className="flex items-center gap-1">
+                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    No platform fees
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    Instant withdrawals
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                    24/7 support
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Start Fundraiser Modal */}
-      <StartFundraiserModal open={isStartFundraiserModalOpen} onOpenChange={setIsStartFundraiserModalOpen} />
-    </>;
+      {/* Fundraiser Creation Modal */}
+      <FundraiserCreationModal 
+        open={isFundraiserCreationModalOpen} 
+        onOpenChange={setIsFundraiserCreationModalOpen} 
+      />
+    </>
+  );
 };
+
 export default StartFundraiser;
