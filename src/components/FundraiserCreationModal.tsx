@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -33,6 +34,9 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
     urgency: '',
     contactNumber: '',
     fullStory: '',
+    educationQualification: '',
+    employmentStatus: '',
+    hearAbout: '',
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -40,17 +44,20 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
   const validateStep1 = () => {
     const newErrors: Record<string, string> = {};
     
+    if (!formData.goalAmount) newErrors.goalAmount = 'Goal amount is required';
+    else if (Number(formData.goalAmount) < 2000) {
+      newErrors.goalAmount = 'Minimum ₹2,000 required';
+    }
     if (!formData.patientName.trim()) newErrors.patientName = 'Patient name is required';
     if (!formData.patientAge) newErrors.patientAge = 'Patient age is required';
     else if (Number(formData.patientAge) < 1 || Number(formData.patientAge) > 120) {
       newErrors.patientAge = 'Please enter a valid age';
     }
     if (!formData.patientRelation) newErrors.patientRelation = 'Patient relationship is required';
+    if (!formData.educationQualification) newErrors.educationQualification = 'Education qualification is required';
+    if (!formData.employmentStatus) newErrors.employmentStatus = 'Employment status is required';
+    if (!formData.hearAbout) newErrors.hearAbout = 'Please tell us how you heard about us';
     if (!formData.hospitalCity.trim()) newErrors.hospitalCity = 'Hospital/City is required';
-    if (!formData.goalAmount) newErrors.goalAmount = 'Goal amount is required';
-    else if (Number(formData.goalAmount) < 2000) {
-      newErrors.goalAmount = 'Minimum ₹2,000 required';
-    }
     if (!formData.title.trim()) newErrors.title = 'Title is required';
     if (!formData.briefDescription.trim()) newErrors.briefDescription = 'Brief description is required';
     else if (formData.briefDescription.length < 50) {
@@ -128,6 +135,9 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
         urgency: '',
         contactNumber: '',
         fullStory: '',
+        educationQualification: '',
+        employmentStatus: '',
+        hearAbout: '',
       });
       setErrors({});
     }, 2000);
@@ -145,7 +155,7 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
   return (
     <>
       <Dialog open={open && !showSignUp} onOpenChange={onOpenChange}>
-        <DialogContent className="w-[95vw] max-w-lg mx-auto rounded-2xl border-0 shadow-xl bg-white max-h-[85vh] overflow-y-auto">
+        <DialogContent className="w-[95vw] max-w-lg mx-auto rounded-2xl border-0 shadow-xl bg-white max-h-[90vh] overflow-y-auto">
           <DialogHeader className="text-center pb-4">
             {/* Progress */}
             <div className="flex items-center justify-center gap-2 mb-4">
@@ -172,7 +182,7 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
             </div>
             
             <DialogTitle className="text-xl font-bold text-gray-900">
-              {currentStep === 1 ? "Fundraiser Details" : "Your Story"}
+              {currentStep === 1 ? "Tell us more about your Fundraiser" : "Your Story"}
             </DialogTitle>
             
             <Progress value={getStepProgress()} className="w-full h-2 mt-3" />
@@ -229,7 +239,7 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
                 )
               ) : (
                 <>
-                  Next
+                  Save and continue
                   <ArrowRight className="h-4 w-4" />
                 </>
               )}
