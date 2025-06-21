@@ -10,6 +10,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import StartFundraiserModal from "@/components/StartFundraiserModal";
 import FundraiserBasicForm from "@/components/fundraiser/FundraiserBasicForm";
 import FundraiserStoryForm from "@/components/fundraiser/FundraiserStoryForm";
+import FundraiserDocumentForm from "@/components/fundraiser/FundraiserDocumentForm";
 
 interface FundraiserCreationModalProps {
   open: boolean;
@@ -37,6 +38,11 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
     hospital: '',
     city: '',
     fullStory: '',
+    fundraiserTitle: '',
+    briefDescription: '',
+    urgencyLevel: '',
+    contactNumber: '',
+    medicalDocuments: '',
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -75,14 +81,27 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
     return Object.keys(newErrors).length === 0;
   };
 
+  const validateStep3 = () => {
+    const newErrors: Record<string, string> = {};
+    
+    if (!formData.fundraiserTitle?.trim()) newErrors.fundraiserTitle = 'Fundraiser title is required';
+    if (!formData.briefDescription?.trim()) newErrors.briefDescription = 'Brief description is required';
+    if (!formData.urgencyLevel) newErrors.urgencyLevel = 'Urgency level is required';
+    if (!formData.contactNumber?.trim()) newErrors.contactNumber = 'Contact number is required';
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleNext = () => {
     let isValid = false;
     
     if (currentStep === 1) isValid = validateStep1();
     else if (currentStep === 2) isValid = validateStep2();
+    else if (currentStep === 3) isValid = validateStep3();
     
     if (isValid) {
-      if (currentStep === 2) {
+      if (currentStep === 3) {
         handleSubmit();
       } else {
         setCurrentStep(currentStep + 1);
@@ -128,6 +147,11 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
         hospital: '',
         city: '',
         fullStory: '',
+        fundraiserTitle: '',
+        briefDescription: '',
+        urgencyLevel: '',
+        contactNumber: '',
+        medicalDocuments: '',
       });
       setErrors({});
     }, 2000);
@@ -140,7 +164,16 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
     }
   };
 
-  const getStepProgress = () => (currentStep / 2) * 100;
+  const getStepProgress = () => (currentStep / 3) * 100;
+
+  const getStepTitle = () => {
+    switch (currentStep) {
+      case 1: return "Tell us more about your Fundraiser";
+      case 2: return "Tell us about the patient";
+      case 3: return "Final details and documents";
+      default: return "Create Fundraiser";
+    }
+  };
 
   return (
     <>
@@ -149,7 +182,7 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
           <DialogHeader className="text-center pb-4">
             {/* Progress */}
             <div className="flex items-center justify-center gap-2 mb-4">
-              {[1, 2].map((step) => (
+              {[1, 2, 3].map((step) => (
                 <div key={step} className="flex items-center">
                   <div
                     className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold transition-all ${
@@ -162,7 +195,7 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
                   >
                     {step < currentStep ? <Check className="h-4 w-4" /> : step}
                   </div>
-                  {step < 2 && (
+                  {step < 3 && (
                     <div className={`w-8 h-1 mx-1 rounded ${
                       step < currentStep ? 'bg-green-500' : 'bg-gray-200'
                     }`} />
@@ -172,7 +205,7 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
             </div>
             
             <DialogTitle className="text-xl font-bold text-gray-900">
-              {currentStep === 1 ? "Tell us more about your Fundraiser" : "Tell us about the patient"}
+              {getStepTitle()}
             </DialogTitle>
             
             <Progress value={getStepProgress()} className="w-full h-2 mt-3" />
@@ -190,6 +223,13 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
             )}
             {currentStep === 2 && (
               <FundraiserStoryForm
+                formData={formData}
+                onInputChange={handleInputChange}
+                errors={errors}
+              />
+            )}
+            {currentStep === 3 && (
+              <FundraiserDocumentForm
                 formData={formData}
                 onInputChange={handleInputChange}
                 errors={errors}
@@ -216,7 +256,7 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
               disabled={isSubmitting}
               className="h-10 px-6 bg-rose-500 hover:bg-rose-600 text-white font-medium shadow-md hover:shadow-lg transition-all flex items-center gap-2"
             >
-              {currentStep === 2 ? (
+              {currentStep === 3 ? (
                 isSubmitting ? (
                   "Creating..."
                 ) : isAuthenticated ? (
