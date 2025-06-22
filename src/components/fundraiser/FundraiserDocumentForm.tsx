@@ -1,23 +1,24 @@
-
 import { useEffect } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Info, Upload } from "lucide-react";
-
 interface FundraiserDocumentFormProps {
   formData: any;
   onInputChange: (field: string, value: string) => void;
   errors: Record<string, string>;
 }
-
-const FundraiserDocumentForm = ({ formData, onInputChange, errors }: FundraiserDocumentFormProps) => {
+const FundraiserDocumentForm = ({
+  formData,
+  onInputChange,
+  errors
+}: FundraiserDocumentFormProps) => {
   // Generate story automatically based on form data
   useEffect(() => {
     if (formData.patientName && formData.patientRelation && formData.medicalCondition && formData.hospital && formData.goalAmount) {
       const relationText = formData.patientRelation === 'self' ? 'myself' : `my ${formData.patientRelation}`;
       const patientText = formData.patientRelation === 'self' ? 'I am' : `${formData.patientName} is`;
-      
+
       // Generate story with actual patient name instead of placeholder
       const generatedStory = `I am raising funds for ${relationText}, ${formData.patientName} who is suffering from ${formData.medicalCondition} and is undergoing treatment at ${formData.hospital}.
 
@@ -29,15 +30,12 @@ Please help us raise this amount by clicking on the contribute button and sharin
 
 We are grateful for your help and wishes.
 Thank you.`;
-
       if (!formData.fullStory || formData.fullStory.length < 50) {
         onInputChange('fullStory', generatedStory);
       }
     }
   }, [formData.patientName, formData.patientRelation, formData.medicalCondition, formData.hospital, formData.goalAmount, formData.fullStory, onInputChange]);
-
-  return (
-    <div className="space-y-6">
+  return <div className="space-y-6">
       {/* Story Section with Guidelines */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left Side - Story Input */}
@@ -47,15 +45,8 @@ Thank you.`;
           </h3>
           
           <div className="space-y-2">
-            <Textarea
-              placeholder="Write your story here..."
-              value={formData.fullStory}
-              onChange={(e) => onInputChange('fullStory', e.target.value)}
-              className="min-h-[300px] resize-none border-rose-200 focus:border-rose-500 focus:ring-rose-500"
-            />
-            {errors.fullStory && (
-              <p className="text-sm text-red-600">{errors.fullStory}</p>
-            )}
+            <Textarea placeholder="Write your story here..." value={formData.fullStory} onChange={e => onInputChange('fullStory', e.target.value)} className="min-h-[300px] resize-none border-rose-200 focus:border-rose-500 focus:ring-rose-500" />
+            {errors.fullStory && <p className="text-sm text-red-600">{errors.fullStory}</p>}
           </div>
         </div>
 
@@ -84,12 +75,7 @@ Thank you.`;
         </div>
         
         <div className="space-y-3">
-          <div className="flex items-center space-x-2">
-            <Checkbox id="nid" className="border-rose-300 data-[state=checked]:bg-rose-500 data-[state=checked]:border-rose-500" />
-            <label htmlFor="nid" className="text-sm font-medium">
-              NID
-            </label>
-          </div>
+          
           
           {/* Upload Document Option - Smaller Design */}
           <div className="border-2 border-dashed border-rose-200 rounded-lg p-3 text-center bg-rose-50/30 hover:bg-rose-50/50 transition-colors">
@@ -122,8 +108,6 @@ Thank you.`;
           </label>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default FundraiserDocumentForm;
