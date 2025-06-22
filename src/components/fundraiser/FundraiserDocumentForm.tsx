@@ -51,7 +51,7 @@ Thank you.`;
               placeholder="Write your story here..."
               value={formData.fullStory}
               onChange={(e) => onInputChange('fullStory', e.target.value)}
-              className="min-h-[300px] resize-none"
+              className="min-h-[300px] resize-none border-rose-200 focus:border-rose-500 focus:ring-rose-500"
             />
             {errors.fullStory && (
               <p className="text-sm text-red-600">{errors.fullStory}</p>
@@ -60,7 +60,7 @@ Thank you.`;
         </div>
 
         {/* Right Side - Guidelines */}
-        <div className="bg-teal-600 text-white p-6 rounded-lg">
+        <div className="bg-gradient-to-br from-rose-500 to-pink-600 text-white p-6 rounded-lg shadow-lg">
           <h4 className="font-semibold text-white mb-4 text-lg">Tell Your Story</h4>
           <ul className="text-sm space-y-2 leading-relaxed">
             <li>• Write a story that does justice to your cause and makes the supporter care about your human.</li>
@@ -80,27 +80,27 @@ Thank you.`;
       <div className="space-y-4">
         <div className="flex items-center gap-2">
           <h4 className="font-semibold text-gray-900">Add Medical Documents</h4>
-          <Info className="h-4 w-4 text-gray-500" />
+          <Info className="h-4 w-4 text-rose-500" />
         </div>
         
         <div className="space-y-3">
           <div className="flex items-center space-x-2">
-            <Checkbox id="nid" />
+            <Checkbox id="nid" className="border-rose-300 data-[state=checked]:bg-rose-500 data-[state=checked]:border-rose-500" />
             <label htmlFor="nid" className="text-sm font-medium">
               NID
             </label>
           </div>
           
-          {/* Upload Document Option */}
-          <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
-            <Upload className="h-6 w-6 text-gray-400 mx-auto mb-2" />
-            <p className="text-sm text-gray-600 mb-2">Upload medical documents</p>
-            <Button variant="outline" size="sm" className="text-xs">
+          {/* Upload Document Option - Smaller Design */}
+          <div className="border-2 border-dashed border-rose-200 rounded-lg p-3 text-center bg-rose-50/30 hover:bg-rose-50/50 transition-colors">
+            <Upload className="h-4 w-4 text-rose-500 mx-auto mb-1" />
+            <p className="text-xs text-gray-600 mb-2">Upload documents</p>
+            <Button variant="outline" size="sm" className="text-xs h-7 px-3 border-rose-300 text-rose-600 hover:bg-rose-50 hover:text-rose-700">
               Choose Files
             </Button>
           </div>
           
-          <div className="text-sm text-orange-600 bg-orange-50 p-3 rounded">
+          <div className="text-sm text-orange-600 bg-orange-50 p-3 rounded border-l-4 border-orange-300">
             <p>Don't worry! You can skip this step for now and add the story details and medical documents after submitting.</p>
           </div>
         </div>
@@ -109,16 +109,16 @@ Thank you.`;
       {/* Terms and Conditions */}
       <div className="space-y-3">
         <div className="flex items-start space-x-2">
-          <Checkbox id="fundraiser-terms" className="mt-1" />
+          <Checkbox id="fundraiser-terms" className="mt-1 border-rose-300 data-[state=checked]:bg-rose-500 data-[state=checked]:border-rose-500" />
           <label htmlFor="fundraiser-terms" className="text-sm leading-relaxed">
-            By proceeding, I agree to the <span className="text-blue-600 underline cursor-pointer">Fundraiser Terms of Use</span>, the maximum charge or a bank account based on a monthly maximum of any.
+            By proceeding, I agree to the <span className="text-rose-600 underline cursor-pointer hover:text-rose-700">Fundraiser Terms of Use</span>, the maximum charge or a bank account based on a monthly maximum of any.
           </label>
         </div>
         
         <div className="flex items-start space-x-2">
-          <Checkbox id="privacy-policy" className="mt-1" />
+          <Checkbox id="privacy-policy" className="mt-1 border-rose-300 data-[state=checked]:bg-rose-500 data-[state=checked]:border-rose-500" />
           <label htmlFor="privacy-policy" className="text-sm leading-relaxed">
-            I agree to the <span className="text-blue-600 underline cursor-pointer">Terms of Use</span>, our <span className="text-blue-600 underline cursor-pointer">Privacy Policy</span>, <span className="text-blue-600 underline cursor-pointer">Fees & Pricing</span> and our guidelines about user Generated Content made available by you on our service as not to limit any activity and you grant us rights to process data about activity on our platform. I acknowledge and agree that I may receive text message from our service.
+            I agree to the <span className="text-rose-600 underline cursor-pointer hover:text-rose-700">Terms of Use</span>, our <span className="text-rose-600 underline cursor-pointer hover:text-rose-700">Privacy Policy</span>, <span className="text-rose-600 underline cursor-pointer hover:text-rose-700">Fees & Pricing</span> and our guidelines about user Generated Content made available by you on our service as not to limit any activity and you grant us rights to process data about activity on our platform. I acknowledge and agree that I may receive text message from our service.
           </label>
         </div>
       </div>
