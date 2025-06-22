@@ -14,11 +14,24 @@ const FundraiserDocumentForm = ({ formData, onInputChange, errors }: FundraiserD
   // Generate story automatically based on form data
   useEffect(() => {
     if (formData.patientName && formData.patientRelation && formData.medicalCondition && formData.hospital && formData.goalAmount) {
-      const relationText = formData.patientRelation === 'self' ? 'myself' : `my ${formData.patientRelation}`;
-      const patientText = formData.patientRelation === 'self' ? 'I am' : `${formData.patientName} is`;
+      let generatedStory = '';
       
-      // Generate story with actual patient name instead of placeholder
-      const generatedStory = `I am raising funds for ${relationText}, ${formData.patientName} who is suffering from ${formData.medicalCondition} and is undergoing treatment at ${formData.hospital}.
+      if (formData.patientRelation === 'self') {
+        // First person story when raising funds for self
+        generatedStory = `Hi,
+
+My name is ${formData.patientName} and I am raising funds for my medical expenses. We have done all we can to collect the total amount required for the treatment but Rs.${formData.goalAmount} more is required to pay for all the medical expenses.
+
+As the amount required is huge, I request you to kindly contribute towards my treatment and help me during this time of need. Each contribution is important!
+
+Please help me raise this amount by clicking on the contribute button and sharing this page with your friends and family.
+
+I am grateful for your help and wishes.
+
+Thank you.`;
+      } else {
+        // Third person story when raising funds for others
+        generatedStory = `I am raising funds for my ${formData.patientRelation}, ${formData.patientName} who is suffering from ${formData.medicalCondition} and is undergoing treatment at ${formData.hospital}.
 
 The family has done all it can to collect the total amount required for the treatment but Rs.${formData.goalAmount} more is required to pay for all the medical expenses.
 
@@ -28,6 +41,7 @@ Please help us raise this amount by clicking on the contribute button and sharin
 
 We are grateful for your help and wishes.
 Thank you.`;
+      }
 
       if (!formData.fullStory || formData.fullStory.length < 50) {
         onInputChange('fullStory', generatedStory);
