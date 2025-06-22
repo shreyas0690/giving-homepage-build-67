@@ -1,4 +1,5 @@
 
+import { useEffect } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -11,6 +12,29 @@ interface FundraiserDocumentFormProps {
 }
 
 const FundraiserDocumentForm = ({ formData, onInputChange, errors }: FundraiserDocumentFormProps) => {
+  // Generate story automatically based on form data
+  useEffect(() => {
+    if (formData.patientName && formData.patientRelation && formData.medicalCondition && formData.hospital && formData.goalAmount) {
+      const relationText = formData.patientRelation === 'self' ? 'myself' : `my ${formData.patientRelation}`;
+      const patientText = formData.patientRelation === 'self' ? 'I am' : `${formData.patientName} is`;
+      
+      const generatedStory = `My name is [Your Name] and I am raising funds for ${relationText}, ${formData.patientName} who is suffering from ${formData.medicalCondition} and is undergoing treatment at ${formData.hospital}.
+
+The family has done all it can to collect the total amount required for the treatment but Rs.${formData.goalAmount} more is required to pay for all the medical expenses.
+
+As the amount required is huge, I request you to kindly contribute towards the treatment and help during this time of need. Each contribution is important!
+
+Please help us raise this amount by clicking on the contribute button and sharing this page with your friends and family.
+
+We are grateful for your help and wishes.
+Thank you.`;
+
+      if (!formData.fullStory || formData.fullStory.length < 50) {
+        onInputChange('fullStory', generatedStory);
+      }
+    }
+  }, [formData.patientName, formData.patientRelation, formData.medicalCondition, formData.hospital, formData.goalAmount, formData.fullStory, onInputChange]);
+
   return (
     <div className="space-y-6">
       {/* Story Section with Guidelines */}
