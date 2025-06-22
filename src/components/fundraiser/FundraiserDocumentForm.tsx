@@ -1,8 +1,9 @@
+
 import { useEffect } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Info } from "lucide-react";
+import { Info, Upload } from "lucide-react";
 
 interface FundraiserDocumentFormProps {
   formData: any;
@@ -90,6 +91,15 @@ Thank you.`;
             </label>
           </div>
           
+          {/* Upload Document Option */}
+          <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+            <Upload className="h-6 w-6 text-gray-400 mx-auto mb-2" />
+            <p className="text-sm text-gray-600 mb-2">Upload medical documents</p>
+            <Button variant="outline" size="sm" className="text-xs">
+              Choose Files
+            </Button>
+          </div>
+          
           <div className="text-sm text-orange-600 bg-orange-50 p-3 rounded">
             <p>Don't worry! You can skip this step for now and add the story details and medical documents after submitting.</p>
           </div>
@@ -110,43 +120,6 @@ Thank you.`;
           <label htmlFor="privacy-policy" className="text-sm leading-relaxed">
             I agree to the <span className="text-blue-600 underline cursor-pointer">Terms of Use</span>, our <span className="text-blue-600 underline cursor-pointer">Privacy Policy</span>, <span className="text-blue-600 underline cursor-pointer">Fees & Pricing</span> and our guidelines about user Generated Content made available by you on our service as not to limit any activity and you grant us rights to process data about activity on our platform. I acknowledge and agree that I may receive text message from our service.
           </label>
-        </div>
-      </div>
-
-      {/* Summary Section */}
-      <div className="bg-gray-50 p-4 rounded-lg space-y-3">
-        <h4 className="font-semibold text-gray-900">Summary</h4>
-        
-        <div className="grid grid-cols-2 gap-4 text-sm">
-          <div>
-            <span className="font-medium">Patient Name:</span>
-            <p className="text-gray-700">{formData.patientName || 'Not specified'}</p>
-          </div>
-          
-          <div>
-            <span className="font-medium">Patient Age:</span>
-            <p className="text-gray-700">{formData.patientAge || 'Not specified'}</p>
-          </div>
-          
-          <div>
-            <span className="font-medium">Medical Condition:</span>
-            <p className="text-gray-700">{formData.medicalCondition || 'Not specified'}</p>
-          </div>
-          
-          <div>
-            <span className="font-medium">Hospital:</span>
-            <p className="text-gray-700">{formData.hospital || 'Not specified'}</p>
-          </div>
-          
-          <div>
-            <span className="font-medium">City:</span>
-            <p className="text-gray-700">{formData.city || 'Not specified'}</p>
-          </div>
-          
-          <div>
-            <span className="font-medium">Goal Amount:</span>
-            <p className="text-gray-700">₹{formData.goalAmount || '0'}</p>
-          </div>
         </div>
       </div>
     </div>
