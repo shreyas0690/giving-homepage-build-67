@@ -4,7 +4,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
-import { Heart, Users, GraduationCap, Briefcase, Radio, ImagePlus } from "lucide-react";
+import { Heart, Users, GraduationCap, Briefcase, Radio, ImagePlus, X } from "lucide-react";
 
 interface FundraiserBasicFormProps {
   formData: any;
@@ -216,22 +216,25 @@ const FundraiserBasicForm = ({ formData, onInputChange, errors }: FundraiserBasi
         {errors.hearAbout && <p className="text-red-500 text-xs">{errors.hearAbout}</p>}
       </div>
 
-      {/* Add Fundraiser Image */}
+      {/* Compact Add Fundraiser Image */}
       <div className="space-y-2">
         <Label className="text-sm font-medium text-gray-900 flex items-center gap-2">
           <ImagePlus className="h-4 w-4 text-rose-500" />
           Add Fundraiser Image
         </Label>
-        <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-rose-400 transition-colors">
+        <div className="border border-gray-300 rounded-lg p-3 hover:border-rose-400 transition-colors">
           {imagePreview ? (
-            <div className="space-y-2">
+            <div className="flex items-center gap-3">
               <img 
                 src={imagePreview} 
                 alt="Fundraiser preview" 
-                className="mx-auto max-h-24 rounded-lg object-cover"
+                className="w-12 h-12 rounded-lg object-cover"
               />
-              <div className="text-xs text-gray-600">
-                {selectedImage?.name}
+              <div className="flex-1 min-w-0">
+                <div className="text-sm text-gray-900 truncate">
+                  {selectedImage?.name}
+                </div>
+                <div className="text-xs text-gray-500">Image uploaded</div>
               </div>
               <button
                 type="button"
@@ -240,18 +243,17 @@ const FundraiserBasicForm = ({ formData, onInputChange, errors }: FundraiserBasi
                   setImagePreview(null);
                   onInputChange('fundraiserImage', '');
                 }}
-                className="text-rose-500 hover:text-rose-700 text-xs font-medium"
+                className="text-gray-400 hover:text-red-500 transition-colors"
               >
-                Remove Image
+                <X className="h-4 w-4" />
               </button>
             </div>
           ) : (
-            <div className="space-y-2">
-              <ImagePlus className="h-8 w-8 text-gray-400 mx-auto" />
-              <div>
-                <p className="text-gray-600 mb-2 text-sm">
-                  Upload an image for your fundraiser
-                </p>
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                <ImagePlus className="h-5 w-5 text-gray-400" />
+              </div>
+              <div className="flex-1">
                 <Input
                   type="file"
                   accept="image/*"
@@ -261,14 +263,14 @@ const FundraiserBasicForm = ({ formData, onInputChange, errors }: FundraiserBasi
                 />
                 <label
                   htmlFor="fundraiser-image"
-                  className="inline-flex items-center px-3 py-1.5 bg-rose-500 text-white rounded-lg hover:bg-rose-600 cursor-pointer transition-colors text-sm"
+                  className="inline-flex items-center px-3 py-2 bg-rose-500 text-white rounded-lg hover:bg-rose-600 cursor-pointer transition-colors text-sm font-medium"
                 >
                   Choose Image
                 </label>
+                <p className="text-xs text-gray-500 mt-1">
+                  Max 5MB, 16:9 recommended
+                </p>
               </div>
-              <p className="text-xs text-gray-500">
-                Recommended: 16:9 aspect ratio, max 5MB
-              </p>
             </div>
           )}
         </div>

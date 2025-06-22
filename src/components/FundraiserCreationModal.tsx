@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -173,31 +172,31 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
     <>
       <Dialog open={open && !showSignUp} onOpenChange={onOpenChange}>
         <DialogContent className="w-[90vw] max-w-2xl mx-auto rounded-xl border-0 shadow-2xl bg-white max-h-[85vh] overflow-hidden flex flex-col">
-          <DialogHeader className="text-center pb-0 px-6 pt-6">
-            {/* Compact Progress */}
-            <div className="flex items-center justify-center gap-1 mb-3">
-              {[1, 2, 3].map((step) => (
-                <div key={step} className="flex items-center">
-                  <div
-                    className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
-                      step === currentStep
-                        ? 'bg-rose-500 text-white shadow-lg'
-                        : step < currentStep
-                        ? 'bg-green-500 text-white'
-                        : 'bg-gray-200 text-gray-500'
-                    }`}
-                  >
-                    {step < currentStep ? <Check className="h-3 w-3" /> : step}
-                  </div>
-                  {step < 3 && (
-                    <div className={`w-6 h-0.5 mx-1 rounded ${
-                      step < currentStep ? 'bg-green-500' : 'bg-gray-200'
-                    }`} />
-                  )}
+          {/* Compact Progress */}
+          <div className="flex items-center justify-center gap-1 mb-3">
+            {[1, 2, 3].map((step) => (
+              <div key={step} className="flex items-center">
+                <div
+                  className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
+                    step === currentStep
+                      ? 'bg-rose-500 text-white shadow-lg'
+                      : step < currentStep
+                      ? 'bg-green-500 text-white'
+                      : 'bg-gray-200 text-gray-500'
+                  }`}
+                >
+                  {step < currentStep ? <Check className="h-3 w-3" /> : step}
                 </div>
-              ))}
-            </div>
-            
+                {step < 3 && (
+                  <div className={`w-6 h-0.5 mx-1 rounded ${
+                    step < currentStep ? 'bg-green-500' : 'bg-gray-200'
+                  }`} />
+                )}
+              </div>
+            ))}
+          </div>
+          
+          <DialogHeader className="text-center pb-0 px-6 pt-6">
             <DialogTitle className="text-lg font-bold text-gray-900 mb-2">
               {getStepTitle()}
             </DialogTitle>
@@ -233,21 +232,21 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
             )}
           </div>
 
-          {/* Compact Footer */}
+          {/* Updated Footer with Back button for all steps */}
           <div className="px-6 py-4 bg-gray-50/50 border-t border-gray-100">
-            {currentStep < 3 ? (
-              <div className="flex justify-between items-center">
-                <Button
-                  variant="outline"
-                  onClick={handleBack}
-                  disabled={currentStep === 1}
-                  size="sm"
-                  className="flex items-center gap-1.5 h-9 px-3 text-gray-600 border-gray-300 hover:bg-gray-50 disabled:opacity-50"
-                >
-                  <ArrowLeft className="h-3.5 w-3.5" />
-                  Back
-                </Button>
+            <div className="flex justify-between items-center">
+              <Button
+                variant="outline"
+                onClick={handleBack}
+                disabled={currentStep === 1}
+                size="sm"
+                className="flex items-center gap-1.5 h-9 px-3 text-gray-600 border-gray-300 hover:bg-gray-50 disabled:opacity-50"
+              >
+                <ArrowLeft className="h-3.5 w-3.5" />
+                Back
+              </Button>
 
+              {currentStep < 3 ? (
                 <Button
                   onClick={handleNext}
                   size="sm"
@@ -256,28 +255,29 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
                   Continue
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Button>
-              </div>
-            ) : (
-              <Button
-                onClick={handleNext}
-                disabled={isSubmitting}
-                className="w-full h-10 bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all"
-              >
-                {isSubmitting ? (
-                  <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    Creating...
-                  </div>
-                ) : isAuthenticated ? (
-                  <div className="flex items-center gap-2">
-                    <Zap className="h-4 w-4" />
-                    Create Fundraiser
-                  </div>
-                ) : (
-                  "Sign Up & Create"
-                )}
-              </Button>
-            )}
+              ) : (
+                <Button
+                  onClick={handleNext}
+                  disabled={isSubmitting}
+                  size="sm"
+                  className="h-9 px-4 bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all"
+                >
+                  {isSubmitting ? (
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      Creating...
+                    </div>
+                  ) : isAuthenticated ? (
+                    <div className="flex items-center gap-2">
+                      <Zap className="h-4 w-4" />
+                      Create Fundraiser
+                    </div>
+                  ) : (
+                    "Sign Up & Create"
+                  )}
+                </Button>
+              )}
+            </div>
           </div>
         </DialogContent>
       </Dialog>
