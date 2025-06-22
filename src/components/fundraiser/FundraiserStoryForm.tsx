@@ -1,9 +1,7 @@
-
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { FileText, User, Calendar, Heart, Building, MapPin } from "lucide-react";
+import { User, Calendar, Heart, Building, MapPin } from "lucide-react";
 
 interface FundraiserStoryFormProps {
   formData: any;
@@ -202,24 +200,6 @@ const FundraiserStoryForm = ({ formData, onInputChange, errors }: FundraiserStor
           } focus:border-rose-500`}
         />
         {errors.city && <p className="text-red-500 text-xs">{errors.city}</p>}
-      </div>
-
-      {/* Story */}
-      <div className="space-y-2">
-        <Label className="text-sm font-medium text-gray-900 flex items-center gap-2">
-          <FileText className="h-4 w-4 text-rose-500" />
-          Your Story *
-        </Label>
-        <Textarea
-          placeholder="Share your complete story. Include background, why you need help, and how funds will be used..."
-          value={formData.fullStory}
-          onChange={(e) => onInputChange('fullStory', e.target.value)}
-          className={`min-h-[120px] border ${
-            errors.fullStory ? 'border-red-400' : 'border-gray-300'
-          } focus:border-rose-500 resize-none`}
-        />
-        <p className="text-xs text-gray-500">{formData.fullStory?.length || 0}/200 minimum</p>
-        {errors.fullStory && <p className="text-red-500 text-xs">{errors.fullStory}</p>}
       </div>
     </div>
   );

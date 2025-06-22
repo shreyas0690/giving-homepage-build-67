@@ -71,10 +71,6 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
     if (!formData.hospitalizationStatus) newErrors.hospitalizationStatus = 'Hospitalization status is required';
     if (!formData.hospital) newErrors.hospital = 'Hospital is required';
     if (!formData.city?.trim()) newErrors.city = 'City is required';
-    if (!formData.fullStory.trim()) newErrors.fullStory = 'Story is required';
-    else if (formData.fullStory.length < 200) {
-      newErrors.fullStory = 'Story must be at least 200 characters';
-    }
     
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
