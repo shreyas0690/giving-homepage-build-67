@@ -87,7 +87,7 @@ const FundraiserBasicForm = ({ formData, onInputChange, errors }: FundraiserBasi
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Purpose Display */}
       <Card className="border border-rose-200 bg-rose-50">
         <CardContent className="p-4">
@@ -216,8 +216,8 @@ const FundraiserBasicForm = ({ formData, onInputChange, errors }: FundraiserBasi
         {errors.hearAbout && <p className="text-red-500 text-xs">{errors.hearAbout}</p>}
       </div>
 
-      {/* Compact Add Fundraiser Image - Added mb-8 for extra spacing */}
-      <div className="space-y-2 mb-8">
+      {/* Compact Add Fundraiser Image */}
+      <div className="space-y-2">
         <Label className="text-sm font-medium text-gray-900 flex items-center gap-2">
           <ImagePlus className="h-4 w-4 text-rose-500" />
           Add Fundraiser Image
