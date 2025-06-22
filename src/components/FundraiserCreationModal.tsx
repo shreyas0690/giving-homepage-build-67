@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -84,10 +83,10 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
   const validateStep3 = () => {
     const newErrors: Record<string, string> = {};
     
-    if (!formData.fundraiserTitle?.trim()) newErrors.fundraiserTitle = 'Fundraiser title is required';
-    if (!formData.briefDescription?.trim()) newErrors.briefDescription = 'Brief description is required';
-    if (!formData.urgencyLevel) newErrors.urgencyLevel = 'Urgency level is required';
-    if (!formData.contactNumber?.trim()) newErrors.contactNumber = 'Contact number is required';
+    if (!formData.fullStory.trim()) newErrors.fullStory = 'Story is required';
+    else if (formData.fullStory.length < 200) {
+      newErrors.fullStory = 'Story must be at least 200 characters';
+    }
     
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
