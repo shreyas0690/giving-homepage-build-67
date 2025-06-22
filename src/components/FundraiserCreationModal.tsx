@@ -177,7 +177,7 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
   return (
     <>
       <Dialog open={open && !showSignUp} onOpenChange={onOpenChange}>
-        <DialogContent className="w-[95vw] max-w-lg mx-auto rounded-2xl border-0 shadow-xl bg-white max-h-[90vh] overflow-y-auto">
+        <DialogContent className="w-[95vw] max-w-4xl mx-auto rounded-2xl border-0 shadow-xl bg-white max-h-[90vh] overflow-y-auto">
           <DialogHeader className="text-center pb-4">
             {/* Progress */}
             <div className="flex items-center justify-center gap-2 mb-4">
@@ -228,52 +228,59 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
               />
             )}
             {currentStep === 3 && (
-              <FundraiserDocumentForm
-                formData={formData}
-                onInputChange={handleInputChange}
-                errors={errors}
-              />
+              <>
+                <FundraiserDocumentForm
+                  formData={formData}
+                  onInputChange={handleInputChange}
+                  errors={errors}
+                />
+                
+                {/* Full Width Submit Button for Step 3 */}
+                <div className="mt-8">
+                  <Button
+                    onClick={handleNext}
+                    disabled={isSubmitting}
+                    className="w-full h-12 bg-teal-600 hover:bg-teal-700 text-white font-semibold text-lg shadow-md hover:shadow-lg transition-all"
+                  >
+                    {isSubmitting ? (
+                      "Creating..."
+                    ) : isAuthenticated ? (
+                      "Submit"
+                    ) : (
+                      "Sign Up & Submit"
+                    )}
+                  </Button>
+                </div>
+              </>
             )}
           </div>
 
-          <Separator className="mt-6" />
+          {currentStep < 3 && (
+            <>
+              <Separator className="mt-6" />
 
-          {/* Footer */}
-          <div className="flex justify-between items-center pt-4">
-            <Button
-              variant="outline"
-              onClick={handleBack}
-              disabled={currentStep === 1}
-              className="flex items-center gap-2 h-10 px-4 border border-gray-300 hover:bg-gray-50 disabled:opacity-50"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Back
-            </Button>
+              {/* Footer - Only show for steps 1 and 2 */}
+              <div className="flex justify-between items-center pt-4">
+                <Button
+                  variant="outline"
+                  onClick={handleBack}
+                  disabled={currentStep === 1}
+                  className="flex items-center gap-2 h-10 px-4 border border-gray-300 hover:bg-gray-50 disabled:opacity-50"
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                  Back
+                </Button>
 
-            <Button
-              onClick={handleNext}
-              disabled={isSubmitting}
-              className="h-10 px-6 bg-rose-500 hover:bg-rose-600 text-white font-medium shadow-md hover:shadow-lg transition-all flex items-center gap-2"
-            >
-              {currentStep === 3 ? (
-                isSubmitting ? (
-                  "Creating..."
-                ) : isAuthenticated ? (
-                  <>
-                    <Zap className="h-4 w-4" />
-                    Launch
-                  </>
-                ) : (
-                  "Sign Up & Launch"
-                )
-              ) : (
-                <>
+                <Button
+                  onClick={handleNext}
+                  className="h-10 px-6 bg-rose-500 hover:bg-rose-600 text-white font-medium shadow-md hover:shadow-lg transition-all flex items-center gap-2"
+                >
                   Save and continue
                   <ArrowRight className="h-4 w-4" />
-                </>
-              )}
-            </Button>
-          </div>
+                </Button>
+              </div>
+            </>
+          )}
         </DialogContent>
       </Dialog>
 
