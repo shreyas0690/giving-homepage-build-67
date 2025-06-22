@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -18,7 +17,8 @@ const FundraiserDocumentForm = ({ formData, onInputChange, errors }: FundraiserD
       const relationText = formData.patientRelation === 'self' ? 'myself' : `my ${formData.patientRelation}`;
       const patientText = formData.patientRelation === 'self' ? 'I am' : `${formData.patientName} is`;
       
-      const generatedStory = `My name is [Your Name] and I am raising funds for ${relationText}, ${formData.patientName} who is suffering from ${formData.medicalCondition} and is undergoing treatment at ${formData.hospital}.
+      // Generate story with actual patient name instead of placeholder
+      const generatedStory = `I am raising funds for ${relationText}, ${formData.patientName} who is suffering from ${formData.medicalCondition} and is undergoing treatment at ${formData.hospital}.
 
 The family has done all it can to collect the total amount required for the treatment but Rs.${formData.goalAmount} more is required to pay for all the medical expenses.
 
