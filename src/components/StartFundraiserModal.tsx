@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Separator } from "@/components/ui/separator";
 import { Eye, EyeOff, User, Mail, Lock, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/contexts/AuthContext";
 import MobileVerificationModal from "@/components/MobileVerificationModal";
 
 interface StartFundraiserModalProps {
@@ -88,6 +89,7 @@ const StartFundraiserModal = ({
   const [showMobileVerification, setShowMobileVerification] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const { signIn } = useAuth();
   
   const [formData, setFormData] = useState({
     name: '',
@@ -184,11 +186,20 @@ const StartFundraiserModal = ({
   };
 
   const handleVerificationComplete = () => {
+    // Sign in the user with the registration data
+    const userData = {
+      name: formData.name,
+      email: formData.email,
+      avatar: undefined
+    };
+    
+    signIn(userData);
     setShowMobileVerification(false);
     onOpenChange(false);
+    
     toast({
       title: "Registration Complete!",
-      description: "Your account has been created successfully. You can now start your fundraiser!"
+      description: `Welcome ${formData.name}! You're now signed in and can start your fundraiser.`,
     });
     
     // Reset form
