@@ -475,124 +475,139 @@ Thank you.`,
             </Card>
           </div>
 
-          {/* Sidebar - Exact from Image 1 */}
+          {/* RIGHT SIDEBAR - EXACT FROM YOUR IMAGE */}
           <div className="space-y-4">
-            {/* Main Contribute Card */}
-            <Card className="sticky top-4">
+            {/* Main Contribute Card - Exact from Image */}
+            <Card>
               <CardContent className="p-4">
+                {/* Contribute Button */}
                 <Button 
                   onClick={handleContribute}
-                  className="w-full bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-semibold py-2 text-sm mb-3"
+                  className="w-full bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-bold py-3 text-sm mb-4 rounded-lg"
                 >
                   <Heart className="h-4 w-4 mr-2" />
                   CONTRIBUTE NOW
                 </Button>
                 
+                {/* Spread the Word Button */}
                 <Button 
                   variant="outline" 
-                  className="w-full border-blue-500 text-blue-600 hover:bg-blue-50 mb-3 text-sm"
+                  className="w-full border-blue-500 text-blue-600 hover:bg-blue-50 mb-4 text-sm font-semibold py-2"
                   onClick={() => handleShare('facebook')}
                 >
                   <Facebook className="h-4 w-4 mr-2" />
                   Spread the word
                 </Button>
 
-                <div className="text-center text-xs text-gray-600 mb-3">
+                {/* Amount Info */}
+                <div className="text-center text-xs text-gray-600 mb-4">
                   Only 30% of the amount raised so far ₹0
                 </div>
 
-                <Separator className="my-3" />
+                <Separator className="my-4" />
 
-                <div className="space-y-2 text-sm">
+                {/* Campaigner and Beneficiary Info - Exact Layout */}
+                <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-600">Campaigner</span>
-                    <span className="font-medium">MS</span>
+                    <span className="text-gray-600 text-sm">Campaigner</span>
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 bg-gradient-to-r from-rose-500 to-pink-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                        MS
+                      </div>
+                      <span className="font-medium text-sm">{fundraiserData.organizer}</span>
+                    </div>
                   </div>
+                  
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-600"></span>
-                    <span className="font-medium">{fundraiserData.organizer}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-600">Beneficiary</span>
-                    <span className="font-medium">VS</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-600"></span>
-                    <span className="font-medium">Vishal Singh</span>
+                    <span className="text-gray-600 text-sm">Beneficiary</span>
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 bg-gradient-to-r from-rose-500 to-pink-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                        VS
+                      </div>
+                      <span className="font-medium text-sm">Vishal Singh</span>
+                    </div>
                   </div>
                 </div>
 
-                <Separator className="my-3" />
+                <Separator className="my-4" />
 
-                <div className="flex justify-center gap-1">
+                {/* Social Share Icons */}
+                <div className="flex justify-center gap-2">
                   <Button 
                     variant="outline" 
                     size="sm"
                     onClick={() => handleShare('whatsapp')}
-                    className="text-green-600 border-green-300 hover:bg-green-50 p-2"
+                    className="text-green-600 border-green-300 hover:bg-green-50 p-2 rounded-full"
                   >
-                    <Share2 className="h-3 w-3" />
+                    <Share2 className="h-4 w-4" />
                   </Button>
                   <Button 
                     variant="outline" 
                     size="sm"
                     onClick={() => handleShare('facebook')}
-                    className="text-blue-600 border-blue-300 hover:bg-blue-50 p-2"
+                    className="text-blue-600 border-blue-300 hover:bg-blue-50 p-2 rounded-full"
                   >
-                    <Facebook className="h-3 w-3" />
+                    <Facebook className="h-4 w-4" />
                   </Button>
                   <Button 
                     variant="outline" 
                     size="sm"
                     onClick={() => handleShare('twitter')}
-                    className="text-blue-400 border-blue-300 hover:bg-blue-50 p-2"
+                    className="text-blue-400 border-blue-300 hover:bg-blue-50 p-2 rounded-full"
                   >
-                    <Twitter className="h-3 w-3" />
+                    <Twitter className="h-4 w-4" />
                   </Button>
                   <Button 
                     variant="outline" 
                     size="sm"
                     onClick={handleCopyLink}
-                    className="text-gray-600 border-gray-300 hover:bg-gray-50 p-2"
+                    className="text-gray-600 border-gray-300 hover:bg-gray-50 p-2 rounded-full"
                   >
-                    <Copy className="h-3 w-3" />
+                    <Copy className="h-4 w-4" />
                   </Button>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Contact Support - Exact from Image 2 */}
+            {/* Contact Support Card - Exact from Image */}
             <Card>
               <CardContent className="p-4">
-                <h4 className="font-semibold text-gray-900 mb-3 text-sm">Have a question? Check out our FAQs page or chat with us on Facebook or WhatsApp</h4>
+                <h4 className="font-semibold text-gray-900 mb-3 text-sm leading-tight">
+                  Have a question? Check out our FAQs page or chat with us on Facebook or WhatsApp
+                </h4>
                 
-                <div className="flex gap-2 mb-3">
+                {/* Chat Buttons */}
+                <div className="flex gap-2 mb-4">
                   <Button 
                     size="sm" 
-                    className="bg-blue-600 hover:bg-blue-700 text-white flex-1 text-xs"
+                    className="bg-blue-600 hover:bg-blue-700 text-white flex-1 text-xs font-bold py-2"
                   >
                     <Facebook className="h-3 w-3 mr-1" />
                     CHAT WITH US
                   </Button>
                   <Button 
                     size="sm" 
-                    className="bg-green-600 hover:bg-green-700 text-white flex-1 text-xs"
+                    className="bg-green-600 hover:bg-green-700 text-white flex-1 text-xs font-bold py-2"
                   >
                     <MessageCircle className="h-3 w-3 mr-1" />
                     CHAT WITH US
                   </Button>
                 </div>
 
+                {/* Report Button */}
                 <Button 
                   variant="outline" 
                   size="sm" 
-                  className="w-full text-gray-600 border-gray-300 text-xs"
+                  className="w-full text-gray-600 border-gray-300 text-xs py-2 mb-4"
                 >
                   Report this fundraiser to Varak
                 </Button>
 
-                <div className="mt-3 text-xs text-gray-500">
-                  <p className="mb-1">Content Disclaimer: The views and opinions expressed on the campaign page are those of a campaigner or beneficiaries. They do not reflect the company's views and opinions.</p>
+                {/* Disclaimer Text */}
+                <div className="text-xs text-gray-500 leading-relaxed">
+                  <p className="mb-2">
+                    <strong>Content Disclaimer:</strong> The views and opinions expressed on the campaign page are those of a campaigner or beneficiaries. They do not reflect the company's views and opinions.
+                  </p>
                 </div>
               </CardContent>
             </Card>
