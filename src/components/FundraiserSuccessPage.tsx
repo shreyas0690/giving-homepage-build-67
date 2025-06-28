@@ -44,6 +44,11 @@ const FundraiserSuccessPage = ({
     setSelectedPlan(planToUpgrade);
     setIsUpgradeModalOpen(false);
     setIsSuccessModalOpen(true);
+    
+    // Navigate to detailed fundraiser page after a short delay
+    setTimeout(() => {
+      navigate('/fundraiser-details');
+    }, 2000);
   };
 
   const handleGoHome = () => {
@@ -89,7 +94,7 @@ const FundraiserSuccessPage = ({
           </div>
           <DialogTitle className="text-xl mb-2">{planToUpgrade?.charAt(0).toUpperCase() + planToUpgrade?.slice(1)} plan activated</DialogTitle>
           <DialogDescription className="text-gray-600 mb-6">
-            Ketto will soon be supporting you in your fundraising journey. In the meantime, share your fundraiser with friends and family to kickstart your campaign!
+            Varak will soon be supporting you in your fundraising journey. In the meantime, share your fundraiser with friends and family to kickstart your campaign!
           </DialogDescription>
           <Button 
             onClick={handleShareOnWhatsapp}
