@@ -24,7 +24,9 @@ import {
   AlertTriangle,
   CheckCircle,
   UserPlus,
-  Clock
+  Clock,
+  ArrowRight,
+  TrendingUp
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -147,6 +149,20 @@ Thank you.`,
     toast({
       title: "Edit Fundraiser",
       description: "Edit functionality will be available soon!",
+    });
+  };
+
+  const handleViewMoreFundraisers = () => {
+    toast({
+      title: "View More",
+      description: "Redirecting to more fundraisers...",
+    });
+  };
+
+  const handleFundraiserClick = (title: string) => {
+    toast({
+      title: "Fundraiser Details",
+      description: `Opening ${title}...`,
     });
   };
 
@@ -627,69 +643,213 @@ Thank you.`,
           </div>
         </div>
 
-        {/* Related Fundraisers */}
-        <div className="mt-10">
-          <h2 className="text-xl font-bold text-gray-900 mb-6">People like you contributed to these Fundraisers</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* IMPROVED Related Fundraisers Section */}
+        <div className="mt-12 bg-white rounded-xl shadow-lg p-8">
+          {/* Enhanced Header */}
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-gradient-to-r from-rose-500 to-pink-600 rounded-full flex items-center justify-center">
+                <TrendingUp className="h-5 w-5 text-white" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900">People like you contributed to these Fundraisers</h2>
+                <p className="text-gray-600 text-sm mt-1">Discover other meaningful causes that need your support</p>
+              </div>
+            </div>
+            <Button 
+              onClick={handleViewMoreFundraisers}
+              className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white px-6 py-2 rounded-lg font-medium"
+            >
+              View All
+              <ArrowRight className="h-4 w-4 ml-2" />
+            </Button>
+          </div>
+
+          {/* Enhanced Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                title: "Help father and his 20-year old son, Father ...",
+                title: "Help father and his 20-year old son, Father needs urgent medical support",
                 organizer: "Manoj Singh",
                 raised: "₹1,61,61,594",
-                goal: "raised out of ₹2,00,00,000",
+                goal: "₹2,00,00,000",
+                progress: 80,
                 daysLeft: "48 Days Left",
-                supporters: "13933 Supporters"
+                supporters: "13933 Supporters",
+                category: "Medical",
+                urgent: true,
+                image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=400&h=200"
               },
               {
-                title: "My Baby Battles For His Life And We Need Your ...",
+                title: "My Baby Battles For His Life And We Need Your Help",
                 organizer: "Mahendra Buddy Baba",
                 raised: "₹44,54,532",
-                goal: "raised out of ₹6,00,000",
+                goal: "₹6,00,000",
+                progress: 74,
                 daysLeft: "15 Days Left",
-                supporters: "3088 Supporters"
+                supporters: "3088 Supporters",
+                category: "Child Care",
+                urgent: true,
+                image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?auto=format&fit=crop&w=400&h=200"
               },
               {
-                title: "Support Ramavati Devi In Her Fight Against Lung...",
+                title: "Support Ramavati Devi In Her Fight Against Lung Cancer",
                 organizer: "KARAN KUMAR SHARMA",
                 raised: "₹33,52,800",
-                goal: "raised out of ₹5,00,000",
+                goal: "₹5,00,000",
+                progress: 67,
                 daysLeft: "38 Days Left",
-                supporters: "2993 Supporters"
+                supporters: "2993 Supporters",
+                category: "Cancer Treatment",
+                urgent: false,
+                image: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&w=400&h=200"
               },
               {
-                title: "Support My Dad's Brain Injury Recovery - Urgent...",
+                title: "Support My Dad's Brain Injury Recovery - Urgent Help Needed",
                 organizer: "Alok Ramayan Chaurasia",
                 raised: "₹28,31,771",
-                goal: "raised out of ₹30,00,000",
+                goal: "₹30,00,000",
+                progress: 94,
                 daysLeft: "15 Days Left",
-                supporters: "3570 Supporters"
+                supporters: "3570 Supporters",
+                category: "Brain Injury",
+                urgent: true,
+                image: "https://images.unsplash.com/photo-1551190822-a9333d879b1f?auto=format&fit=crop&w=400&h=200"
               }
             ].map((item, index) => (
-              <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
-                <img 
-                  src={`https://images.unsplash.com/photo-${1559757148 + index}000-5c350d0d3c56?auto=format&fit=crop&w=300&h=150`}
-                  alt="Related fundraiser"
-                  className="w-full h-32 object-cover"
-                />
-                <CardContent className="p-3">
-                  <h3 className="font-semibold text-xs mb-1 line-clamp-2">
+              <Card 
+                key={index} 
+                className="group overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:-translate-y-1 border-0 shadow-md"
+                onClick={() => handleFundraiserClick(item.title)}
+              >
+                {/* Enhanced Image with Overlay */}
+                <div className="relative overflow-hidden">
+                  <img 
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  {/* Category Badge */}
+                  <div className="absolute top-3 left-3">
+                    <span className="bg-white/90 backdrop-blur-sm text-gray-800 text-xs font-medium px-2 py-1 rounded-full">
+                      {item.category}
+                    </span>
+                  </div>
+                  {/* Urgent Badge */}
+                  {item.urgent && (
+                    <div className="absolute top-3 right-3">
+                      <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
+                        <Clock className="h-3 w-3" />
+                        URGENT
+                      </span>
+                    </div>
+                  )}
+                  {/* Progress Overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3">
+                    <div className="text-white text-sm font-bold">
+                      {item.progress}% funded
+                    </div>
+                  </div>
+                </div>
+                
+                <CardContent className="p-4">
+                  {/* Title */}
+                  <h3 className="font-bold text-sm mb-2 line-clamp-2 leading-tight group-hover:text-rose-600 transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-gray-600 mb-2">by {item.organizer}</p>
-                  <div className="text-xs font-bold text-gray-900 mb-1">
-                    {item.raised}
+                  
+                  {/* Organizer */}
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-5 h-5 bg-gradient-to-r from-rose-500 to-pink-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                      {item.organizer.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                    </div>
+                    <p className="text-xs text-gray-600">by {item.organizer}</p>
                   </div>
-                  <div className="text-xs text-gray-600 mb-2">
-                    {item.goal}
+                  
+                  {/* Amount Info */}
+                  <div className="space-y-2 mb-3">
+                    <div className="flex justify-between items-center">
+                      <div className="text-sm font-bold text-gray-900">
+                        {item.raised}
+                      </div>
+                      <div className="text-xs text-gray-500">
+                        of {item.goal}
+                      </div>
+                    </div>
+                    
+                    {/* Enhanced Progress Bar */}
+                    <div className="relative">
+                      <Progress value={item.progress} className="h-2 bg-gray-200">
+                        <div 
+                          className="h-full bg-gradient-to-r from-rose-500 to-pink-600 transition-all duration-300"
+                          style={{ width: `${item.progress}%` }}
+                        />
+                      </Progress>
+                    </div>
                   </div>
-                  <Progress value={Math.random() * 100} className="h-1 mb-2" />
-                  <div className="flex justify-between text-xs text-gray-600">
-                    <span>{item.daysLeft}</span>
-                    <span>{item.supporters}</span>
+                  
+                  {/* Stats */}
+                  <div className="flex justify-between items-center text-xs text-gray-600 mb-4">
+                    <div className="flex items-center gap-1">
+                      <Clock className="h-3 w-3" />
+                      <span className="font-medium">{item.daysLeft}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Users className="h-3 w-3" />
+                      <span className="font-medium">{item.supporters}</span>
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex gap-2">
+                    <Button 
+                      size="sm"
+                      className="flex-1 bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white text-xs py-2 font-medium"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleContribute();
+                      }}
+                    >
+                      <Heart className="h-3 w-3 mr-1" />
+                      Contribute
+                    </Button>
+                    <Button 
+                      size="sm"
+                      variant="outline"
+                      className="px-3 border-gray-300 hover:bg-gray-50 text-xs"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleShare('whatsapp');
+                      }}
+                    >
+                      <Share2 className="h-3 w-3" />
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          {/* Call to Action */}
+          <div className="mt-8 text-center bg-gradient-to-r from-rose-50 to-pink-50 rounded-lg p-6">
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Want to make a difference?</h3>
+            <p className="text-gray-600 text-sm mb-4">
+              Join thousands of compassionate people who are helping others in need
+            </p>
+            <div className="flex justify-center gap-3">
+              <Button 
+                onClick={handleViewMoreFundraisers}
+                className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white px-6 py-2"
+              >
+                Explore More Fundraisers
+              </Button>
+              <Button 
+                variant="outline"
+                className="border-rose-300 text-rose-600 hover:bg-rose-50 px-6 py-2"
+              >
+                Start Your Own
+              </Button>
+            </div>
           </div>
         </div>
       </div>
