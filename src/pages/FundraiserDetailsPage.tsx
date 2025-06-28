@@ -154,19 +154,19 @@ Thank you.`,
     <div className="min-h-screen bg-gray-50">
       <Header />
       
-      {/* Exact Success Banner from Image 1 */}
-      <div className="bg-gradient-to-r from-rose-500 to-pink-600 text-white py-3">
+      {/* Exact Success Banner from Image - Matching Design */}
+      <div className="bg-gradient-to-r from-rose-500 to-pink-600 text-white py-4">
         <div className="max-w-6xl mx-auto px-4 text-center">
-          <div className="flex items-center justify-center gap-2 mb-2">
+          <div className="flex items-center justify-center gap-2 mb-3">
             <CheckCircle className="h-5 w-5" />
             <span className="font-medium text-sm">Congrats! Your fundraiser is now active and you can begin receiving contributions.</span>
           </div>
-          <div className="text-xs opacity-90 mb-3">
+          <div className="text-xs mb-3">
             Share this URL with your family, friends and well-wishers: {fundraiserData.shareUrl}
             <Button 
               variant="outline" 
               size="sm" 
-              className="ml-2 text-rose-600 border-white hover:bg-white/10 text-xs h-6 px-2"
+              className="ml-2 text-rose-600 border-white hover:bg-white/10 text-xs h-6 px-2 bg-white"
               onClick={handleCopyLink}
             >
               COPY LINK
@@ -174,14 +174,14 @@ Thank you.`,
           </div>
           <div className="flex justify-center gap-2">
             <Button 
-              className="bg-blue-600 hover:bg-blue-700 text-white text-xs h-8 px-3"
+              className="bg-blue-600 hover:bg-blue-700 text-white text-xs h-8 px-4 rounded"
               onClick={() => handleShare('facebook')}
             >
               <Facebook className="h-3 w-3 mr-1" />
               Spread the Word
             </Button>
             <Button 
-              className="bg-green-600 hover:bg-green-700 text-white text-xs h-8 px-3"
+              className="bg-green-600 hover:bg-green-700 text-white text-xs h-8 px-4 rounded"
               onClick={() => handleShare('whatsapp')}
             >
               <Share2 className="h-3 w-3 mr-1" />
@@ -191,7 +191,7 @@ Thank you.`,
         </div>
       </div>
 
-      {/* Status Alerts - Exact from Image 1 */}
+      {/* Status Alerts - Exact from Image */}
       <div className="max-w-6xl mx-auto px-4 py-3 space-y-2">
         {fundraiserData.isUnderReview && (
           <div className="bg-blue-50 border border-blue-200 rounded p-3 flex items-start gap-2">
@@ -232,28 +232,45 @@ Thank you.`,
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Main Content - Exact Layout from Images */}
           <div className="lg:col-span-2 space-y-4">
-            {/* Main Fundraiser Card - Exact from Image 1 */}
+            {/* Main Fundraiser Card - Exact from Image */}
             <Card className="overflow-hidden">
-              {/* Medical Background Image */}
-              <div className="relative h-64 bg-gradient-to-br from-rose-100 via-pink-50 to-blue-50">
+              {/* Medical Background Image - Exact Style */}
+              <div className="relative h-64 bg-gradient-to-br from-cyan-100 via-teal-50 to-blue-100">
                 <div className="absolute inset-0 flex items-center justify-center">
-                  {/* Medical Icons Pattern */}
-                  <div className="grid grid-cols-6 gap-8 opacity-20">
-                    <Heart className="h-8 w-8 text-rose-400" />
-                    <div className="w-8 h-8 rounded-full bg-rose-300"></div>
-                    <Users className="h-8 w-8 text-pink-400" />
+                  {/* Medical Icons Pattern - Exact from Image */}
+                  <div className="grid grid-cols-8 gap-6 opacity-30">
+                    <Heart className="h-8 w-8 text-cyan-400" />
+                    <div className="w-8 h-8 rounded-full bg-cyan-300"></div>
+                    <Users className="h-8 w-8 text-teal-400" />
                     <div className="w-6 h-8 bg-blue-300 rounded"></div>
-                    <Heart className="h-6 w-6 text-rose-300" />
-                    <div className="w-8 h-6 bg-pink-300 rounded-full"></div>
-                    <div className="w-8 h-8 bg-rose-200 rounded"></div>
-                    <Heart className="h-6 w-6 text-pink-300" />
+                    <Heart className="h-6 w-6 text-cyan-300" />
+                    <div className="w-8 h-6 bg-teal-300 rounded-full"></div>
+                    <div className="w-8 h-8 bg-cyan-200 rounded"></div>
+                    <Heart className="h-6 w-6 text-teal-300" />
                     <div className="w-6 h-6 bg-blue-200 rounded-full"></div>
-                    <Users className="h-8 w-8 text-rose-300" />
-                    <div className="w-8 h-6 bg-pink-200 rounded"></div>
+                    <Users className="h-8 w-8 text-cyan-300" />
+                    <div className="w-8 h-6 bg-teal-200 rounded"></div>
                     <Heart className="h-8 w-8 text-blue-300" />
+                    <div className="w-6 h-8 bg-cyan-200 rounded"></div>
+                    <Heart className="h-6 w-6 text-teal-200" />
+                    <div className="w-8 h-8 bg-blue-200 rounded-full"></div>
+                    <Users className="h-8 w-8 text-cyan-200" />
+                    {/* Medical Cross Icon */}
+                    <div className="w-8 h-8 flex items-center justify-center">
+                      <div className="w-6 h-2 bg-teal-400 rounded"></div>
+                      <div className="w-2 h-6 bg-teal-400 rounded absolute"></div>
+                    </div>
+                    <Heart className="h-6 w-6 text-blue-200" />
+                    <div className="w-6 h-6 bg-cyan-200 rounded"></div>
+                    <Users className="h-8 w-8 text-teal-200" />
+                    <div className="w-8 h-6 bg-blue-200 rounded-full"></div>
+                    <Heart className="h-8 w-8 text-cyan-200" />
+                    <div className="w-6 h-8 bg-teal-200 rounded"></div>
+                    <Heart className="h-6 w-6 text-blue-200" />
+                    <div className="w-8 h-8 bg-cyan-200 rounded-full"></div>
                   </div>
                 </div>
-                {/* Contribute Button Overlay */}
+                {/* Contribute Button Overlay - Exact Position */}
                 <div className="absolute bottom-4 right-4">
                   <Button 
                     onClick={handleContribute}
@@ -323,7 +340,7 @@ Thank you.`,
               </CardContent>
             </Card>
 
-            {/* About the Fundraiser - Exact from Image 1 */}
+            {/* About the Fundraiser - Exact from Image */}
             <Card>
               <CardContent className="p-4">
                 <h2 className="text-lg font-bold text-gray-900 mb-3">About the Fundraiser</h2>
@@ -362,7 +379,7 @@ Thank you.`,
               </CardContent>
             </Card>
 
-            {/* Other Contribution Methods - Exact from Image 2 */}
+            {/* Other Contribution Methods */}
             <Card>
               <CardContent className="p-4">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">Other Contribution Methods</h3>
@@ -420,7 +437,7 @@ Thank you.`,
               </CardContent>
             </Card>
 
-            {/* Refer a Friend - Exact from Image 2 */}
+            {/* Refer a Friend */}
             <Card>
               <CardContent className="p-4">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">REFER A FRIEND</h3>
@@ -445,7 +462,7 @@ Thank you.`,
               </CardContent>
             </Card>
 
-            {/* Supporters' Comments - Exact from Image 2 */}
+            {/* Supporters' Comments */}
             <Card>
               <CardContent className="p-4">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">Supporters' Comments</h3>
@@ -475,101 +492,96 @@ Thank you.`,
             </Card>
           </div>
 
-          {/* RIGHT SIDEBAR - EXACT FROM YOUR IMAGE */}
+          {/* RIGHT SIDEBAR - EXACT FROM IMAGE */}
           <div className="space-y-4">
             {/* Main Contribute Card - Exact from Image */}
-            <Card>
-              <CardContent className="p-4">
-                {/* Contribute Button */}
-                <Button 
-                  onClick={handleContribute}
-                  className="w-full bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-bold py-3 text-sm mb-4 rounded-lg"
-                >
-                  <Heart className="h-4 w-4 mr-2" />
-                  CONTRIBUTE NOW
-                </Button>
+            <Card className="overflow-hidden">
+              <CardContent className="p-0">
+                {/* Contribute Button - Exact Style */}
+                <div className="bg-gradient-to-r from-teal-400 to-cyan-500 p-4">
+                  <Button 
+                    onClick={handleContribute}
+                    className="w-full bg-white text-teal-600 hover:bg-gray-50 font-bold py-3 text-sm rounded-lg border-0"
+                  >
+                    <Heart className="h-4 w-4 mr-2" />
+                    CONTRIBUTE NOW
+                  </Button>
+                </div>
                 
-                {/* Spread the Word Button */}
-                <Button 
-                  variant="outline" 
-                  className="w-full border-blue-500 text-blue-600 hover:bg-blue-50 mb-4 text-sm font-semibold py-2"
-                  onClick={() => handleShare('facebook')}
-                >
-                  <Facebook className="h-4 w-4 mr-2" />
-                  Spread the word
-                </Button>
-
-                {/* Amount Info */}
-                <div className="text-center text-xs text-gray-600 mb-4">
-                  Only 30% of the amount raised so far ₹0
-                </div>
-
-                <Separator className="my-4" />
-
-                {/* Campaigner and Beneficiary Info - Exact Layout */}
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-600 text-sm">Campaigner</span>
-                    <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 bg-gradient-to-r from-rose-500 to-pink-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                        MS
-                      </div>
-                      <span className="font-medium text-sm">{fundraiserData.organizer}</span>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-600 text-sm">Beneficiary</span>
-                    <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 bg-gradient-to-r from-rose-500 to-pink-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                        VS
-                      </div>
-                      <span className="font-medium text-sm">Vishal Singh</span>
-                    </div>
-                  </div>
-                </div>
-
-                <Separator className="my-4" />
-
-                {/* Social Share Icons */}
-                <div className="flex justify-center gap-2">
+                <div className="p-4">
+                  {/* Spread the Word Button - Exact Style */}
                   <Button 
-                    variant="outline" 
-                    size="sm"
-                    onClick={() => handleShare('whatsapp')}
-                    className="text-green-600 border-green-300 hover:bg-green-50 p-2 rounded-full"
-                  >
-                    <Share2 className="h-4 w-4" />
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    size="sm"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white mb-4 text-sm font-semibold py-3 rounded-lg"
                     onClick={() => handleShare('facebook')}
-                    className="text-blue-600 border-blue-300 hover:bg-blue-50 p-2 rounded-full"
                   >
-                    <Facebook className="h-4 w-4" />
+                    <Facebook className="h-4 w-4 mr-2" />
+                    Spread the word
                   </Button>
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    onClick={() => handleShare('twitter')}
-                    className="text-blue-400 border-blue-300 hover:bg-blue-50 p-2 rounded-full"
-                  >
-                    <Twitter className="h-4 w-4" />
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    onClick={handleCopyLink}
-                    className="text-gray-600 border-gray-300 hover:bg-gray-50 p-2 rounded-full"
-                  >
-                    <Copy className="h-4 w-4" />
-                  </Button>
+
+                  {/* Amount Info - Exact Style */}
+                  <div className="text-center text-xs text-gray-600 mb-4">
+                    Only 30% of the amount raised so far ₹{fundraiserData.raised}
+                  </div>
+
+                  {/* Amount Display - Exact Style */}
+                  <div className="text-center mb-4">
+                    <div className="text-4xl font-bold text-gray-900 mb-1">₹ 0</div>
+                    <div className="text-sm text-gray-600">₹ {fundraiserData.goal.toLocaleString()} goal</div>
+                  </div>
+
+                  {/* Stats Row - Exact Layout */}
+                  <div className="flex justify-between items-center mb-4 text-sm">
+                    <div className="text-center">
+                      <div className="font-bold text-gray-900">{fundraiserData.supporters}</div>
+                      <div className="text-gray-600 text-xs">supporters</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="font-bold text-gray-900">{fundraiserData.daysLeft}</div>
+                      <div className="text-gray-600 text-xs">Days left</div>
+                    </div>
+                  </div>
+
+                  <Separator className="my-4" />
+
+                  {/* Campaigner and Beneficiary Info - Exact Layout */}
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-gray-600 text-sm">Campaigner</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 bg-gradient-to-r from-rose-500 to-pink-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                          MS
+                        </div>
+                        <span className="font-medium text-sm">{fundraiserData.organizer}</span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <span className="text-gray-600 text-sm">Beneficiary</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 bg-gradient-to-r from-rose-500 to-pink-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                          VS
+                        </div>
+                        <span className="font-medium text-sm">Vishal Singh</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <Separator className="my-4" />
+
+                  {/* Contact Button - Exact Style */}
+                  <div className="text-center">
+                    <Button 
+                      variant="link" 
+                      className="text-blue-600 hover:text-blue-700 text-sm font-medium p-0"
+                    >
+                      Contact
+                    </Button>
+                  </div>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Contact Support Card - Exact from Image */}
+            {/* Contact Support Card */}
             <Card>
               <CardContent className="p-4">
                 <h4 className="font-semibold text-gray-900 mb-3 text-sm leading-tight">
@@ -614,7 +626,7 @@ Thank you.`,
           </div>
         </div>
 
-        {/* Related Fundraisers - Exact from Image 3 */}
+        {/* Related Fundraisers */}
         <div className="mt-8">
           <h2 className="text-xl font-bold text-gray-900 mb-4">People like you contributed to these Fundraisers</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
