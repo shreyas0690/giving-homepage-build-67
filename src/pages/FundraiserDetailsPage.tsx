@@ -26,7 +26,16 @@ import {
   UserPlus,
   Clock,
   ArrowRight,
-  TrendingUp
+  TrendingUp,
+  FileText,
+  Bell,
+  ThumbsUp,
+  Reply,
+  MoreHorizontal,
+  Send,
+  Image as ImageIcon,
+  Paperclip,
+  Info
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -35,6 +44,7 @@ const FundraiserDetailsPage = () => {
   const { toast } = useToast();
   const [comment, setComment] = useState('');
   const [referralEmail, setReferralEmail] = useState('');
+  const [activeTab, setActiveTab] = useState('about');
 
   // Exact data from your images
   const fundraiserData = {
@@ -58,6 +68,70 @@ Thank you.`,
     isUnderReview: true,
     isUrgent: true
   };
+
+  // Sample updates data
+  const updates = [
+    {
+      id: 1,
+      date: "2 days ago",
+      title: "Medical Reports Updated",
+      content: "We have uploaded the latest medical reports from Medanta Hospital. The doctors have confirmed that the surgery needs to be done within the next 2 weeks. Thank you for all your support so far.",
+      images: ["https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=400&h=200"],
+      likes: 23,
+      comments: 5
+    },
+    {
+      id: 2,
+      date: "1 week ago",
+      title: "Fundraiser Started",
+      content: "We have started this fundraiser for my brother Vishal Singh who is battling brain tumor. Every contribution, no matter how small, will help us reach our goal. Please share this with your friends and family.",
+      images: [],
+      likes: 45,
+      comments: 12
+    }
+  ];
+
+  // Sample comments data
+  const comments = [
+    {
+      id: 1,
+      name: "Priya Sharma",
+      avatar: "PS",
+      time: "2 hours ago",
+      content: "Praying for Vishal's speedy recovery. Stay strong! 🙏",
+      amount: "₹5,000",
+      likes: 8,
+      replies: []
+    },
+    {
+      id: 2,
+      name: "Rajesh Kumar",
+      avatar: "RK",
+      time: "1 day ago",
+      content: "God bless you and your family. Hope everything goes well with the treatment.",
+      amount: "₹2,000",
+      likes: 12,
+      replies: [
+        {
+          id: 1,
+          name: "Manish Singh",
+          avatar: "MS",
+          time: "1 day ago",
+          content: "Thank you so much for your support and prayers! 🙏"
+        }
+      ]
+    },
+    {
+      id: 3,
+      name: "Anonymous",
+      avatar: "A",
+      time: "3 days ago",
+      content: "Shared with my network. Hope you reach your goal soon!",
+      amount: "₹1,000",
+      likes: 5,
+      replies: []
+    }
+  ];
 
   const formatCurrency = (amount: number) => {
     if (amount >= 10000000) {
@@ -166,77 +240,96 @@ Thank you.`,
     });
   };
 
+  const handleLikeUpdate = (updateId: number) => {
+    toast({
+      title: "Liked",
+      description: "Thank you for your support!",
+    });
+  };
+
+  const handleLikeComment = (commentId: number) => {
+    toast({
+      title: "Liked",
+      description: "Comment liked!",
+    });
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
       
-      {/* SUCCESS BANNER - EXACT FROM IMAGE */}
-      <div className="bg-gradient-to-r from-rose-500 to-pink-600 text-white py-3">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <div className="flex items-center justify-center gap-2 mb-2">
-            <CheckCircle className="h-5 w-5" />
-            <span className="font-medium text-sm">Congrats! Your fundraiser is now active and you can begin receiving contributions.</span>
-          </div>
-          <div className="text-xs opacity-90 mb-3">
-            Share this URL with your family, friends and well-wishers: {fundraiserData.shareUrl}
-            <Button 
-              variant="outline" 
-              size="sm" 
-              className="ml-2 text-rose-600 border-white hover:bg-white/10 text-xs h-6 px-2"
-              onClick={handleCopyLink}
-            >
-              COPY LINK
-            </Button>
-          </div>
-          <div className="flex justify-center gap-2">
-            <Button 
-              className="bg-blue-600 hover:bg-blue-700 text-white text-xs h-8 px-3"
-              onClick={() => handleShare('facebook')}
-            >
-              <Facebook className="h-3 w-3 mr-1" />
-              Spread the Word
-            </Button>
-            <Button 
-              className="bg-green-600 hover:bg-green-700 text-white text-xs h-8 px-3"
-              onClick={() => handleShare('whatsapp')}
-            >
-              <Share2 className="h-3 w-3 mr-1" />
-              Share on Whatsapp
-            </Button>
+      {/* SUCCESS BANNER - REDESIGNED LIKE SECOND IMAGE */}
+      <div className="bg-gradient-to-r from-rose-500 to-pink-600 text-white py-4">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <CheckCircle className="h-5 w-5" />
+              <span className="font-medium text-base">Congrats! Your fundraiser is now active and you can begin receiving contributions.</span>
+            </div>
+            <div className="text-sm opacity-90 mb-4">
+              Share this URL with your family, friends and well-wishers: {fundraiserData.shareUrl}
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="ml-3 text-rose-600 border-white hover:bg-white/10 text-sm h-8 px-4"
+                onClick={handleCopyLink}
+              >
+                COPY LINK
+              </Button>
+            </div>
+            <div className="flex justify-center gap-3">
+              <Button 
+                className="bg-blue-600 hover:bg-blue-700 text-white text-sm h-9 px-4 font-medium"
+                onClick={() => handleShare('facebook')}
+              >
+                <Facebook className="h-4 w-4 mr-2" />
+                Spread the Word
+              </Button>
+              <Button 
+                className="bg-green-600 hover:bg-green-700 text-white text-sm h-9 px-4 font-medium"
+                onClick={() => handleShare('whatsapp')}
+              >
+                <Share2 className="h-4 w-4 mr-2" />
+                Share on Whatsapp
+              </Button>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* STATUS ALERTS - EXACT FROM IMAGE */}
-      <div className="max-w-6xl mx-auto px-4 py-3 space-y-2">
+      {/* STATUS ALERTS - REDESIGNED LIKE SECOND IMAGE */}
+      <div className="max-w-6xl mx-auto px-4 py-4 space-y-3">
         {fundraiserData.isUnderReview && (
-          <div className="bg-blue-50 border-l-4 border-blue-400 p-3 flex items-start gap-2">
-            <AlertTriangle className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
-            <div className="flex-1">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-blue-900 font-medium text-sm">Under Review</span>
-                <span className="bg-blue-100 text-blue-800 text-xs px-2 py-0.5 rounded font-medium">
-                  Action Required
-                </span>
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="flex items-start gap-3">
+              <div className="flex items-center gap-2">
+                <AlertTriangle className="h-5 w-5 text-blue-600 flex-shrink-0" />
+                <div className="flex items-center gap-2">
+                  <span className="text-blue-900 font-semibold text-sm">Under Review</span>
+                  <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-medium">
+                    Action Required
+                  </span>
+                </div>
               </div>
-              <p className="text-blue-800 text-xs leading-relaxed mb-2">
+            </div>
+            <div className="mt-2 ml-8">
+              <p className="text-blue-800 text-sm leading-relaxed mb-3">
                 Your fundraiser has been marked as "Under Review" and can only accept INR contributions until the 
                 verification process is complete. Complete verification within 7 days to avoid deactivation.
               </p>
-              <Button variant="link" className="text-blue-600 p-0 h-auto font-medium text-xs">
-                Complete verification now →
+              <Button variant="link" className="text-blue-600 p-0 h-auto font-medium text-sm hover:underline">
+                Complete verification now
               </Button>
             </div>
           </div>
         )}
         
         {fundraiserData.isUrgent && (
-          <div className="bg-red-50 border-l-4 border-red-400 p-2 flex items-center gap-2">
-            <AlertTriangle className="h-3 w-3 text-red-600" />
-            <span className="text-red-800 text-xs font-medium flex-1">This fundraiser is in urgent need of funds</span>
-            <span className="bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded font-bold">
-              URGENT
-            </span>
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <AlertTriangle className="h-4 w-4 text-red-600" />
+              <span className="text-red-800 text-sm font-medium">This fundraiser is in urgent need of funds</span>
+            </div>
           </div>
         )}
 
@@ -244,10 +337,10 @@ Thank you.`,
           <Button 
             variant="outline" 
             size="sm" 
-            className="text-rose-600 border-rose-300 hover:bg-rose-50 text-xs h-7 px-2"
+            className="text-rose-600 border-rose-300 hover:bg-rose-50 text-sm h-8 px-3"
             onClick={handleEditFundraiser}
           >
-            <Edit className="h-3 w-3 mr-1" />
+            <Edit className="h-4 w-4 mr-1" />
             Edit Fundraiser
           </Button>
         </div>
@@ -337,55 +430,279 @@ Thank you.`,
                   </div>
                 </div>
 
-                {/* Tabs - About, Updates, Comments */}
+                {/* IMPROVED Tabs - About, Updates, Comments */}
                 <div className="mt-4 border-b">
                   <div className="flex gap-6">
-                    <button className="text-rose-600 border-b-2 border-rose-600 pb-2 text-sm font-medium">About</button>
-                    <button className="text-gray-500 pb-2 text-sm">Updates</button>
-                    <button className="text-gray-500 pb-2 text-sm">Comments</button>
+                    <button 
+                      onClick={() => setActiveTab('about')}
+                      className={`pb-2 text-sm font-medium transition-colors ${
+                        activeTab === 'about' 
+                          ? 'text-rose-600 border-b-2 border-rose-600' 
+                          : 'text-gray-500 hover:text-gray-700'
+                      }`}
+                    >
+                      <FileText className="h-4 w-4 inline mr-1" />
+                      About
+                    </button>
+                    <button 
+                      onClick={() => setActiveTab('updates')}
+                      className={`pb-2 text-sm font-medium transition-colors ${
+                        activeTab === 'updates' 
+                          ? 'text-rose-600 border-b-2 border-rose-600' 
+                          : 'text-gray-500 hover:text-gray-700'
+                      }`}
+                    >
+                      <Bell className="h-4 w-4 inline mr-1" />
+                      Updates ({updates.length})
+                    </button>
+                    <button 
+                      onClick={() => setActiveTab('comments')}
+                      className={`pb-2 text-sm font-medium transition-colors ${
+                        activeTab === 'comments' 
+                          ? 'text-rose-600 border-b-2 border-rose-600' 
+                          : 'text-gray-500 hover:text-gray-700'
+                      }`}
+                    >
+                      <MessageCircle className="h-4 w-4 inline mr-1" />
+                      Comments ({comments.length})
+                    </button>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            {/* About the Fundraiser - Exact from Image 1 */}
-            <Card>
-              <CardContent className="p-4">
-                <h2 className="text-lg font-bold text-gray-900 mb-3">About the Fundraiser</h2>
-                <div className="prose prose-gray max-w-none">
-                  <p className="whitespace-pre-line text-gray-700 leading-relaxed text-sm">
-                    {fundraiserData.story}
-                  </p>
-                </div>
-                <Button variant="link" className="text-rose-600 p-0 mt-3 text-sm">
-                  Read More
-                </Button>
+            {/* IMPROVED Tab Content */}
+            {activeTab === 'about' && (
+              <Card>
+                <CardContent className="p-4">
+                  <h2 className="text-lg font-bold text-gray-900 mb-3">About the Fundraiser</h2>
+                  <div className="prose prose-gray max-w-none">
+                    <p className="whitespace-pre-line text-gray-700 leading-relaxed text-sm">
+                      {fundraiserData.story}
+                    </p>
+                  </div>
+                  <Button variant="link" className="text-rose-600 p-0 mt-3 text-sm">
+                    Read More
+                  </Button>
 
-                {/* Action Buttons - Exact from Image */}
-                <div className="flex gap-2 mt-4">
-                  <Button 
-                    className="bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2"
-                    onClick={() => handleShare('whatsapp')}
-                  >
-                    <Share2 className="h-4 w-4 mr-1" />
-                    Share
-                  </Button>
-                  <Button 
-                    className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2"
-                    onClick={() => handleShare('facebook')}
-                  >
-                    <Facebook className="h-4 w-4 mr-1" />
-                    Share
-                  </Button>
-                  <Button 
-                    className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white text-sm px-4 py-2"
-                    onClick={handleContribute}
-                  >
-                    Contribute Now
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+                  {/* Action Buttons - Exact from Image */}
+                  <div className="flex gap-2 mt-4">
+                    <Button 
+                      className="bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2"
+                      onClick={() => handleShare('whatsapp')}
+                    >
+                      <Share2 className="h-4 w-4 mr-1" />
+                      Share
+                    </Button>
+                    <Button 
+                      className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2"
+                      onClick={() => handleShare('facebook')}
+                    >
+                      <Facebook className="h-4 w-4 mr-1" />
+                      Share
+                    </Button>
+                    <Button 
+                      className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white text-sm px-4 py-2"
+                      onClick={handleContribute}
+                    >
+                      Contribute Now
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* IMPROVED Updates Tab */}
+            {activeTab === 'updates' && (
+              <Card>
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between mb-4">
+                    <h2 className="text-lg font-bold text-gray-900">Campaign Updates</h2>
+                    <span className="text-sm text-gray-500">{updates.length} updates</span>
+                  </div>
+                  
+                  <div className="space-y-6">
+                    {updates.map((update) => (
+                      <div key={update.id} className="border-l-4 border-rose-200 pl-4 pb-6">
+                        <div className="flex items-start justify-between mb-2">
+                          <div>
+                            <h3 className="font-semibold text-gray-900 mb-1">{update.title}</h3>
+                            <div className="flex items-center gap-2 text-sm text-gray-500">
+                              <Calendar className="h-3 w-3" />
+                              <span>{update.date}</span>
+                            </div>
+                          </div>
+                          <Button variant="ghost" size="sm" className="text-gray-400">
+                            <MoreHorizontal className="h-4 w-4" />
+                          </Button>
+                        </div>
+                        
+                        <p className="text-gray-700 text-sm leading-relaxed mb-3">
+                          {update.content}
+                        </p>
+                        
+                        {update.images.length > 0 && (
+                          <div className="grid grid-cols-2 gap-2 mb-3">
+                            {update.images.map((image, index) => (
+                              <img 
+                                key={index}
+                                src={image} 
+                                alt="Update image"
+                                className="w-full h-32 object-cover rounded-lg"
+                              />
+                            ))}
+                          </div>
+                        )}
+                        
+                        <div className="flex items-center gap-4 text-sm text-gray-500">
+                          <button 
+                            onClick={() => handleLikeUpdate(update.id)}
+                            className="flex items-center gap-1 hover:text-rose-600 transition-colors"
+                          >
+                            <ThumbsUp className="h-3 w-3" />
+                            <span>{update.likes} likes</span>
+                          </button>
+                          <button className="flex items-center gap-1 hover:text-rose-600 transition-colors">
+                            <MessageCircle className="h-3 w-3" />
+                            <span>{update.comments} comments</span>
+                          </button>
+                          <button className="flex items-center gap-1 hover:text-rose-600 transition-colors">
+                            <Share2 className="h-3 w-3" />
+                            <span>Share</span>
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {updates.length === 0 && (
+                    <div className="text-center text-gray-500 py-8">
+                      <Bell className="h-12 w-12 mx-auto mb-3 opacity-50" />
+                      <p className="text-sm">No updates yet. Check back later for campaign updates!</p>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            )}
+
+            {/* IMPROVED Comments Tab */}
+            {activeTab === 'comments' && (
+              <Card>
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between mb-4">
+                    <h2 className="text-lg font-bold text-gray-900">Supporters' Comments</h2>
+                    <span className="text-sm text-gray-500">{comments.length} comments</span>
+                  </div>
+                  
+                  {/* Comment Input */}
+                  <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+                    <div className="flex gap-3">
+                      <div className="w-8 h-8 bg-gradient-to-r from-rose-500 to-pink-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                        Y
+                      </div>
+                      <div className="flex-1">
+                        <Textarea 
+                          placeholder="Write something to cheer Manish Singh!"
+                          value={comment}
+                          onChange={(e) => setComment(e.target.value)}
+                          className="min-h-[80px] resize-none border-gray-200 focus:border-rose-500 focus:ring-rose-500 mb-3"
+                        />
+                        <div className="flex items-center justify-between">
+                          <div className="flex gap-2">
+                            <Button variant="ghost" size="sm" className="text-gray-500 hover:text-gray-700">
+                              <ImageIcon className="h-4 w-4 mr-1" />
+                              Photo
+                            </Button>
+                            <Button variant="ghost" size="sm" className="text-gray-500 hover:text-gray-700">
+                              <Paperclip className="h-4 w-4 mr-1" />
+                              File
+                            </Button>
+                          </div>
+                          <Button 
+                            onClick={handlePostComment}
+                            className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white px-4 py-2"
+                            disabled={!comment.trim()}
+                          >
+                            <Send className="h-4 w-4 mr-1" />
+                            POST
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Comments List */}
+                  <div className="space-y-4">
+                    {comments.map((commentItem) => (
+                      <div key={commentItem.id} className="border-b border-gray-100 pb-4 last:border-b-0">
+                        <div className="flex gap-3">
+                          <div className="w-8 h-8 bg-gradient-to-r from-rose-500 to-pink-600 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
+                            {commentItem.avatar}
+                          </div>
+                          <div className="flex-1">
+                            <div className="bg-gray-50 rounded-lg p-3 mb-2">
+                              <div className="flex items-center justify-between mb-1">
+                                <div className="flex items-center gap-2">
+                                  <span className="font-medium text-sm text-gray-900">{commentItem.name}</span>
+                                  {commentItem.amount && (
+                                    <span className="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded-full font-medium">
+                                      Contributed {commentItem.amount}
+                                    </span>
+                                  )}
+                                </div>
+                                <span className="text-xs text-gray-500">{commentItem.time}</span>
+                              </div>
+                              <p className="text-sm text-gray-700">{commentItem.content}</p>
+                            </div>
+                            
+                            <div className="flex items-center gap-4 text-xs text-gray-500">
+                              <button 
+                                onClick={() => handleLikeComment(commentItem.id)}
+                                className="flex items-center gap-1 hover:text-rose-600 transition-colors"
+                              >
+                                <ThumbsUp className="h-3 w-3" />
+                                <span>{commentItem.likes}</span>
+                              </button>
+                              <button className="flex items-center gap-1 hover:text-rose-600 transition-colors">
+                                <Reply className="h-3 w-3" />
+                                <span>Reply</span>
+                              </button>
+                            </div>
+                            
+                            {/* Replies */}
+                            {commentItem.replies.length > 0 && (
+                              <div className="mt-3 ml-4 space-y-2">
+                                {commentItem.replies.map((reply) => (
+                                  <div key={reply.id} className="flex gap-2">
+                                    <div className="w-6 h-6 bg-gradient-to-r from-rose-500 to-pink-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                                      {reply.avatar}
+                                    </div>
+                                    <div className="flex-1 bg-gray-50 rounded-lg p-2">
+                                      <div className="flex items-center gap-2 mb-1">
+                                        <span className="font-medium text-xs text-gray-900">{reply.name}</span>
+                                        <span className="text-xs text-gray-500">{reply.time}</span>
+                                      </div>
+                                      <p className="text-xs text-gray-700">{reply.content}</p>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {comments.length === 0 && (
+                    <div className="text-center text-gray-500 py-8">
+                      <MessageCircle className="h-12 w-12 mx-auto mb-3 opacity-50" />
+                      <p className="text-sm">No comments yet. Be the first to show your support!</p>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            )}
 
             {/* Other Contribution Methods - Exact from Image 2 */}
             <Card>
@@ -466,35 +783,6 @@ Thank you.`,
                   >
                     REFER A FRIEND
                   </Button>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Supporters' Comments - Exact from Image 2 */}
-            <Card>
-              <CardContent className="p-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Supporters' Comments</h3>
-                
-                <div className="space-y-3">
-                  <div className="flex gap-2">
-                    <Textarea 
-                      placeholder="Write something to cheer Manish Singh!"
-                      value={comment}
-                      onChange={(e) => setComment(e.target.value)}
-                      className="flex-1 min-h-[60px] resize-none text-sm"
-                    />
-                    <Button 
-                      onClick={handlePostComment}
-                      className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white self-end text-sm px-4"
-                    >
-                      POST
-                    </Button>
-                  </div>
-                  
-                  <div className="text-center text-gray-500 py-6">
-                    <MessageCircle className="h-10 w-10 mx-auto mb-2 opacity-50" />
-                    <p className="text-sm">No comments yet. Be the first to show your support!</p>
-                  </div>
                 </div>
               </CardContent>
             </Card>
