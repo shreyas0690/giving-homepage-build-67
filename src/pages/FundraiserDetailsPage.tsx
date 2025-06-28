@@ -154,14 +154,14 @@ Thank you.`,
     <div className="min-h-screen bg-gray-50">
       <Header />
       
-      {/* Exact Success Banner from Image - Matching Design */}
-      <div className="bg-gradient-to-r from-rose-500 to-pink-600 text-white py-4">
+      {/* Success Banner - Optimized Spacing */}
+      <div className="bg-gradient-to-r from-rose-500 to-pink-600 text-white py-3 shadow-lg">
         <div className="max-w-6xl mx-auto px-4 text-center">
-          <div className="flex items-center justify-center gap-2 mb-3">
-            <CheckCircle className="h-5 w-5" />
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <CheckCircle className="h-4 w-4" />
             <span className="font-medium text-sm">Congrats! Your fundraiser is now active and you can begin receiving contributions.</span>
           </div>
-          <div className="text-xs mb-3">
+          <div className="text-xs mb-3 opacity-95">
             Share this URL with your family, friends and well-wishers: {fundraiserData.shareUrl}
             <Button 
               variant="outline" 
@@ -174,14 +174,14 @@ Thank you.`,
           </div>
           <div className="flex justify-center gap-2">
             <Button 
-              className="bg-blue-600 hover:bg-blue-700 text-white text-xs h-8 px-4 rounded"
+              className="bg-blue-600 hover:bg-blue-700 text-white text-xs h-7 px-3 rounded"
               onClick={() => handleShare('facebook')}
             >
               <Facebook className="h-3 w-3 mr-1" />
               Spread the Word
             </Button>
             <Button 
-              className="bg-green-600 hover:bg-green-700 text-white text-xs h-8 px-4 rounded"
+              className="bg-green-600 hover:bg-green-700 text-white text-xs h-7 px-3 rounded"
               onClick={() => handleShare('whatsapp')}
             >
               <Share2 className="h-3 w-3 mr-1" />
@@ -191,17 +191,17 @@ Thank you.`,
         </div>
       </div>
 
-      {/* Status Alerts - Exact from Image */}
-      <div className="max-w-6xl mx-auto px-4 py-3 space-y-2">
+      {/* Status Alerts - Improved Spacing */}
+      <div className="max-w-6xl mx-auto px-4 py-2 space-y-2">
         {fundraiserData.isUnderReview && (
-          <div className="bg-blue-50 border border-blue-200 rounded p-3 flex items-start gap-2">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 flex items-start gap-2 shadow-sm">
             <AlertTriangle className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
             <div className="flex-1">
               <p className="text-blue-800 text-xs leading-relaxed">
                 Your fundraiser has been marked as "Under Review" and can only accept INR contributions until the 
                 verification process is complete. Complete verification within 7 days to avoid deactivation.
               </p>
-              <Button variant="link" className="text-blue-600 p-0 h-auto font-medium text-xs">
+              <Button variant="link" className="text-blue-600 p-0 h-auto font-medium text-xs hover:underline">
                 Complete verification now
               </Button>
             </div>
@@ -209,17 +209,17 @@ Thank you.`,
         )}
         
         {fundraiserData.isUrgent && (
-          <div className="bg-red-50 border border-red-200 rounded p-2 flex items-center gap-2">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-2 flex items-center gap-2 shadow-sm">
             <AlertTriangle className="h-3 w-3 text-red-600" />
             <span className="text-red-800 text-xs font-medium">This fundraiser is in an urgent need of funds</span>
           </div>
         )}
 
-        <div className="flex justify-end">
+        <div className="flex justify-end pt-1">
           <Button 
             variant="outline" 
             size="sm" 
-            className="text-rose-600 border-rose-300 hover:bg-rose-50 text-xs h-7 px-2"
+            className="text-rose-600 border-rose-300 hover:bg-rose-50 text-xs h-7 px-3 rounded-lg"
             onClick={handleEditFundraiser}
           >
             <Edit className="h-3 w-3 mr-1" />
@@ -228,17 +228,18 @@ Thank you.`,
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 pb-8">
+      {/* Main Content - Optimized Top Spacing */}
+      <div className="max-w-6xl mx-auto px-4 pb-8 pt-2">
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Main Content - Exact Layout from Images */}
           <div className="lg:col-span-2 space-y-4">
-            {/* Main Fundraiser Card - Exact from Image */}
-            <Card className="overflow-hidden">
-              {/* Medical Background Image - Exact Style */}
+            {/* Main Fundraiser Card */}
+            <Card className="overflow-hidden shadow-lg">
+              {/* Medical Background Image - Enhanced */}
               <div className="relative h-64 bg-gradient-to-br from-cyan-100 via-teal-50 to-blue-100">
                 <div className="absolute inset-0 flex items-center justify-center">
-                  {/* Medical Icons Pattern - Exact from Image */}
-                  <div className="grid grid-cols-8 gap-6 opacity-30">
+                  {/* Medical Icons Pattern - Improved */}
+                  <div className="grid grid-cols-8 gap-6 opacity-25">
                     <Heart className="h-8 w-8 text-cyan-400" />
                     <div className="w-8 h-8 rounded-full bg-cyan-300"></div>
                     <Users className="h-8 w-8 text-teal-400" />
@@ -270,11 +271,11 @@ Thank you.`,
                     <div className="w-8 h-8 bg-cyan-200 rounded-full"></div>
                   </div>
                 </div>
-                {/* Contribute Button Overlay - Exact Position */}
+                {/* Contribute Button Overlay */}
                 <div className="absolute bottom-4 right-4">
                   <Button 
                     onClick={handleContribute}
-                    className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-semibold px-6 py-2"
+                    className="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-semibold px-6 py-2 shadow-lg"
                   >
                     <Heart className="h-4 w-4 mr-2" />
                     CONTRIBUTE NOW
@@ -282,13 +283,13 @@ Thank you.`,
                 </div>
               </div>
               
-              <CardContent className="p-4">
-                <h1 className="text-xl font-bold text-gray-900 mb-3">
+              <CardContent className="p-5">
+                <h1 className="text-xl font-bold text-gray-900 mb-4 leading-tight">
                   {fundraiserData.title}
                 </h1>
 
-                {/* Progress Section - Exact Layout */}
-                <div className="space-y-3">
+                {/* Progress Section */}
+                <div className="space-y-4">
                   <div className="flex justify-between items-center">
                     <span className="text-2xl font-bold text-gray-900">
                       ₹ {fundraiserData.raised}
@@ -322,39 +323,39 @@ Thank you.`,
                 </div>
 
                 {/* Share This Fundraiser */}
-                <div className="mt-4 pt-3 border-t">
+                <div className="mt-5 pt-4 border-t">
                   <div className="flex items-center justify-center gap-2 text-rose-600">
                     <Share2 className="h-4 w-4" />
                     <span className="text-sm font-medium">Share This Fundraiser</span>
                   </div>
                 </div>
 
-                {/* Tabs - About, Updates, Comments */}
-                <div className="mt-4 border-b">
+                {/* Tabs */}
+                <div className="mt-5 border-b">
                   <div className="flex gap-6">
                     <button className="text-rose-600 border-b-2 border-rose-600 pb-2 text-sm font-medium">About</button>
-                    <button className="text-gray-500 pb-2 text-sm">Updates</button>
-                    <button className="text-gray-500 pb-2 text-sm">Comments</button>
+                    <button className="text-gray-500 pb-2 text-sm hover:text-gray-700">Updates</button>
+                    <button className="text-gray-500 pb-2 text-sm hover:text-gray-700">Comments</button>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            {/* About the Fundraiser - Exact from Image */}
-            <Card>
-              <CardContent className="p-4">
-                <h2 className="text-lg font-bold text-gray-900 mb-3">About the Fundraiser</h2>
+            {/* About the Fundraiser */}
+            <Card className="shadow-md">
+              <CardContent className="p-5">
+                <h2 className="text-lg font-bold text-gray-900 mb-4">About the Fundraiser</h2>
                 <div className="prose prose-gray max-w-none">
                   <p className="whitespace-pre-line text-gray-700 leading-relaxed text-sm">
                     {fundraiserData.story}
                   </p>
                 </div>
-                <Button variant="link" className="text-rose-600 p-0 mt-3 text-sm">
+                <Button variant="link" className="text-rose-600 p-0 mt-3 text-sm hover:underline">
                   Read More
                 </Button>
 
-                {/* Action Buttons - Exact from Image */}
-                <div className="flex gap-2 mt-4">
+                {/* Action Buttons */}
+                <div className="flex gap-2 mt-5">
                   <Button 
                     className="bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2"
                     onClick={() => handleShare('whatsapp')}
@@ -380,9 +381,9 @@ Thank you.`,
             </Card>
 
             {/* Other Contribution Methods */}
-            <Card>
-              <CardContent className="p-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Other Contribution Methods</h3>
+            <Card className="shadow-md">
+              <CardContent className="p-5">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Other Contribution Methods</h3>
                 
                 <div className="space-y-4">
                   <div>
@@ -438,8 +439,8 @@ Thank you.`,
             </Card>
 
             {/* Refer a Friend */}
-            <Card>
-              <CardContent className="p-4">
+            <Card className="shadow-md">
+              <CardContent className="p-5">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">REFER A FRIEND</h3>
                 <p className="text-gray-600 text-xs mb-3">
                   In need of funds for medical treatment or know someone who might be? Share the 
@@ -463,9 +464,9 @@ Thank you.`,
             </Card>
 
             {/* Supporters' Comments */}
-            <Card>
-              <CardContent className="p-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Supporters' Comments</h3>
+            <Card className="shadow-md">
+              <CardContent className="p-5">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Supporters' Comments</h3>
                 
                 <div className="space-y-3">
                   <div className="flex gap-2">
@@ -494,8 +495,8 @@ Thank you.`,
 
           {/* RIGHT SIDEBAR - EXACT FROM IMAGE */}
           <div className="space-y-4">
-            {/* Main Contribute Card - Exact from Image */}
-            <Card className="overflow-hidden">
+            {/* Main Contribute Card */}
+            <Card className="overflow-hidden shadow-lg">
               <CardContent className="p-0">
                 {/* Contribute Button - Exact Style */}
                 <div className="bg-gradient-to-r from-teal-400 to-cyan-500 p-4">
@@ -509,7 +510,7 @@ Thank you.`,
                 </div>
                 
                 <div className="p-4">
-                  {/* Spread the Word Button - Exact Style */}
+                  {/* Spread the Word Button */}
                   <Button 
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white mb-4 text-sm font-semibold py-3 rounded-lg"
                     onClick={() => handleShare('facebook')}
@@ -518,18 +519,18 @@ Thank you.`,
                     Spread the word
                   </Button>
 
-                  {/* Amount Info - Exact Style */}
+                  {/* Amount Info */}
                   <div className="text-center text-xs text-gray-600 mb-4">
                     Only 30% of the amount raised so far ₹{fundraiserData.raised}
                   </div>
 
-                  {/* Amount Display - Exact Style */}
+                  {/* Amount Display */}
                   <div className="text-center mb-4">
                     <div className="text-4xl font-bold text-gray-900 mb-1">₹ 0</div>
                     <div className="text-sm text-gray-600">₹ {fundraiserData.goal.toLocaleString()} goal</div>
                   </div>
 
-                  {/* Stats Row - Exact Layout */}
+                  {/* Stats Row */}
                   <div className="flex justify-between items-center mb-4 text-sm">
                     <div className="text-center">
                       <div className="font-bold text-gray-900">{fundraiserData.supporters}</div>
@@ -543,7 +544,7 @@ Thank you.`,
 
                   <Separator className="my-4" />
 
-                  {/* Campaigner and Beneficiary Info - Exact Layout */}
+                  {/* Campaigner and Beneficiary Info */}
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
                       <span className="text-gray-600 text-sm">Campaigner</span>
@@ -568,7 +569,7 @@ Thank you.`,
 
                   <Separator className="my-4" />
 
-                  {/* Contact Button - Exact Style */}
+                  {/* Contact Button */}
                   <div className="text-center">
                     <Button 
                       variant="link" 
@@ -582,7 +583,7 @@ Thank you.`,
             </Card>
 
             {/* Contact Support Card */}
-            <Card>
+            <Card className="shadow-md">
               <CardContent className="p-4">
                 <h4 className="font-semibold text-gray-900 mb-3 text-sm leading-tight">
                   Have a question? Check out our FAQs page or chat with us on Facebook or WhatsApp
@@ -627,8 +628,8 @@ Thank you.`,
         </div>
 
         {/* Related Fundraisers */}
-        <div className="mt-8">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">People like you contributed to these Fundraisers</h2>
+        <div className="mt-10">
+          <h2 className="text-xl font-bold text-gray-900 mb-6">People like you contributed to these Fundraisers</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               {
