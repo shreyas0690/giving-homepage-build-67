@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -17,6 +18,7 @@ interface FundraiserCreationModalProps {
 }
 
 const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModalProps) => {
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
@@ -122,9 +124,13 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
     setTimeout(() => {
       setIsSubmitting(false);
       onOpenChange(false);
-      toast({
-        title: "Fundraiser Created! 🎉",
-        description: "Your fundraiser is now live and ready to receive donations."
+      
+      // Navigate to the success page with state data
+      navigate('/fundraiser-success', {
+        state: {
+          userName: user?.name || "",
+          fromFundraiserCreation: true
+        }
       });
       
       setCurrentStep(1);
@@ -167,6 +173,8 @@ const FundraiserCreationModal = ({ open, onOpenChange }: FundraiserCreationModal
       default: return "Create Fundraiser";
     }
   };
+
+
 
   return (
     <>

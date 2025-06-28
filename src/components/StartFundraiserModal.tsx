@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -6,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
-import { Eye, EyeOff, User, Mail, Lock, Phone } from "lucide-react";
+import { Eye, EyeOff, User, Mail, Lock, Phone, X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
 import MobileVerificationModal from "@/components/MobileVerificationModal";
@@ -231,142 +230,168 @@ const StartFundraiserModal = ({
   return (
     <>
       <Dialog open={open && !showMobileVerification} onOpenChange={onOpenChange}>
-        <DialogContent className="w-[95vw] max-w-md mx-auto my-4 rounded-2xl border-0 shadow-2xl bg-white max-h-[90vh] overflow-y-auto">
-          <DialogHeader className="text-center pb-2">
-            <DialogTitle className="text-lg sm:text-xl font-bold text-gray-900">
-              Start Your Fundraiser
-            </DialogTitle>
-            <DialogDescription className="sr-only">
-              Create your account to start a fundraiser
-            </DialogDescription>
-          </DialogHeader>
+        <DialogContent className="w-[95vw] max-w-md mx-auto my-4 rounded-2xl border-0 shadow-2xl bg-white max-h-[90vh] overflow-hidden p-0" hideCloseButton>
+          <div className="gradient-header-fix"></div>
+          <div className="bg-gradient-to-r from-rose-500 to-pink-600 p-6 rounded-gradient-header relative">
+            <button 
+              onClick={() => onOpenChange(false)}
+              className="absolute right-4 top-4 z-10 rounded-full bg-white/20 p-1.5 backdrop-blur-sm transition-colors hover:bg-white/30 focus:outline-none"
+              aria-label="Close"
+            >
+              <X className="h-4 w-4 text-white" />
+            </button>
+            <DialogHeader className="text-center pb-0">
+              <DialogTitle className="text-xl sm:text-2xl font-bold text-white">
+                Start Your Fundraiser
+              </DialogTitle>
+              <DialogDescription className="text-white/90 text-sm mt-2">
+                Create your account to begin your fundraising journey
+              </DialogDescription>
+            </DialogHeader>
+          </div>
 
-          <Separator className="mb-4" />
-
-          <form onSubmit={handleSubmit} className="space-y-3 px-1">
-            {/* Name Field */}
-            <div className="space-y-1">
-              <Label htmlFor="name" className="text-sm font-medium text-gray-700">
-                Full Name *
-              </Label>
-              <div className="relative">
-                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <Input 
-                  id="name" 
-                  type="text" 
-                  placeholder="Enter your full name" 
-                  value={formData.name} 
-                  onChange={e => handleInputChange('name', e.target.value)} 
-                  className={`pl-10 h-10 border-gray-200 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500 transition-all duration-200 text-sm ${errors.name ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''}`}
-                />
-              </div>
-              {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
-            </div>
-
-            {/* Email Field */}
-            <div className="space-y-1">
-              <Label htmlFor="email" className="text-sm font-medium text-gray-700">
-                Email Address *
-              </Label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <Input 
-                  id="email" 
-                  type="email" 
-                  placeholder="Enter your email address" 
-                  value={formData.email} 
-                  onChange={e => handleInputChange('email', e.target.value)} 
-                  className={`pl-10 h-10 border-gray-200 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500 transition-all duration-200 text-sm ${errors.email ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''}`}
-                />
-              </div>
-              {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
-            </div>
-
-            {/* Password Field */}
-            <div className="space-y-1">
-              <Label htmlFor="password" className="text-sm font-medium text-gray-700">
-                Create Password *
-              </Label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <Input 
-                  id="password" 
-                  type={showPassword ? "text" : "password"} 
-                  placeholder="Create a strong password" 
-                  value={formData.password} 
-                  onChange={e => handleInputChange('password', e.target.value)} 
-                  className={`pl-10 pr-12 h-10 border-gray-200 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500 transition-all duration-200 text-sm ${errors.password ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''}`}
-                />
-                <button 
-                  type="button" 
-                  onClick={() => setShowPassword(!showPassword)} 
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
-                >
-                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                </button>
-              </div>
-              {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password}</p>}
-            </div>
-
-            {/* Mobile Field with Country Code */}
-            <div className="space-y-1">
-              <Label htmlFor="mobile" className="text-sm font-medium text-gray-700">
-                Mobile Number *
-              </Label>
-              <div className="flex gap-2">
-                <Select value={countryCode} onValueChange={setCountryCode}>
-                  <SelectTrigger className="w-20 sm:w-24 h-10 border-gray-200 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500 text-sm">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {countries.map(country => 
-                      <SelectItem key={country.code} value={country.code}>
-                        <div className="flex items-center gap-1 sm:gap-2">
-                          <span className="text-xs sm:text-sm">{country.flag}</span>
-                          <span className="text-xs sm:text-sm">{country.code}</span>
-                        </div>
-                      </SelectItem>
-                    )}
-                  </SelectContent>
-                </Select>
-                <div className="relative flex-1">
-                  <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+          <div className="p-6 bg-white relative z-10 shadow-inner">
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Name Field */}
+              <div className="space-y-1.5">
+                <Label htmlFor="name" className="text-sm font-medium text-gray-700 block">
+                  Full Name <span className="text-rose-500">*</span>
+                </Label>
+                <div className="relative">
+                  <div className="absolute left-3 top-1/2 transform -translate-y-1/2 flex items-center justify-center h-5 w-5 rounded-full bg-rose-100">
+                    <User className="h-3 w-3 text-rose-500" />
+                  </div>
                   <Input 
-                    id="mobile" 
-                    type="tel" 
-                    placeholder="Enter mobile number" 
-                    value={formData.mobile} 
-                    onChange={e => handleInputChange('mobile', e.target.value)} 
-                    className={`pl-10 h-10 border-gray-200 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500 transition-all duration-200 text-sm ${errors.mobile ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''}`}
+                    id="name" 
+                    type="text" 
+                    placeholder="Enter your full name" 
+                    value={formData.name} 
+                    onChange={e => handleInputChange('name', e.target.value)} 
+                    className={`pl-10 h-11 border-gray-200 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500 transition-all duration-200 text-sm ${errors.name ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''}`}
                   />
                 </div>
+                {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
               </div>
-              {errors.mobile && <p className="text-red-500 text-xs mt-1">{errors.mobile}</p>}
-            </div>
 
-            {/* Already have account link */}
-            <div className="text-center pt-2">
-              <p className="text-xs sm:text-sm text-gray-600">
-                Already have an account?{' '}
-                <button 
-                  type="button" 
-                  className="text-rose-600 hover:text-rose-700 font-medium hover:underline transition-colors" 
-                  onClick={handleOpenSignIn}
-                >
-                  Login
-                </button>
-              </p>
-            </div>
+              {/* Email Field */}
+              <div className="space-y-1.5">
+                <Label htmlFor="email" className="text-sm font-medium text-gray-700 block">
+                  Email Address <span className="text-rose-500">*</span>
+                </Label>
+                <div className="relative">
+                  <div className="absolute left-3 top-1/2 transform -translate-y-1/2 flex items-center justify-center h-5 w-5 rounded-full bg-rose-100">
+                    <Mail className="h-3 w-3 text-rose-500" />
+                  </div>
+                  <Input 
+                    id="email" 
+                    type="email" 
+                    placeholder="Enter your email address" 
+                    value={formData.email} 
+                    onChange={e => handleInputChange('email', e.target.value)} 
+                    className={`pl-10 h-11 border-gray-200 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500 transition-all duration-200 text-sm ${errors.email ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''}`}
+                  />
+                </div>
+                {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
+              </div>
 
-            {/* Next Button */}
-            <Button 
-              type="submit" 
-              disabled={isSubmitting}
-              className="w-full h-10 bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none text-sm sm:text-base"
-            >
-              {isSubmitting ? "Sending OTP..." : "Next"}
-            </Button>
-          </form>
+              {/* Password Field */}
+              <div className="space-y-1.5">
+                <Label htmlFor="password" className="text-sm font-medium text-gray-700 block">
+                  Create Password <span className="text-rose-500">*</span>
+                </Label>
+                <div className="relative">
+                  <div className="absolute left-3 top-1/2 transform -translate-y-1/2 flex items-center justify-center h-5 w-5 rounded-full bg-rose-100">
+                    <Lock className="h-3 w-3 text-rose-500" />
+                  </div>
+                  <Input 
+                    id="password" 
+                    type={showPassword ? "text" : "password"} 
+                    placeholder="Create a strong password" 
+                    value={formData.password} 
+                    onChange={e => handleInputChange('password', e.target.value)} 
+                    className={`pl-10 pr-12 h-11 border-gray-200 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500 transition-all duration-200 text-sm ${errors.password ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''}`}
+                  />
+                  <button 
+                    type="button" 
+                    onClick={() => setShowPassword(!showPassword)} 
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                  >
+                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  </button>
+                </div>
+                {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password}</p>}
+              </div>
+
+              {/* Mobile Field with Country Code */}
+              <div className="space-y-1.5">
+                <Label htmlFor="mobile" className="text-sm font-medium text-gray-700 block">
+                  Mobile Number <span className="text-rose-500">*</span>
+                </Label>
+                <div className="flex gap-2">
+                  <Select value={countryCode} onValueChange={setCountryCode}>
+                    <SelectTrigger className="w-24 h-11 border-gray-200 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500 text-sm">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {countries.map(country => 
+                        <SelectItem key={country.code} value={country.code}>
+                          <div className="flex items-center gap-2">
+                            <span className="text-sm">{country.flag}</span>
+                            <span className="text-sm">{country.code}</span>
+                          </div>
+                        </SelectItem>
+                      )}
+                    </SelectContent>
+                  </Select>
+                  <div className="relative flex-1">
+                    <div className="absolute left-3 top-1/2 transform -translate-y-1/2 flex items-center justify-center h-5 w-5 rounded-full bg-rose-100">
+                      <Phone className="h-3 w-3 text-rose-500" />
+                    </div>
+                    <Input 
+                      id="mobile" 
+                      type="tel" 
+                      placeholder="Enter mobile number" 
+                      value={formData.mobile} 
+                      onChange={e => handleInputChange('mobile', e.target.value)} 
+                      className={`pl-10 h-11 border-gray-200 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500 transition-all duration-200 text-sm ${errors.mobile ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''}`}
+                    />
+                  </div>
+                </div>
+                {errors.mobile && <p className="text-red-500 text-xs mt-1">{errors.mobile}</p>}
+              </div>
+
+              {/* Next Button */}
+              <Button 
+                type="submit" 
+                disabled={isSubmitting}
+                className="w-full h-12 mt-2 bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none text-base"
+              >
+                {isSubmitting ? (
+                  <div className="flex items-center justify-center gap-2">
+                    <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Sending OTP...
+                  </div>
+                ) : "Continue"}
+              </Button>
+              
+              {/* Already have account link */}
+              <div className="text-center pt-2">
+                <p className="text-sm text-gray-600">
+                  Already have an account?{' '}
+                  <button 
+                    type="button" 
+                    className="text-rose-600 hover:text-rose-700 font-medium hover:underline transition-colors" 
+                    onClick={handleOpenSignIn}
+                  >
+                    Login
+                  </button>
+                </p>
+              </div>
+            </form>
+          </div>
         </DialogContent>
       </Dialog>
 
